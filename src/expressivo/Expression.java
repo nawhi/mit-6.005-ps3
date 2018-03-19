@@ -16,8 +16,12 @@ package expressivo;
  */
 public interface Expression {
     
-    // Datatype definition
-    //   TODO
+    // Datatype definition:
+	// 
+	// Expression ::= 
+	// 		Primitive(p: Primitive) + BinOp(left: Primitive, right: Primitive)
+	// Primitive ::= 
+	//		Number(n: int) + Number(n: float) + Variable(v: String)
     
     /**
      * Parse an expression.
