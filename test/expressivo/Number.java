@@ -1,8 +1,8 @@
 package expressivo;
 
-public class Variable extends Primitive {
-
-	public Variable(String ident) {
+public class Number implements Expression {
+	
+	public Number(String val) {
 		throw new RuntimeException("not implemented");
 	}
 
