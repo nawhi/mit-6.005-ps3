@@ -46,56 +46,63 @@ public class ExpressionTest {
 	}
 	
 	@Test public void testNumbersAlone() {
-		Number i = new Number("1");
+		Numeric i = new Numeric("1");
 		assertEquals("Int's string representation should be correct",
 				i.toString(), "1");
 		assertEquals("Strings of ints with the same value should equal each other",
-				i.toString(), new Number("1").toString());
+				i.toString(), new Numeric("1").toString());
 		
 		assertEquals("Float string should be correct", 
-				new Number("1.05").toString(), "1.05");
+				new Numeric("1.05").toString(), "1.05");
 		assertEquals("Float string shouldn't have trailing zeroes",
-				new Number("1.050").toString(), "1.05");
+				new Numeric("1.050").toString(), "1.05");
 		assertEquals("Strings of floats with the same value should equal each otehr",
-				new Number("1.05").toString(), new Number("1.05").toString());
+				new Numeric("1.05").toString(), new Numeric("1.05").toString());
+	}
+	
+	@Test(expected=IllegalArgumentException.class) 
+	public void testNumericErrorConditions() {
+		Numeric inval = new Numeric("foo");
 	}
 	
 	@Test public void testNumberEqualityBetweenFloatAndInt() {
 		assertEquals("Int's string should equal a whole-number float's string", 
-				new Number("1").toString(), new Number("1.00").toString());
+				new Numeric("1").toString(), new Numeric("1.00").toString());
 		assertEquals("Int Number should equal a whole-number float Number",
-				new Number("1"), new Number("1.00"));
+				new Numeric("1"), new Numeric("1.00"));
 	}
 	
 	@Test public void testNumberLimits() {
 		assertEquals("Numbers > INT_MAX should work correctly", 
-				new Number("2147483648").toString(), "2147483648");
+				new Numeric("2147483648").toString(), "2147483648");
 		assertEquals("Numbers with lots of decimal places should work correctly",
-				"1.61803398874989484", new Number("1.61803398874989484").toString()); 
+				"1.61803398874989484", new Numeric("1.61803398874989484").toString());
+		assertNotEquals("Numbers that aren't quite equal shouldn't compare as equal",
+				 new Numeric("1.0"), new Numeric("1.00000000000000000000000001")); 
 	}
 	
 	@Test public void testSum() {
 		assertEquals("Identical sums should equal each other",
-				new Sum(new Number("1"), new Variable("foo")),
-				new Sum(new Number("1"), new Variable("foo")));
+				new Sum(new Numeric("1"), new Variable("foo")),
+				new Sum(new Numeric("1"), new Variable("foo")));
 		assertEquals("Identical sums' string representations should equal each other",
 				new Sum(new Variable("foo"), new Variable("bar")).toString(),
 				new Sum(new Variable("foo"), new Variable("bar")).toString());
-		Sum s1 = new Sum(new Number("1"), new Number("2"));
-		Sum s2 = new Sum(new Number("3"), new Number("4"));
+		Sum s1 = new Sum(new Numeric("1"), new Numeric("2"));
+		Sum s2 = new Sum(new Numeric("3"), new Numeric("4"));
 		assertEquals("Sums should commute without arbitrary parentheses", 
 				"1+2+3+4", new Sum(s1, s2).toString());
 	}
 	
 	@Test public void testProduct() {
 		assertEquals("Identical products should equal each other",
-				new Product(new Number("1"), new Variable("foo")),
-				new Product(new Number("1"), new Variable("foo")));
+				new Product(new Numeric("1"), new Variable("foo")),
+				new Product(new Numeric("1"), new Variable("foo")));
 		assertEquals("Identical products' string representations should equal each other",
 				new Product(new Variable("foo"), new Variable("bar")).toString(),
 				new Product(new Variable("foo"), new Variable("bar")).toString());
-		Product p1 = new Product(new Number("1"), new Number("2"));
-		Product p2 = new Product(new Number("3"), new Number("4"));
+		Product p1 = new Product(new Numeric("1"), new Numeric("2"));
+		Product p2 = new Product(new Numeric("3"), new Numeric("4"));
 		assertEquals("Products should commute without arbitrary parentheses",
 				"1*2*3*4", new Product(p1, p2).toString());
 	}
@@ -115,8 +122,8 @@ public class ExpressionTest {
 	
 	@Test public void testExpressionAddsParenthesesWhenNeeded() {
 		Variable a = new Variable("a");
-		Expression multFirst = new Sum(new Product(a,a), new Number("1"));
-		Expression addFirst = new Product(new Sum(a, new Number("1")), a);
+		Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));
+		Expression addFirst = new Product(new Sum(a, new Numeric("1")), a);
 				
 		assertEquals("Shouldn't add parens unless necessary", "a*a+1", multFirst);
 		assertEquals("Should add parens to keep BIDMAS order", "a*(a+1)", addFirst);
