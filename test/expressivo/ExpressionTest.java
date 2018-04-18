@@ -5,6 +5,7 @@ package expressivo;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -15,6 +16,12 @@ public class ExpressionTest {
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false; // make sure assertions are enabled with VM argument: -ea
+    }
+    
+    @Test
+    public void testWhitespaceDoesntMatter() {
+    	assertEquals("Whitespace shouldn't matter", "     hello      ", "hello");
+    	assertEquals("Whitespace shouldn't matter", "  H  e ll o \t", "\t\t\tHello");
     }
 
 	/*
@@ -60,6 +67,7 @@ public class ExpressionTest {
 				new Numeric("1.05").toString(), new Numeric("1.05").toString());
 	}
 	
+	@SuppressWarnings("unused")
 	@Test(expected=IllegalArgumentException.class) 
 	public void testNumericErrorConditions() {
 		Numeric inval = new Numeric("foo");
@@ -125,18 +133,31 @@ public class ExpressionTest {
 		Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));
 		Expression addFirst = new Product(new Sum(a, new Numeric("1")), a);
 				
-		assertEquals("Shouldn't add parens unless necessary", "a*a+1", multFirst);
-		assertEquals("Should add parens to keep BIDMAS order", "a*(a+1)", addFirst);
+		assertEquals("Shouldn't add parens unless necessary", "a*a+1", multFirst.toString());
+		assertEquals("Should add parens to keep BIDMAS order", "a*(a+1)", addFirst.toString());
 		assertFalse("Non-commutative expressions in different order shouldn't be equal",
 				multFirst.equals(addFirst));
 		
 		// These also check for any aliasing bugs by passing in the same object twice
 		assertEquals("Shouldn't add parens unless necessary in complex subexpressions",
-				"a*(a+1)*a*(a+1)", new Product(addFirst, addFirst));
+				"a*(a+1)*a*(a+1)", new Product(addFirst, addFirst).toString());
 		assertEquals("Should add parens to keep BIDMAS in complex subexpressions", 
-				"(a*a+1)*(a*a+1)", new Product(multFirst, multFirst));
+				"(a*a+1)*(a*a+1)", new Product(multFirst, multFirst).toString());
 
 	}
 	
+	/*
+	 * Whitespace does not matter in tests here, so ignore it in string
+	 * equality tests
+	 */
+	void assertEquals(String msg, Object expected, Object actual) {
+		if (expected instanceof String && actual instanceof String) {
+			String o1 = ((String) expected).replaceAll("\\s", "");
+			String o2 = ((String) actual).replaceAll("\\s", "");
+			Assert.assertEquals(msg, o1, o2);
+		} else {
+			Assert.assertEquals(msg, expected, actual);
+		}
+	}
 	
 }
