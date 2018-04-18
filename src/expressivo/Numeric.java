@@ -31,14 +31,15 @@ public class Numeric implements Expression {
 		try {
 			NumberFormat nf = NumberFormat.getInstance();
 			this.value = nf.parse(val);
+
 		} catch (ParseException ex) {
-			// Unchecked is fine - this should never happen
-			throw new IllegalArgumentException("Could not parse numeric: " + val);
+			throw new IllegalArgumentException(
+					"Could not parse '" + val + "' into a numeric");
 		}
 	}
 	
 	public Number getValue() {
-		return value.doubleValue();
+		return value;
 	}
 
 	@Override public String toString() {
@@ -51,8 +52,6 @@ public class Numeric implements Expression {
 	
 	@Override public boolean equals(Object other) {
 		if (other instanceof Numeric) {
-			// Hard to see how to do this without
-			// a massive messy disambiguation
 			throw new RuntimeException("not implemented");
 		}
 		return super.equals(other);
