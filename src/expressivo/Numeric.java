@@ -8,15 +8,14 @@ import java.text.ParseException;
  * @author nick
  *
  */
-public class Numeric implements Expression {
+public class Numeric extends Primitive {
 	
 	private final Number value;
 	
 	// Representation invariant:
 	//   true
 	// Safety from rep exposure:
-	//   private fields are final, and getter methods
-	//	 always return copies (not references)
+	//   private fields are final
 	
 	/**
 	 * Create a new instance of Numeric from a supplied string
@@ -26,8 +25,6 @@ public class Numeric implements Expression {
 	 *         be parsed into an integer or floating-point number
 	 */
 	public Numeric(String val) {
-		// TODO: is there a better way
-		
 		try {
 			NumberFormat nf = NumberFormat.getInstance();
 			this.value = nf.parse(val);
@@ -52,7 +49,7 @@ public class Numeric implements Expression {
 	
 	@Override public boolean equals(Object other) {
 		if (other instanceof Numeric) {
-			throw new RuntimeException("not implemented");
+			return this.getValue().equals(((Numeric)other).getValue());
 		}
 		return super.equals(other);
 	}

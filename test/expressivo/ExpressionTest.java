@@ -73,7 +73,7 @@ public class ExpressionTest {
 		Numeric inval = new Numeric("foo");
 	}
 	
-	@Test public void testNumberEqualityBetweenFloatAndInt() {
+	@Test public void testNumericEqualityBetweenFloatAndInt() {
 		assertEquals("Int's string should equal a whole-number float's string", 
 				new Numeric("1").toString(), new Numeric("1.00").toString());
 		assertEquals("Int Number should equal a whole-number float Number",
