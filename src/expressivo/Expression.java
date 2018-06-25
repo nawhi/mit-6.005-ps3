@@ -34,6 +34,17 @@ public interface Expression {
     }
     
     /**
+     * Find whether this Expression will have precedence over another.
+     * If not, brackets will be needed to combine the two expressions in
+     * a human-readable format (eg a string).
+     * 
+     * @param other the second Expression 
+     * @return true if this Expression can be combined with other without
+     *         needing brackets, false otherwise
+     */
+    public boolean precedes(Expression other);
+    
+    /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
      */
@@ -55,8 +66,6 @@ public interface Expression {
      */
     @Override
     public int hashCode();
-    
-    // TODO more instance methods
     
     
 }

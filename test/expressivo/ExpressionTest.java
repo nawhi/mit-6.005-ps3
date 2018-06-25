@@ -125,6 +125,7 @@ public class ExpressionTest {
 	}
 	
 	@Test public void testBinopObservationalEquality() {
+		// TODO Binop(a, Binop(b, c)) vs Binop(Binop(a, b), c) ???
 		throw new AssertionError("TODO");
 	}
 	
@@ -134,7 +135,7 @@ public class ExpressionTest {
 		Expression addFirst = new Product(new Sum(a, new Numeric("1")), a);
 				
 		assertEquals("Shouldn't add parens unless necessary", "a*a+1", multFirst.toString());
-		assertEquals("Should add parens to keep BIDMAS order", "a*(a+1)", addFirst.toString());
+		assertEquals("Should add parens to keep BIDMAS order", "(a+1)*a", addFirst.toString());
 		assertFalse("Non-commutative expressions in different order shouldn't be equal",
 				multFirst.equals(addFirst));
 		
