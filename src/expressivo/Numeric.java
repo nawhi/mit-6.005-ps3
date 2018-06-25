@@ -40,7 +40,7 @@ public class Numeric extends Primitive {
 	}
 	
 	@Override public int hashCode() {
-		throw new RuntimeException("not implemented");
+		return value.hashCode();
 	}
 	
 	@Override public boolean equals(Object other) {

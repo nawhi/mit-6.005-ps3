@@ -54,7 +54,7 @@ public class ExpressionTest {
 		assertEquals("Variable's string representation should be correct", 
 				"foo", v.toString(), IGNORE_WS);
 		assertEquals("Variables with the same ident should equal each other", 
-				new Variable("foo"), new Variable("foo"));
+				new Variable("foo"), new Variable("foo"), TEST_HC);
 	}
 	
 	@Test public void testNumbersAlone() {

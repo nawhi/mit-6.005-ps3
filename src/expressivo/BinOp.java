@@ -10,4 +10,7 @@ public abstract class BinOp implements Expression {
 		this.rvalue = rvalue;
 	}
 	
+	@Override public int hashCode() { 
+		return lvalue.hashCode() ^ rvalue.hashCode();
+	}
 }

@@ -18,6 +18,10 @@ public class Variable extends Primitive {
 		return ident;
 	}
 	
+	@Override public int hashCode() {
+		return ident.hashCode();
+	}
+	
 	@Override public boolean equals(Object other) {
 		if (other instanceof Variable)
 			return this.ident.equals(((Variable) other).ident);

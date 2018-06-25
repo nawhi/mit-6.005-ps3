@@ -17,10 +17,6 @@ public class Product extends BinOp {
 			return String.format("(%s*%s)", lvalue.toString(), rvalue.toString());
 		return String.format("%s*%s", lvalue.toString(), rvalue.toString());
 	}
-	
-	@Override public int hashCode() {
-		throw new RuntimeException("not implemented");
-	}
 
 	@Override public boolean equals(Object other) {
 		if (other instanceof Product)
