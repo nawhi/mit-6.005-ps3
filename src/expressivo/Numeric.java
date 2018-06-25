@@ -34,10 +34,6 @@ public class Numeric extends Primitive {
 					"Could not parse '" + val + "' into a numeric");
 		}
 	}
-	
-	public Number getValue() {
-		return value;
-	}
 
 	@Override public String toString() {
 		return value.toString(); 
