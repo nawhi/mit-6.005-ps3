@@ -83,8 +83,6 @@ public class ExpressionTest {
 	@Test public void testNumberLimits() {
 		assertEquals("Numbers > INT_MAX should work correctly", 
 				new Numeric("2147483648").toString(), "2147483648");
-		assertEquals("Numbers with lots of decimal places should work correctly",
-				"1.61803398874989484", new Numeric("1.61803398874989484").toString());
 		assertNotEquals("Numbers that aren't quite equal shouldn't compare as equal",
 				 new Numeric("1.0"), new Numeric("1.00000000000000000000000001")); 
 	}
