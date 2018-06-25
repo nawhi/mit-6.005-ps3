@@ -14,8 +14,14 @@ public class Variable extends Primitive {
 		this.ident = ident;
 	}
 	
-	public String toString() {
+	@Override public String toString() {
 		return ident;
+	}
+	
+	@Override public boolean equals(Object other) {
+		if (other instanceof Variable)
+			return this.ident.equals(((Variable) other).ident);
+		return super.equals(other);
 	}
 
 }

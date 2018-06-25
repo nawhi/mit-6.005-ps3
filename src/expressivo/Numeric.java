@@ -49,7 +49,7 @@ public class Numeric extends Primitive {
 	
 	@Override public boolean equals(Object other) {
 		if (other instanceof Numeric) {
-			return this.getValue().equals(((Numeric)other).getValue());
+			return this.value.equals(((Numeric)other).value);
 		}
 		return super.equals(other);
 	}
