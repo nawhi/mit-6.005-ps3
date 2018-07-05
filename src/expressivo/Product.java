@@ -6,16 +6,10 @@ public class Product extends BinOp {
 		super(lvalue, rvalue);
 	}
 	
+	protected String operator() { return "*"; }
+	
 	@Override public boolean precedes(Expression other) {
 		return true;
-	}
-	
-	@Override public String toString() {
-		// Operator precedence: 
-		// if lvalue is a Sum, it needs brackets
-		if (!lvalue.precedes(rvalue))
-			return String.format("(%s*%s)", lvalue.toString(), rvalue.toString());
-		return String.format("%s*%s", lvalue.toString(), rvalue.toString());
 	}
 
 	@Override public boolean equals(Object other) {
