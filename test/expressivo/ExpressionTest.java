@@ -131,11 +131,6 @@ public class ExpressionTest {
 				new Product(a, b).hashCode(), new Product(b, a).hashCode()); 
 	}
 	
-	@Test public void testBinopObservationalEquality() {
-		// TODO Binop(a, Binop(b, c)) vs Binop(Binop(a, b), c) ???
-		throw new AssertionError("TODO");
-	}
-	
 	@Test public void testExpressionAddsParenthesesWhenNeeded() {
 		Variable a = new Variable("a");
 		Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));
