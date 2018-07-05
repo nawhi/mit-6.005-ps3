@@ -11,6 +11,6 @@ public abstract class BinOp implements Expression {
 	}
 	
 	@Override public int hashCode() { 
-		return lvalue.hashCode() ^ rvalue.hashCode();
+		return 5 + lvalue.hashCode() ^ rvalue.hashCode() << 1;
 	}
 }
