@@ -64,12 +64,17 @@ public class ExpressionTest {
 		assertEquals("Strings of ints with the same value should equal each other",
 				i.toString(), new Numeric("1").toString());
 		
+		assertEquals("Identical Numeric ints should equal each other",
+				i, new Numeric("1"), ALL_FLAGS);
+		
 		assertEquals("Float string should be correct", 
 				new Numeric("1.05").toString(), "1.05");
 		assertEquals("Float string shouldn't have trailing zeroes",
 				new Numeric("1.050").toString(), "1.05");
 		assertEquals("Strings of floats with the same value should equal each otehr",
 				new Numeric("1.05").toString(), new Numeric("1.05").toString());
+		assertEquals("Identical Numeric floats should equal each other",
+				new Numeric("6.98"), new Numeric("6.98"), ALL_FLAGS);
 	}
 	
 	@SuppressWarnings("unused")
@@ -152,6 +157,55 @@ public class ExpressionTest {
 		assertEquals("Should add parens to keep BIDMAS in complex subexpressions", 
 				"(a*a+1)*(a*a+1)", new Product(multFirst, multFirst).toString(), IGNORE_WS);
 
+	}
+	
+	@Test public void testComplexExpressions() {
+		Variable w = new Variable("w");
+		Variable x = new Variable("x");
+		Variable y = new Variable("y");
+		Variable z = new Variable("z");
+		Numeric five = new Numeric("5");
+		Numeric pi = new Numeric("3.1415927");
+		
+		assertEquals("Complex expression 1", 
+				"(x+y)*5*(x+3.1415927)", 
+				new Product(
+						new Product(new Sum(x,y),five), 
+						new Sum(x, pi)
+					).toString());
+		
+		assertEquals("Complex expression 2",
+				"(x+y)*(5*(x+y)+3.1415927*(x+5))",
+				new Product(
+						new Sum(x,y), 
+						new Sum(
+								new Product(five, new Sum(x,y)),
+								new Product(pi, new Sum(x,five))
+						)
+					).toString());
+		
+		Sum xplusy = new Sum(x, y);
+		Sum yplusx = new Sum(y, x);
+		Sum zplusw = new Sum(z, w);
+		Sum wplusz = new Sum(w, z);
+		Sum xplusyplusz = new Sum(new Sum(x, y), z);
+		
+		assertEquals("Complex expression 3",
+				"((x+y)*(x+y)+(z+w)*(z+w))*((w+z)*(w+z)+(y+x)*(y+x))",
+				new Product(new Sum(pow(xplusy, 2), pow(zplusw, 2)),
+							new Sum(pow(wplusz, 2), pow(yplusx, 2))).toString());
+		
+		assertEquals("Complex expression 4",
+				"(x+y+z)*(x+y+z)*(x+y+z)",
+				pow(xplusyplusz, 3).toString());
+	}
+	
+	Expression pow(Expression base, int exp) {
+		Expression ret = base;
+	    for (int i = 1; i < exp; i++) {
+			ret = new Product(ret, base);
+		}
+	    return ret;
 	}
 	
 	/*
