@@ -32,9 +32,12 @@ public class ParseTest {
 		
 		assertEquals("0.5", Expression.parse(".5").toString());
 		assertEquals("2.0", Expression.parse("2.").toString());
+		assertEquals("2.3", Expression.parse("2.300").toString());
 		assertEquals("3.1415926535", Expression.parse("3.1415926535").toString());
 		
 		assertEquals("0", Expression.parse("0").toString());
+		assertEquals("1", Expression.parse("01").toString());
+		assertEquals("25.3", Expression.parse("0025.300").toString());
 		
 	}
 	
@@ -55,15 +58,7 @@ public class ParseTest {
 		invalid("2a");
 		invalid("2.5a");
 	}
-	
-	@Test
-	public void testDanglingBrackets() {
-		invalid("(3+a");
-		invalid("3+)a");
-		invalid("3)");
-	}
-	
-	
+		
 	@Test
 	public void testVariables() {
 		Expression var = Expression.parse("myvar");
@@ -100,6 +95,13 @@ public class ParseTest {
 		assertEquals("a+b+c", Expression.parse("(a+b)+c)").toString());
 		assertEquals("a*b*c", Expression.parse("((a)*b)*c").toString());
 		assertEquals("(a+b)*c", Expression.parse("((a)+(b))*c").toString());
+	}
+	
+	@Test
+	public void testInvalidParens() {
+		invalid("(3+a");
+		invalid("3+)a");
+		invalid("3)");
 	}
 	
 	@Test
