@@ -3,6 +3,10 @@
  */
 package expressivo;
 
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.*;
+import expressivo.parser.*;
+
 /**
  * An immutable data type representing a polynomial expression of:
  *   + and *
@@ -30,7 +34,24 @@ public interface Expression {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static Expression parse(String input) {
-        throw new RuntimeException("unimplemented");
+        CharStream stream = new ANTLRInputStream(input);
+        ExpressionLexer lexer = new ExpressionLexer(stream);
+        TokenStream tokens = new CommonTokenStream(lexer);
+        ExpressionParser parser = new ExpressionParser(tokens);
+        
+        parser.reportErrorsAsExceptions();
+        lexer.reportErrorsAsExceptions();
+        
+        ParseTree tree = parser.root();
+        
+//        Trees.inspect(tree, parser);
+        
+        ParseTreeWalker walker = new ParseTreeWalker();
+        MakeExpression listener = new MakeExpression();
+        
+        walker.walk(listener, tree);
+        
+        return listener.get();
     }
     
     /**

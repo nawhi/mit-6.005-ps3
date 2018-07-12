@@ -11,6 +11,15 @@ import expressivo.parser.ExpressionParser.SumContext;
 
 public class MakeExpression implements ExpressionListener {
 
+	/**
+	 * Get the result of this walk.
+	 * @return the Expression object created from the AST walked
+	 * 			over by the listener
+	 */
+	public Expression get() {
+		throw new RuntimeException("not implemented");
+	}
+	
 	@Override
 	public void enterEveryRule(ParserRuleContext arg0) {
 		// TODO Auto-generated method stub
