@@ -31,7 +31,7 @@ public class ParseTest {
 		assertEquals("1", i.toString());
 		
 		assertEquals("0.5", Expression.parse(".5").toString());
-		assertEquals("2.0", Expression.parse("2.").toString());
+		assertEquals("2.0", Expression.parse("2.0").toString());
 		assertEquals("2.3", Expression.parse("2.300").toString());
 		assertEquals("3.1415926535", Expression.parse("3.1415926535").toString());
 		
@@ -48,6 +48,7 @@ public class ParseTest {
 		invalid("f1.3");
 		
 		invalid("1f"); // For now
+		invalid("2."); // For now
 		invalid("1.5f"); // For now
 		invalid("-3.5"); // For now
 		invalid("2,345,678"); // For now
