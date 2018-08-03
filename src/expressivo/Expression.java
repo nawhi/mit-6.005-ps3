@@ -44,7 +44,7 @@ public interface Expression {
         
         ParseTree tree = parser.root();
         
-//        Trees.inspect(tree, parser);
+//        Trees.inspect(tree, parser);	
         
         ParseTreeWalker walker = new ParseTreeWalker();
         MakeExpression listener = new MakeExpression();
