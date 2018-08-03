@@ -46,9 +46,9 @@ public class ParseTest {
 		invalid("1.2.3");
 		invalid(".2.");		
 		invalid("f1.3");
+		invalid(".");
 		
 		invalid("1f"); // For now
-		invalid("2."); // For now
 		invalid("1.5f"); // For now
 		invalid("-3.5"); // For now
 		invalid("2,345,678"); // For now
