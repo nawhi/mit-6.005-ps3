@@ -20,7 +20,7 @@ public class ExpressionParser extends Parser {
   protected static final PredictionContextCache _sharedContextCache =
     new PredictionContextCache();
   public static final int
-    IDENT=1, SPACES=2;
+    INTEGER=1, IDENT=2, SPACES=3;
   public static final int
     RULE_root = 0, RULE_expression = 1;
   public static final String[] ruleNames = {
@@ -30,7 +30,7 @@ public class ExpressionParser extends Parser {
   private static final String[] _LITERAL_NAMES = {
   };
   private static final String[] _SYMBOLIC_NAMES = {
-    null, "IDENT", "SPACES"
+    null, "INTEGER", "IDENT", "SPACES"
   };
   public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -142,6 +142,7 @@ public class ExpressionParser extends Parser {
 
   public static class ExpressionContext extends ParserRuleContext {
     public TerminalNode IDENT() { return getToken(ExpressionParser.IDENT, 0); }
+    public TerminalNode INTEGER() { return getToken(ExpressionParser.INTEGER, 0); }
     public ExpressionContext(ParserRuleContext parent, int invokingState) {
       super(parent, invokingState);
     }
@@ -159,11 +160,17 @@ public class ExpressionParser extends Parser {
   public final ExpressionContext expression() throws RecognitionException {
     ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
     enterRule(_localctx, 2, RULE_expression);
+    int _la;
     try {
       enterOuterAlt(_localctx, 1);
       {
       setState(7);
-      match(IDENT);
+      _la = _input.LA(1);
+      if ( !(_la==INTEGER || _la==IDENT) ) {
+      _errHandler.recoverInline(this);
+      } else {
+        consume();
+      }
       }
     }
     catch (RecognitionException re) {
@@ -178,9 +185,10 @@ public class ExpressionParser extends Parser {
   }
 
   public static final String _serializedATN =
-    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\f\4\2\t\2\4\3"+
-      "\t\3\3\2\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2\2\t\2\6\3\2\2\2\4\t\3\2\2"+
-      "\2\6\7\5\4\3\2\7\b\7\2\2\3\b\3\3\2\2\2\t\n\7\3\2\2\n\5\3\2\2\2\2";
+    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\5\f\4\2\t\2\4\3"+
+      "\t\3\3\2\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2\3\3\2\3\4\t\2\6\3\2\2\2\4"+
+      "\t\3\2\2\2\6\7\5\4\3\2\7\b\7\2\2\3\b\3\3\2\2\2\t\n\t\2\2\2\n\5\3\2"+
+      "\2\2\2";
   public static final ATN _ATN =
     new ATNDeserializer().deserialize(_serializedATN.toCharArray());
   static {

@@ -24,19 +24,24 @@ public class ParseTest {
 	}
 	
 	@Test
-	public void testNumerics() {
+	public void testIntegers() {
 		// Sanity check
 		Expression i = Expression.parse("1");
 		assertThat(i, instanceOf(Numeric.class));
 		assertEquals("1", i.toString());
 		
+		assertEquals("0", Expression.parse("0").toString());
+		assertEquals("1", Expression.parse("01").toString());
+		assertEquals("10", Expression.parse("10").toString());
+	}
+	
+	
+	@Test
+	public void testFloats() {
 		assertEquals("0.5", Expression.parse(".5").toString());
 		assertEquals("2.0", Expression.parse("2.0").toString());
 		assertEquals("2.3", Expression.parse("2.300").toString());
 		assertEquals("3.1415926535", Expression.parse("3.1415926535").toString());
-		
-		assertEquals("0", Expression.parse("0").toString());
-		assertEquals("1", Expression.parse("01").toString());
 		assertEquals("25.3", Expression.parse("0025.300").toString());
 		
 	}

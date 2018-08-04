@@ -67,6 +67,8 @@ public class MakeExpression implements ExpressionListener {
 	public void exitExpression(ExpressionContext ctx) {
 		if (ctx.IDENT() != null)
 			stack.push(new Variable(ctx.IDENT().getText()));
+		else if (ctx.INTEGER() != null)
+			stack.push(new Numeric(ctx.INTEGER().getText()));
 	}
 
 }

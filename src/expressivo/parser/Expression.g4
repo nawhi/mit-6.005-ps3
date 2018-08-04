@@ -30,11 +30,10 @@ import Configuration;
  * how to use Antlr and has links to reference information.
  */
 
-/*
- * Really basic first implementation - only reads in a variable
- */
 root : expression EOF;
-expression: IDENT;
+expression: IDENT | INTEGER;
+
+INTEGER: [0-9]+;
 IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
 
 /* Tell Antlr to ignore spaces around tokens. */
