@@ -94,9 +94,9 @@ public class ParseTest {
 	
 	@Test
 	public void testChainedSums() {
-		assertEquals("x+y+z", Expression.parse("x+y+z".toString()));
+		assertEquals("x+y+z", Expression.parse("x+y+z").toString());
 		assertEquals("1.2+3.5+f+98+2345+0.3",
-				Expression.parse("1.2 + 3.5 + f + 98 + 2345 + .3".toString()));
+				Expression.parse("1.2 + 3.5 + f + 98 + 2345 + .3").toString());
 	}
 	
 	@Test
@@ -112,9 +112,9 @@ public class ParseTest {
 	
 	@Test
 	public void testChainedProducts() {
-		assertEquals("x*y*z", Expression.parse("x*y*z".toString()));
+		assertEquals("x*y*z", Expression.parse("x*y*z").toString());
 		assertEquals("1.2*3.5*f*98*2345*0.3",
-				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3".toString()));
+				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3").toString());
 	}
 	
 	@Test
