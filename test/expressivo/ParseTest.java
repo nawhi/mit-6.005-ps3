@@ -118,8 +118,19 @@ public class ParseTest {
 	}
 	
 	@Test
-	public void testMixedSumsAndProducts() {
-		fail("TODO");
+	public void testMixedSumsAndProductsWithoutParens() {
+		assertEquals("x+y*z", Expression.parse("x+y*z").toString());
+		assertEquals("a*b+c", Expression.parse("a*b+c").toString());
+		assertEquals("1+2*3+4*5", Expression.parse("1+2*3+4*5").toString());
+		assertEquals("x + y + 2.4*3.5*c", Expression.parse("x+y+2.4*3.5*c").toString());
+	}
+	
+	@Test
+	public void testMixedSumsAndProductsWithParens() {
+		assertEquals("(x+y)*z", Expression.parse("(x+y)*z").toString());
+		assertEquals("x*(y+z)", Expression.parse("(x+y)*z").toString());
+		assertEquals("(2.5+3.6+4.8)*foo", Expression.parse("(2.5+3.6+4.8)*foo").toString());
+		assertEquals("x*(y+4+6*(z+w))", Expression.parse("x*(y+4+6*(z+w))").toString());
 	}
 	
 	@Test
