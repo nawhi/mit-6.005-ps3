@@ -30,7 +30,7 @@ public class ParseTest {
 		assertThat(i, instanceOf(Numeric.class));
 		assertEquals("1", i.toString());
 		
-		assertEquals("0", Expression.parse("0").toString());
+		parsesIdentically("0");
 		assertEquals("1", Expression.parse("01").toString());
 		assertEquals("10", Expression.parse("10").toString());
 		
@@ -51,19 +51,19 @@ public class ParseTest {
 	
 	@Test
 	public void testInvalidNumerics() {
-		invalid("1.2.3");
-		invalid(".2.");		
-		invalid("f1.3");
-		invalid(".");
+		parseFails("1.2.3");
+		parseFails(".2.");
+		parseFails("f1.3");
+		parseFails(".");
 		
-		invalid("-3.5"); // For now
-		invalid("2,345,678"); // For now
+		parseFails("-3.5"); // For now
+		parseFails("2,345,678"); // For now
 	}
 	
 	@Test
 	public void testInvalidVariables() {
-		invalid("2a");
-		invalid("2.5a");
+		parseFails("2a");
+		parseFails("2.5a");
 	}
 		
 	@Test
@@ -76,9 +76,9 @@ public class ParseTest {
 		assertThat(var2, instanceOf(Variable.class));
 		assertEquals("_123", var2.toString());
 		
-		assertEquals("_foo", Expression.parse("_foo").toString());
-		assertEquals("_f1", Expression.parse("_f1").toString());
-		assertEquals("_1f", Expression.parse("_1f").toString());
+		parsesIdentically("_foo");
+		parsesIdentically("_f1");
+		parsesIdentically("_1f");
 	}
 	
 	@Test
@@ -87,14 +87,14 @@ public class ParseTest {
 		assertThat(sum, instanceOf(Sum.class));
 		assertEquals(new Sum(new Variable("a"), new Variable("b")), sum);
 		
-		assertEquals("x+3", Expression.parse("x+3").toString());
-		assertEquals("3+x", Expression.parse("3+x").toString());
-		assertEquals("0.9+3.356", Expression.parse(".9+3.356").toString());
+		parsesIdentically("x+3");
+		parsesIdentically("3+x");
+		parsesIdentically("0.9+3.356");
 	}
 	
 	@Test
 	public void testChainedSums() {
-		assertEquals("x+y+z", Expression.parse("x+y+z").toString());
+		parsesIdentically("x+y+z");
 		assertEquals("1.2+3.5+f+98+2345+0.3",
 				Expression.parse("1.2 + 3.5 + f + 98 + 2345 + .3").toString());
 	}
@@ -105,48 +105,49 @@ public class ParseTest {
 		assertThat(prod, instanceOf(Product.class));
 		assertEquals(new Product(new Variable("a"), new Variable("b")), prod);
 		
-		assertEquals("x*3", Expression.parse("x*3").toString());
-		assertEquals("3*x", Expression.parse("3*x").toString());
-		assertEquals("0.9*3.356", Expression.parse(".9*3.356").toString());
+		parsesIdentically("x*3");
+		parsesIdentically("3*x");
+		parsesIdentically("0.9*3.356");
 	}
 	
 	@Test
 	public void testChainedProducts() {
-		assertEquals("x*y*z", Expression.parse("x*y*z").toString());
+		parsesIdentically("x*y*z");
 		assertEquals("1.2*3.5*f*98*2345*0.3",
 				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3").toString());
 	}
 	
 	@Test
 	public void testMixedSumsAndProductsWithoutParens() {
-		assertEquals("x+y*z", Expression.parse("x+y*z").toString());
-		assertEquals("a*b+c", Expression.parse("a*b+c").toString());
-		assertEquals("1+2*3+4*5", Expression.parse("1+2*3+4*5").toString());
-		assertEquals("x + y + 2.4*3.5*c", Expression.parse("x+y+2.4*3.5*c").toString());
+		parsesIdentically("x+y*z");
+		parsesIdentically("a*b+c");
+		parsesIdentically("1+2*3+4*5");
+		assertEquals("x+y+2.4*3.5*c", 
+				Expression.parse("x + y + 2.4*3.5*c").toString());
 	}
 	
 	@Test
 	public void testMixedSumsAndProductsWithParens() {
-		assertEquals("(x+y)*z", Expression.parse("(x+y)*z").toString());
-		assertEquals("x*(y+z)", Expression.parse("(x+y)*z").toString());
-		assertEquals("(2.5+3.6+4.8)*foo", Expression.parse("(2.5+3.6+4.8)*foo").toString());
-		assertEquals("x*(y+4+6*(z+w))", Expression.parse("x*(y+4+6*(z+w))").toString());
+		parsesIdentically("(x+y)*z");
+		parsesIdentically("x*(y+z)");
+		parsesIdentically("(2.5+3.6+4.8)*foo");
+		parsesIdentically("x*(y+4+6*(z+w))");
 	}
 	
 	@Test
 	public void testParenSimplification() {
-		assertEquals("a+b", Expression.parse("((a+(b)))").toString());
-		assertEquals("a*b", Expression.parse("((a*(b)))").toString());
-		assertEquals("a+b+c", Expression.parse("(a+b)+c)").toString());
-		assertEquals("a*b*c", Expression.parse("((a)*b)*c").toString());
-		assertEquals("(a+b)*c", Expression.parse("((a)+(b))*c").toString());
+		parsesIdentically("a+b");
+		parsesIdentically("a*b");
+		parsesIdentically("a+b+c");
+		parsesIdentically("a*b*c");
+		parsesIdentically("(a+b)*c");
 	}
 	
 	@Test
 	public void testInvalidParens() {
-		invalid("(3+a");
-		invalid("3+)a");
-		invalid("3)");
+		parseFails("(3+a");
+		parseFails("3+)a");
+		parseFails("3)");
 	}
 	
 	@Test
@@ -155,14 +156,17 @@ public class ParseTest {
 		fail("Todo");
 	}
 	
-	private void invalid(String s) {
+	private void parseFails(String s) {
 		try {
 			Expression.parse(s);
 			fail("Attempt to parse " + s + " should fail");
 		} catch (IllegalArgumentException ex) {
 			return;
 		}
-		
+	}
+	
+	private void parsesIdentically(String s) {
+		assertEquals(s, Expression.parse(s).toString());
 	}
 
 
