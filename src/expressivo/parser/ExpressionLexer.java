@@ -20,19 +20,20 @@ public class ExpressionLexer extends Lexer {
   protected static final PredictionContextCache _sharedContextCache =
     new PredictionContextCache();
   public static final int
-    INTEGER=1, IDENT=2, DOT=3, SPACES=4;
+    T__0=1, IDENT=2, INTEGER=3, DOT=4, SPACES=5;
   public static String[] modeNames = {
     "DEFAULT_MODE"
   };
 
   public static final String[] ruleNames = {
-    "INTEGER", "IDENT", "DOT", "SPACES"
+    "T__0", "IDENT", "INTEGER", "DOT", "SPACES"
   };
 
   private static final String[] _LITERAL_NAMES = {
+    null, "'+'", null, null, "'.'"
   };
   private static final String[] _SYMBOLIC_NAMES = {
-    null, "INTEGER", "IDENT", "DOT", "SPACES"
+    null, null, "IDENT", "INTEGER", "DOT", "SPACES"
   };
   public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -106,17 +107,18 @@ public class ExpressionLexer extends Lexer {
   public ATN getATN() { return _ATN; }
 
   public static final String _serializedATN =
-    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\6 \b\1\4\2\t\2"+
-      "\4\3\t\3\4\4\t\4\4\5\t\5\3\2\6\2\r\n\2\r\2\16\2\16\3\3\3\3\7\3\23"+
-      "\n\3\f\3\16\3\26\13\3\3\4\3\4\3\5\6\5\33\n\5\r\5\16\5\34\3\5\3\5\2"+
-      "\2\6\3\3\5\4\7\5\t\6\3\2\6\3\2\62;\5\2C\\aac|\6\2\62;C\\aac|\3\2\""+
-      "\"\"\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\3\f\3\2\2\2\5"+
-      "\20\3\2\2\2\7\27\3\2\2\2\t\32\3\2\2\2\13\r\t\2\2\2\f\13\3\2\2\2\r"+
-      "\16\3\2\2\2\16\f\3\2\2\2\16\17\3\2\2\2\17\4\3\2\2\2\20\24\t\3\2\2"+
-      "\21\23\t\4\2\2\22\21\3\2\2\2\23\26\3\2\2\2\24\22\3\2\2\2\24\25\3\2"+
-      "\2\2\25\6\3\2\2\2\26\24\3\2\2\2\27\30\13\2\2\2\30\b\3\2\2\2\31\33"+
-      "\t\5\2\2\32\31\3\2\2\2\33\34\3\2\2\2\34\32\3\2\2\2\34\35\3\2\2\2\35"+
-      "\36\3\2\2\2\36\37\b\5\2\2\37\n\3\2\2\2\6\2\16\24\34\3\b\2\2";
+    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\7$\b\1\4\2\t\2"+
+      "\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\7\3\22\n\3\f\3\16"+
+      "\3\25\13\3\3\4\6\4\30\n\4\r\4\16\4\31\3\5\3\5\3\6\6\6\37\n\6\r\6\16"+
+      "\6 \3\6\3\6\2\2\7\3\3\5\4\7\5\t\6\13\7\3\2\6\5\2C\\aac|\6\2\62;C\\"+
+      "aac|\3\2\62;\3\2\"\"&\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2"+
+      "\2\2\2\13\3\2\2\2\3\r\3\2\2\2\5\17\3\2\2\2\7\27\3\2\2\2\t\33\3\2\2"+
+      "\2\13\36\3\2\2\2\r\16\7-\2\2\16\4\3\2\2\2\17\23\t\2\2\2\20\22\t\3"+
+      "\2\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\6"+
+      "\3\2\2\2\25\23\3\2\2\2\26\30\t\4\2\2\27\26\3\2\2\2\30\31\3\2\2\2\31"+
+      "\27\3\2\2\2\31\32\3\2\2\2\32\b\3\2\2\2\33\34\7\60\2\2\34\n\3\2\2\2"+
+      "\35\37\t\5\2\2\36\35\3\2\2\2\37 \3\2\2\2 \36\3\2\2\2 !\3\2\2\2!\""+
+      "\3\2\2\2\"#\b\6\2\2#\f\3\2\2\2\6\2\23\31 \3\b\2\2";
   public static final ATN _ATN =
     new ATNDeserializer().deserialize(_serializedATN.toCharArray());
   static {

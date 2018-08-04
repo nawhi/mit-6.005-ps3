@@ -31,12 +31,13 @@ import Configuration;
  */
 
 root : expression EOF;
-expression: IDENT | number;
+expression: primitive '+' primitive;
+primitive: IDENT | number;
 number: INTEGER | INTEGER DOT INTEGER? | DOT INTEGER;
 
-INTEGER: [0-9]+;
 IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
-DOT: .;
+INTEGER: [0-9]+;
+DOT: '.';
 
 /* Tell Antlr to ignore spaces around tokens. */
 SPACES : [ ]+ -> skip;

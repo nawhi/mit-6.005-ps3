@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser.ExpressionContext;
 import expressivo.parser.ExpressionParser.NumberContext;
+import expressivo.parser.ExpressionParser.PrimitiveContext;
 import expressivo.parser.ExpressionParser.RootContext;
 
 public class MakeExpression implements ExpressionListener {
@@ -66,8 +67,15 @@ public class MakeExpression implements ExpressionListener {
 	
 	@Override
 	public void exitExpression(ExpressionContext ctx) {
-		if (ctx.IDENT() != null)
-			stack.push(new Variable(ctx.IDENT().getText()));
+		/*
+		 * Exiting the primitive PLUS primitive rule
+		 * Make a Sum from the 2 entries on the stack
+		 */
+		assert stack.size() >= 2;
+		
+		Expression rval = stack.pop();
+		Expression lval = stack.pop();
+		stack.push(new Sum(lval, rval));
 	}
 
 
@@ -81,6 +89,23 @@ public class MakeExpression implements ExpressionListener {
 	public void exitNumber(NumberContext ctx) {
 		stack.push(new Numeric(ctx.getText()));
 		
+	}
+
+
+	@Override
+	public void enterPrimitive(PrimitiveContext ctx) {
+		// TODO Auto-generated method stub
+	}
+
+
+	@Override
+	public void exitPrimitive(PrimitiveContext ctx) {
+		if (ctx.IDENT() != null) {
+			// it's a variable: add it to the stack
+			stack.push(new Variable(ctx.IDENT().getText()));
+		} else {
+			// will have been handled in exitNumber()
+		}
 	}
 
 }

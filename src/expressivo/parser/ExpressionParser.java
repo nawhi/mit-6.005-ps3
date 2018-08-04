@@ -20,17 +20,18 @@ public class ExpressionParser extends Parser {
   protected static final PredictionContextCache _sharedContextCache =
     new PredictionContextCache();
   public static final int
-    INTEGER=1, IDENT=2, DOT=3, SPACES=4;
+    T__0=1, IDENT=2, INTEGER=3, DOT=4, SPACES=5;
   public static final int
-    RULE_root = 0, RULE_expression = 1, RULE_number = 2;
+    RULE_root = 0, RULE_expression = 1, RULE_primitive = 2, RULE_number = 3;
   public static final String[] ruleNames = {
-    "root", "expression", "number"
+    "root", "expression", "primitive", "number"
   };
 
   private static final String[] _LITERAL_NAMES = {
+    null, "'+'", null, null, "'.'"
   };
   private static final String[] _SYMBOLIC_NAMES = {
-    null, "INTEGER", "IDENT", "DOT", "SPACES"
+    null, null, "IDENT", "INTEGER", "DOT", "SPACES"
   };
   public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -123,9 +124,9 @@ public class ExpressionParser extends Parser {
     try {
       enterOuterAlt(_localctx, 1);
       {
-      setState(6);
+      setState(8);
       expression();
-      setState(7);
+      setState(9);
       match(EOF);
       }
     }
@@ -141,9 +142,11 @@ public class ExpressionParser extends Parser {
   }
 
   public static class ExpressionContext extends ParserRuleContext {
-    public TerminalNode IDENT() { return getToken(ExpressionParser.IDENT, 0); }
-    public NumberContext number() {
-      return getRuleContext(NumberContext.class,0);
+    public List<PrimitiveContext> primitive() {
+      return getRuleContexts(PrimitiveContext.class);
+    }
+    public PrimitiveContext primitive(int i) {
+      return getRuleContext(PrimitiveContext.class,i);
     }
     public ExpressionContext(ParserRuleContext parent, int invokingState) {
       super(parent, invokingState);
@@ -163,12 +166,56 @@ public class ExpressionParser extends Parser {
     ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
     enterRule(_localctx, 2, RULE_expression);
     try {
+      enterOuterAlt(_localctx, 1);
+      {
       setState(11);
+      primitive();
+      setState(12);
+      match(T__0);
+      setState(13);
+      primitive();
+      }
+    }
+    catch (RecognitionException re) {
+      _localctx.exception = re;
+      _errHandler.reportError(this, re);
+      _errHandler.recover(this, re);
+    }
+    finally {
+      exitRule();
+    }
+    return _localctx;
+  }
+
+  public static class PrimitiveContext extends ParserRuleContext {
+    public TerminalNode IDENT() { return getToken(ExpressionParser.IDENT, 0); }
+    public NumberContext number() {
+      return getRuleContext(NumberContext.class,0);
+    }
+    public PrimitiveContext(ParserRuleContext parent, int invokingState) {
+      super(parent, invokingState);
+    }
+    @Override public int getRuleIndex() { return RULE_primitive; }
+    @Override
+    public void enterRule(ParseTreeListener listener) {
+      if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).enterPrimitive(this);
+    }
+    @Override
+    public void exitRule(ParseTreeListener listener) {
+      if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitPrimitive(this);
+    }
+  }
+
+  public final PrimitiveContext primitive() throws RecognitionException {
+    PrimitiveContext _localctx = new PrimitiveContext(_ctx, getState());
+    enterRule(_localctx, 4, RULE_primitive);
+    try {
+      setState(17);
       switch (_input.LA(1)) {
       case IDENT:
         enterOuterAlt(_localctx, 1);
         {
-        setState(9);
+        setState(15);
         match(IDENT);
         }
         break;
@@ -176,7 +223,7 @@ public class ExpressionParser extends Parser {
       case DOT:
         enterOuterAlt(_localctx, 2);
         {
-        setState(10);
+        setState(16);
         number();
         }
         break;
@@ -217,30 +264,30 @@ public class ExpressionParser extends Parser {
 
   public final NumberContext number() throws RecognitionException {
     NumberContext _localctx = new NumberContext(_ctx, getState());
-    enterRule(_localctx, 4, RULE_number);
+    enterRule(_localctx, 6, RULE_number);
     int _la;
     try {
-      setState(21);
+      setState(27);
       switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
       case 1:
         enterOuterAlt(_localctx, 1);
         {
-        setState(13);
+        setState(19);
         match(INTEGER);
         }
         break;
       case 2:
         enterOuterAlt(_localctx, 2);
         {
-        setState(14);
+        setState(20);
         match(INTEGER);
-        setState(15);
+        setState(21);
         match(DOT);
-        setState(17);
+        setState(23);
         _la = _input.LA(1);
         if (_la==INTEGER) {
           {
-          setState(16);
+          setState(22);
           match(INTEGER);
           }
         }
@@ -250,9 +297,9 @@ public class ExpressionParser extends Parser {
       case 3:
         enterOuterAlt(_localctx, 3);
         {
-        setState(19);
+        setState(25);
         match(DOT);
-        setState(20);
+        setState(26);
         match(INTEGER);
         }
         break;
@@ -270,14 +317,16 @@ public class ExpressionParser extends Parser {
   }
 
   public static final String _serializedATN =
-    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\6\32\4\2\t\2\4"+
-      "\3\t\3\4\4\t\4\3\2\3\2\3\2\3\3\3\3\5\3\16\n\3\3\4\3\4\3\4\3\4\5\4"+
-      "\24\n\4\3\4\3\4\5\4\30\n\4\3\4\2\2\5\2\4\6\2\2\32\2\b\3\2\2\2\4\r"+
-      "\3\2\2\2\6\27\3\2\2\2\b\t\5\4\3\2\t\n\7\2\2\3\n\3\3\2\2\2\13\16\7"+
-      "\4\2\2\f\16\5\6\4\2\r\13\3\2\2\2\r\f\3\2\2\2\16\5\3\2\2\2\17\30\7"+
-      "\3\2\2\20\21\7\3\2\2\21\23\7\5\2\2\22\24\7\3\2\2\23\22\3\2\2\2\23"+
-      "\24\3\2\2\2\24\30\3\2\2\2\25\26\7\5\2\2\26\30\7\3\2\2\27\17\3\2\2"+
-      "\2\27\20\3\2\2\2\27\25\3\2\2\2\30\7\3\2\2\2\5\r\23\27";
+    "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\7 \4\2\t\2\4\3"+
+      "\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\5\4\24\n"+
+      "\4\3\5\3\5\3\5\3\5\5\5\32\n\5\3\5\3\5\5\5\36\n\5\3\5\2\2\6\2\4\6\b"+
+      "\2\2\37\2\n\3\2\2\2\4\r\3\2\2\2\6\23\3\2\2\2\b\35\3\2\2\2\n\13\5\4"+
+      "\3\2\13\f\7\2\2\3\f\3\3\2\2\2\r\16\5\6\4\2\16\17\7\3\2\2\17\20\5\6"+
+      "\4\2\20\5\3\2\2\2\21\24\7\4\2\2\22\24\5\b\5\2\23\21\3\2\2\2\23\22"+
+      "\3\2\2\2\24\7\3\2\2\2\25\36\7\5\2\2\26\27\7\5\2\2\27\31\7\6\2\2\30"+
+      "\32\7\5\2\2\31\30\3\2\2\2\31\32\3\2\2\2\32\36\3\2\2\2\33\34\7\6\2"+
+      "\2\34\36\7\5\2\2\35\25\3\2\2\2\35\26\3\2\2\2\35\33\3\2\2\2\36\t\3"+
+      "\2\2\2\5\23\31\35";
   public static final ATN _ATN =
     new ATNDeserializer().deserialize(_serializedATN.toCharArray());
   static {

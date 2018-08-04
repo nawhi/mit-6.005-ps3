@@ -51,13 +51,14 @@ public interface Expression {
         	String reason = ex.getMessage();
         	String msg;
         	if (reason != null)
-        		msg = "A syntax error in expression: " + reason;
+        		msg = "Syntax error in expression: " + reason;
         	else
         		msg = "Undefined syntax error in expression";
 
     		throw new IllegalArgumentException(msg);
         }
         
+        System.err.println(tree.toStringTree(parser));
 //        Trees.inspect(tree, parser);	
         
         ParseTreeWalker walker = new ParseTreeWalker();
