@@ -10,7 +10,9 @@ import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser.ExpressionContext;
 import expressivo.parser.ExpressionParser.NumberContext;
 import expressivo.parser.ExpressionParser.PrimitiveContext;
+import expressivo.parser.ExpressionParser.ProductContext;
 import expressivo.parser.ExpressionParser.RootContext;
+import expressivo.parser.ExpressionParser.SumContext;
 
 public class MakeExpression implements ExpressionListener {
 	private Stack<Expression> stack = new Stack<>();
@@ -67,15 +69,7 @@ public class MakeExpression implements ExpressionListener {
 	
 	@Override
 	public void exitExpression(ExpressionContext ctx) {
-		/*
-		 * Exiting the primitive PLUS primitive rule
-		 * Make a Sum from the 2 entries on the stack
-		 */
-		assert stack.size() >= 2;
-		
-		Expression rval = stack.pop();
-		Expression lval = stack.pop();
-		stack.push(new Sum(lval, rval));
+		// nothing to do
 	}
 
 
@@ -88,7 +82,6 @@ public class MakeExpression implements ExpressionListener {
 	@Override
 	public void exitNumber(NumberContext ctx) {
 		stack.push(new Numeric(ctx.getText()));
-		
 	}
 
 
@@ -104,8 +97,50 @@ public class MakeExpression implements ExpressionListener {
 			// it's a variable: add it to the stack
 			stack.push(new Variable(ctx.IDENT().getText()));
 		} else {
-			// will have been handled in exitNumber()
+			// handled in exitNumber()
 		}
+	}
+
+
+	@Override
+	public void enterSum(SumContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void exitSum(SumContext ctx) {
+		/*
+		 * Exiting the primitive PLUS primitive rule
+		 * Make a Sum from the 2 entries on the stack
+		 */
+		assert stack.size() >= 2;
+		
+		Expression rval = stack.pop();
+		Expression lval = stack.pop();
+		stack.push(new Sum(lval, rval));
+	}
+
+
+	@Override
+	public void enterProduct(ProductContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void exitProduct(ProductContext ctx) {
+		/*
+		 * Exiting the primitive PLUS primitive rule
+		 * Make a Sum from the 2 entries on the stack
+		 */
+		assert stack.size() >= 2;
+		
+		Expression rval = stack.pop();
+		Expression lval = stack.pop();
+		stack.push(new Product(lval, rval));
 	}
 
 }

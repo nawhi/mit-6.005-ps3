@@ -33,6 +33,7 @@ public class ParseTest {
 		assertEquals("0", Expression.parse("0").toString());
 		assertEquals("1", Expression.parse("01").toString());
 		assertEquals("10", Expression.parse("10").toString());
+		
 	}
 	
 	
@@ -92,10 +93,33 @@ public class ParseTest {
 	}
 	
 	@Test
-	public void testProducts() {
+	public void testChainedSums() {
+		assertEquals("x+y+z", Expression.parse("x+y+z".toString()));
+		assertEquals("1.2+3.5+f+98+2345+0.3",
+				Expression.parse("1.2 + 3.5 + f + 98 + 2345 + .3".toString()));
+	}
+	
+	@Test
+	public void testSimpleProducts() {
 		Expression prod = Expression.parse("a*b");
 		assertThat(prod, instanceOf(Product.class));
 		assertEquals(new Product(new Variable("a"), new Variable("b")), prod);
+		
+		assertEquals("x*3", Expression.parse("x*3").toString());
+		assertEquals("3*x", Expression.parse("3*x").toString());
+		assertEquals("0.9*3.356", Expression.parse(".9*3.356").toString());
+	}
+	
+	@Test
+	public void testChainedProducts() {
+		assertEquals("x*y*z", Expression.parse("x*y*z".toString()));
+		assertEquals("1.2*3.5*f*98*2345*0.3",
+				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3".toString()));
+	}
+	
+	@Test
+	public void testMixedSumsAndProducts() {
+		fail("TODO");
 	}
 	
 	@Test
