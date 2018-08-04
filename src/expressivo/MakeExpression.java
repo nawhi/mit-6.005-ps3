@@ -1,5 +1,6 @@
 package expressivo;
 
+import java.util.List;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -111,15 +112,20 @@ public class MakeExpression implements ExpressionListener {
 
 	@Override
 	public void exitSum(SumContext ctx) {
-		/*
-		 * Exiting the primitive PLUS primitive rule
-		 * Make a Sum from the 2 entries on the stack
-		 */
-		assert stack.size() >= 2;
+		// List of all the primitives in this context
+		List<PrimitiveContext> primitives = ctx.primitive();
+		assert stack.size() >= primitives.size();
 		
-		Expression rval = stack.pop();
-		Expression lval = stack.pop();
-		stack.push(new Sum(lval, rval));
+		/*
+		 * Stack will be a list of the two or more primitives
+		 * (newest first) which we need to incorporate
+		 * into our chained sum
+		 */
+		Expression sum = stack.pop(); // 0th child
+		for (int i = 1; i < primitives.size(); ++i) {
+			sum = new Sum(stack.pop(), sum);
+		}
+		stack.push(sum);
 	}
 
 
@@ -132,15 +138,20 @@ public class MakeExpression implements ExpressionListener {
 
 	@Override
 	public void exitProduct(ProductContext ctx) {
-		/*
-		 * Exiting the primitive PLUS primitive rule
-		 * Make a Sum from the 2 entries on the stack
-		 */
-		assert stack.size() >= 2;
+		// List of all the primitive contexts in this context
+		List<PrimitiveContext> primitives = ctx.primitive();
+		assert stack.size() >= primitives.size();
 		
-		Expression rval = stack.pop();
-		Expression lval = stack.pop();
-		stack.push(new Product(lval, rval));
+		/*
+		 * Stack will be a list of the two or more primitives
+		 * (newest first) which we need to incorporate
+		 * into our chained product
+		 */
+		Expression prod = stack.pop(); // 0th child
+		for (int i = 1; i < primitives.size(); ++i) {
+			prod = new Product(stack.pop(), prod);
+		}
+		stack.push(prod);
 	}
 
 }
