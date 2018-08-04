@@ -4,6 +4,7 @@
 package expressivo;
 
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.*;
 import expressivo.parser.*;
 
@@ -41,8 +42,21 @@ public interface Expression {
         
         parser.reportErrorsAsExceptions();
         lexer.reportErrorsAsExceptions();
+
         
-        ParseTree tree = parser.root();
+        ParseTree tree;
+        try {
+        	tree = parser.root();
+        } catch (ParseCancellationException ex) {
+        	String reason = ex.getMessage();
+        	String msg;
+        	if (reason != null)
+        		msg = "A syntax error in expression: " + reason;
+        	else
+        		msg = "Undefined syntax error in expression";
+
+    		throw new IllegalArgumentException(msg);
+        }
         
 //        Trees.inspect(tree, parser);	
         
