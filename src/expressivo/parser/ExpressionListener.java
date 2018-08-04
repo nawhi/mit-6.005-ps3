@@ -30,4 +30,14 @@ public interface ExpressionListener extends ParseTreeListener {
    * @param ctx the parse tree
    */
   void exitExpression(ExpressionParser.ExpressionContext ctx);
+  /**
+   * Enter a parse tree produced by {@link ExpressionParser#number}.
+   * @param ctx the parse tree
+   */
+  void enterNumber(ExpressionParser.NumberContext ctx);
+  /**
+   * Exit a parse tree produced by {@link ExpressionParser#number}.
+   * @param ctx the parse tree
+   */
+  void exitNumber(ExpressionParser.NumberContext ctx);
 }

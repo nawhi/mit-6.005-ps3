@@ -39,11 +39,13 @@ public class ParseTest {
 	@Test
 	public void testFloats() {
 		assertEquals("0.5", Expression.parse(".5").toString());
-		assertEquals("2.0", Expression.parse("2.0").toString());
+
+		// Conversion to int is OK: it'll be converted back internally if needed
+		assertEquals("2", Expression.parse("2.0").toString());
+
 		assertEquals("2.3", Expression.parse("2.300").toString());
 		assertEquals("3.1415926535", Expression.parse("3.1415926535").toString());
 		assertEquals("25.3", Expression.parse("0025.300").toString());
-		
 	}
 	
 	@Test
@@ -53,8 +55,6 @@ public class ParseTest {
 		invalid("f1.3");
 		invalid(".");
 		
-		invalid("1f"); // For now
-		invalid("1.5f"); // For now
 		invalid("-3.5"); // For now
 		invalid("2,345,678"); // For now
 	}

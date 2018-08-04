@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser.ExpressionContext;
+import expressivo.parser.ExpressionParser.NumberContext;
 import expressivo.parser.ExpressionParser.RootContext;
 
 public class MakeExpression implements ExpressionListener {
@@ -67,8 +68,19 @@ public class MakeExpression implements ExpressionListener {
 	public void exitExpression(ExpressionContext ctx) {
 		if (ctx.IDENT() != null)
 			stack.push(new Variable(ctx.IDENT().getText()));
-		else if (ctx.INTEGER() != null)
-			stack.push(new Numeric(ctx.INTEGER().getText()));
+	}
+
+
+	@Override
+	public void enterNumber(NumberContext ctx) {
+		// nothing to do
+	}
+
+
+	@Override
+	public void exitNumber(NumberContext ctx) {
+		stack.push(new Numeric(ctx.getText()));
+		
 	}
 
 }
