@@ -1,7 +1,9 @@
 T__0=1
-IDENT=2
-INTEGER=3
-DOT=4
-SPACES=5
+T__1=2
+IDENT=3
+INTEGER=4
+DOT=5
+SPACES=6
 '+'=1
-'.'=4
+'*'=2
+'.'=5

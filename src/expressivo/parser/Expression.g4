@@ -31,7 +31,9 @@ import Configuration;
  */
 
 root : expression EOF;
-expression: primitive '+' primitive;
+expression: sum | product | primitive;
+sum: primitive '+' primitive;
+product: primitive '*' primitive;
 primitive: IDENT | number;
 number: INTEGER | INTEGER DOT INTEGER? | DOT INTEGER;
 
