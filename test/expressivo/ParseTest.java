@@ -81,10 +81,14 @@ public class ParseTest {
 	}
 	
 	@Test
-	public void testSums() {
+	public void testSimpleSums() {
 		Expression sum = Expression.parse("a+b");
 		assertThat(sum, instanceOf(Sum.class));
 		assertEquals(new Sum(new Variable("a"), new Variable("b")), sum);
+		
+		assertEquals("x+3", Expression.parse("x+3").toString());
+		assertEquals("3+x", Expression.parse("3+x").toString());
+		assertEquals("0.9+3.356", Expression.parse(".9+3.356").toString());
 	}
 	
 	@Test
