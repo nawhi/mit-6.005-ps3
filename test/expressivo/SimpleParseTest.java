@@ -24,7 +24,7 @@ public class SimpleParseTest {
 	}
 	
 	@Test
-	public void testIntegers() {
+	public void testIntegerNumerics() {
 		// Sanity check
 		Expression i = Expression.parse("1");
 		assertThat(i, instanceOf(Numeric.class));
@@ -37,7 +37,7 @@ public class SimpleParseTest {
 	
 	
 	@Test
-	public void testFloats() {
+	public void testFloatNumericss() {
 		assertEquals("0.5", Expression.parse(".5").toString());
 
 		// Conversion to int is OK: it'll be converted back internally if needed
@@ -115,16 +115,6 @@ public class SimpleParseTest {
 		assertEquals("1.2*3.5*f*98*2345*0.3",
 				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3").toString());
 	}
-	
-//	@Test
-//	public void testMixedSumsAndProductsWithParens() {
-//		parsesIdentically("(x+y)*z");
-//		parsesIdentically("x*(y+z)");
-//		parsesIdentically("(2.5+3.6+4.8)*foo");
-//		parsesIdentically("x*(y+4+6*(z+w))");
-//	}
-	
-
 	
 	private void parseFails(String s) {
 		try {
