@@ -8,36 +8,23 @@ import org.junit.Test;
 public class SimpleParseTest {
 
 	@Test
-	public void testBasics() {
-		Expression i = Expression.parse("1");
-		assertThat(i, instanceOf(Numeric.class));
-		assertEquals("1", i.toString());
-		
-		Expression f = Expression.parse("1.5");
-		assertThat(f, instanceOf(Numeric.class));
-		assertEquals("1.5", f.toString());
-		
-		Expression x = Expression.parse("x");
-		assertThat(x, instanceOf(Variable.class));
-		assertEquals("x", x.toString());
-		
-	}
-	
-	@Test
 	public void testIntegerNumerics() {
 		// Sanity check
 		Expression i = Expression.parse("1");
 		assertThat(i, instanceOf(Numeric.class));
 		assertEquals("1", i.toString());
-		
+
 		parsesIdentically("0");
 		assertEquals("1", Expression.parse("01").toString());
 		assertEquals("10", Expression.parse("10").toString());
 	}
 	
-	
 	@Test
 	public void testFloatNumericss() {
+		Expression f = Expression.parse("1.5");
+		assertThat(f, instanceOf(Numeric.class));
+		assertEquals("1.5", f.toString());
+		
 		assertEquals("0.5", Expression.parse(".5").toString());
 
 		// Conversion to int is OK: it'll be converted back internally if needed
