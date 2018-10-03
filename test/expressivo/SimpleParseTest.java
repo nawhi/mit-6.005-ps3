@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ParseTest {
+public class SimpleParseTest {
 
 	@Test
 	public void testBasics() {
@@ -33,7 +33,6 @@ public class ParseTest {
 		parsesIdentically("0");
 		assertEquals("1", Expression.parse("01").toString());
 		assertEquals("10", Expression.parse("10").toString());
-		
 	}
 	
 	
@@ -117,44 +116,15 @@ public class ParseTest {
 				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3").toString());
 	}
 	
-	@Test
-	public void testMixedSumsAndProductsWithoutParens() {
-		parsesIdentically("x+y*z");
-		parsesIdentically("a*b+c");
-		parsesIdentically("1+2*3+4*5");
-		assertEquals("x+y+2.4*3.5*c", 
-				Expression.parse("x + y + 2.4*3.5*c").toString());
-	}
+//	@Test
+//	public void testMixedSumsAndProductsWithParens() {
+//		parsesIdentically("(x+y)*z");
+//		parsesIdentically("x*(y+z)");
+//		parsesIdentically("(2.5+3.6+4.8)*foo");
+//		parsesIdentically("x*(y+4+6*(z+w))");
+//	}
 	
-	@Test
-	public void testMixedSumsAndProductsWithParens() {
-		parsesIdentically("(x+y)*z");
-		parsesIdentically("x*(y+z)");
-		parsesIdentically("(2.5+3.6+4.8)*foo");
-		parsesIdentically("x*(y+4+6*(z+w))");
-	}
-	
-	@Test
-	public void testParenSimplification() {
-		parsesIdentically("a+b");
-		parsesIdentically("a*b");
-		parsesIdentically("a+b+c");
-		parsesIdentically("a*b*c");
-		parsesIdentically("(a+b)*c");
-	}
-	
-	@Test
-	public void testInvalidParens() {
-		parseFails("(3+a");
-		parseFails("3+)a");
-		parseFails("3)");
-	}
-	
-	@Test
-	public void testComplex() {
-		// Any cases that fail in general use to go here
-		fail("Todo");
-	}
+
 	
 	private void parseFails(String s) {
 		try {
