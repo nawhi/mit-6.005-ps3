@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SimpleParseTest {
+public class SingleExpressionParseTest {
 
 	@Test
 	public void testIntegerNumerics() {
