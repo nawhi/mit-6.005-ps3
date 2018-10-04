@@ -43,37 +43,25 @@ public class ExpressionBaseListener implements ExpressionListener {
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void enterBinop(ExpressionParser.BinopContext ctx) { }
+  @Override public void enterTerm(ExpressionParser.TermContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void exitBinop(ExpressionParser.BinopContext ctx) { }
+  @Override public void exitTerm(ExpressionParser.TermContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void enterSum(ExpressionParser.SumContext ctx) { }
+  @Override public void enterAtom(ExpressionParser.AtomContext ctx) { }
   /**
    * {@inheritDoc}
    *
    * <p>The default implementation does nothing.</p>
    */
-  @Override public void exitSum(ExpressionParser.SumContext ctx) { }
-  /**
-   * {@inheritDoc}
-   *
-   * <p>The default implementation does nothing.</p>
-   */
-  @Override public void enterProduct(ExpressionParser.ProductContext ctx) { }
-  /**
-   * {@inheritDoc}
-   *
-   * <p>The default implementation does nothing.</p>
-   */
-  @Override public void exitProduct(ExpressionParser.ProductContext ctx) { }
+  @Override public void exitAtom(ExpressionParser.AtomContext ctx) { }
   /**
    * {@inheritDoc}
    *

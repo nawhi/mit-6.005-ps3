@@ -31,35 +31,25 @@ public interface ExpressionListener extends ParseTreeListener {
    */
   void exitExpression(ExpressionParser.ExpressionContext ctx);
   /**
-   * Enter a parse tree produced by {@link ExpressionParser#binop}.
+   * Enter a parse tree produced by {@link ExpressionParser#term}.
    * @param ctx the parse tree
    */
-  void enterBinop(ExpressionParser.BinopContext ctx);
+  void enterTerm(ExpressionParser.TermContext ctx);
   /**
-   * Exit a parse tree produced by {@link ExpressionParser#binop}.
+   * Exit a parse tree produced by {@link ExpressionParser#term}.
    * @param ctx the parse tree
    */
-  void exitBinop(ExpressionParser.BinopContext ctx);
+  void exitTerm(ExpressionParser.TermContext ctx);
   /**
-   * Enter a parse tree produced by {@link ExpressionParser#sum}.
+   * Enter a parse tree produced by {@link ExpressionParser#atom}.
    * @param ctx the parse tree
    */
-  void enterSum(ExpressionParser.SumContext ctx);
+  void enterAtom(ExpressionParser.AtomContext ctx);
   /**
-   * Exit a parse tree produced by {@link ExpressionParser#sum}.
+   * Exit a parse tree produced by {@link ExpressionParser#atom}.
    * @param ctx the parse tree
    */
-  void exitSum(ExpressionParser.SumContext ctx);
-  /**
-   * Enter a parse tree produced by {@link ExpressionParser#product}.
-   * @param ctx the parse tree
-   */
-  void enterProduct(ExpressionParser.ProductContext ctx);
-  /**
-   * Exit a parse tree produced by {@link ExpressionParser#product}.
-   * @param ctx the parse tree
-   */
-  void exitProduct(ExpressionParser.ProductContext ctx);
+  void exitAtom(ExpressionParser.AtomContext ctx);
   /**
    * Enter a parse tree produced by {@link ExpressionParser#primitive}.
    * @param ctx the parse tree

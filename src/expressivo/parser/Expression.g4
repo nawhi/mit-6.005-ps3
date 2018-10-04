@@ -32,16 +32,16 @@ import Configuration;
  */
 
 root : expression EOF;
-expression: binop | primitive;
-binop: sum | product;
-sum: primitive (PLUS primitive)*;
-product: primitive (TIMES primitive)*;
-
+expression: term (PLUS term)*; // expression contexts form Sum objects
+term: atom (TIMES atom)*; // term contexts form Product objects
+atom: primitive | LPAREN expression RPAREN;
 primitive: IDENT | number;
 number: INTEGER? (DOT INTEGER+)?;
 
 PLUS: '+';
 TIMES: '*';
+LPAREN: '(';
+RPAREN: ')';
 IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
 INTEGER: [0-9]+;
 DOT: '.';
