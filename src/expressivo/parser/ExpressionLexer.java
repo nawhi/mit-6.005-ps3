@@ -20,20 +20,20 @@ public class ExpressionLexer extends Lexer {
   protected static final PredictionContextCache _sharedContextCache =
     new PredictionContextCache();
   public static final int
-    T__0=1, T__1=2, IDENT=3, INTEGER=4, DOT=5, SPACES=6;
+    PLUS=1, TIMES=2, IDENT=3, INTEGER=4, DOT=5, SPACES=6;
   public static String[] modeNames = {
     "DEFAULT_MODE"
   };
 
   public static final String[] ruleNames = {
-    "T__0", "T__1", "IDENT", "INTEGER", "DOT", "SPACES"
+    "PLUS", "TIMES", "IDENT", "INTEGER", "DOT", "SPACES"
   };
 
   private static final String[] _LITERAL_NAMES = {
     null, "'+'", "'*'", null, null, "'.'"
   };
   private static final String[] _SYMBOLIC_NAMES = {
-    null, null, null, "IDENT", "INTEGER", "DOT", "SPACES"
+    null, "PLUS", "TIMES", "IDENT", "INTEGER", "DOT", "SPACES"
   };
   public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 

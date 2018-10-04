@@ -28,15 +28,20 @@ import Configuration;
  *
  * For more information, see reading 18 about parser generators, which explains
  * how to use Antlr and has links to reference information.
+ *
  */
 
 root : expression EOF;
-expression: sum | product | primitive;
-sum: primitive ('+' primitive)*;
-product: primitive ('*' primitive)*;
+expression: binop | primitive;
+binop: sum | product;
+sum: primitive (PLUS primitive)*;
+product: primitive (TIMES primitive)*;
+
 primitive: IDENT | number;
 number: INTEGER | INTEGER DOT INTEGER? | DOT INTEGER;
 
+PLUS: '+';
+TIMES: '*';
 IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
 INTEGER: [0-9]+;
 DOT: '.';

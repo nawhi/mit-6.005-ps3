@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import expressivo.parser.ExpressionListener;
+import expressivo.parser.ExpressionParser.BinopContext;
 import expressivo.parser.ExpressionParser.ExpressionContext;
 import expressivo.parser.ExpressionParser.NumberContext;
 import expressivo.parser.ExpressionParser.PrimitiveContext;
@@ -152,6 +153,18 @@ public class MakeExpression implements ExpressionListener {
 			prod = new Product(stack.pop(), prod);
 		}
 		stack.push(prod);
+	}
+
+
+	@Override
+	public void enterBinop(BinopContext ctx) {
+		// nothing to do
+	}
+
+
+	@Override
+	public void exitBinop(BinopContext ctx) {
+		// nothing to do
 	}
 
 }

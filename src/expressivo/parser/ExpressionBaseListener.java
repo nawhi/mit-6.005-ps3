@@ -43,6 +43,18 @@ public class ExpressionBaseListener implements ExpressionListener {
    *
    * <p>The default implementation does nothing.</p>
    */
+  @Override public void enterBinop(ExpressionParser.BinopContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
+  @Override public void exitBinop(ExpressionParser.BinopContext ctx) { }
+  /**
+   * {@inheritDoc}
+   *
+   * <p>The default implementation does nothing.</p>
+   */
   @Override public void enterSum(ExpressionParser.SumContext ctx) { }
   /**
    * {@inheritDoc}
