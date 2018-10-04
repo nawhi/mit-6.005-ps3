@@ -58,9 +58,6 @@ public interface Expression {
     		throw new IllegalArgumentException(msg);
         }
         
-        System.err.println(tree.toStringTree(parser));
-//        Trees.inspect(tree, parser);	
-        
         ParseTreeWalker walker = new ParseTreeWalker();
         MakeExpression listener = new MakeExpression();
         
