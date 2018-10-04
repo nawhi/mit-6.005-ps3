@@ -59,7 +59,7 @@ public interface Expression {
         }
         
         ParseTreeWalker walker = new ParseTreeWalker();
-        MakeExpression listener = new MakeExpression();
+        ExpressionGenerator listener = new ExpressionGenerator();
         
         walker.walk(listener, tree);
         
