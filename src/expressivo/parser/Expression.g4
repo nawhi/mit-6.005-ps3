@@ -38,7 +38,7 @@ sum: primitive (PLUS primitive)*;
 product: primitive (TIMES primitive)*;
 
 primitive: IDENT | number;
-number: INTEGER | INTEGER DOT INTEGER? | DOT INTEGER;
+number: INTEGER? (DOT INTEGER+)?;
 
 PLUS: '+';
 TIMES: '*';
