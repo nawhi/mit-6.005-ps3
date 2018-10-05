@@ -31,20 +31,20 @@ import Configuration;
  *
  */
 
-root : expression EOF;
-expression: term (PLUS term)*; // expression contexts form Sum objects
-term: atom (TIMES atom)*; // term contexts form Product objects
-atom: primitive | LPAREN expression RPAREN;
-primitive: IDENT | number;
-number: INTEGER? (DOT INTEGER+)?;
+root       : expression EOF;
+expression : term (PLUS term)*; // Sum
+term       : atom (TIMES atom)*; // Product
+atom       : primitive | LPAREN expression RPAREN;
+primitive  : IDENT | number;
+number     : INTEGER? (DOT INTEGER+)?;
 
-PLUS: '+';
-TIMES: '*';
-LPAREN: '(';
-RPAREN: ')';
-IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
-INTEGER: [0-9]+;
-DOT: '.';
+PLUS       : '+';
+TIMES      : '*';
+LPAREN     : '(';
+RPAREN     : ')';
+IDENT      : [a-zA-Z_][a-zA-Z0-9_]*;
+INTEGER    : [0-9]+;
+DOT        : '.';
 
 /* Tell Antlr to ignore spaces around tokens. */
-SPACES : [ ]+ -> skip;
+SPACES     : [ ]+ -> skip;
