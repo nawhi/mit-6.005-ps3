@@ -11,7 +11,9 @@ import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser.*;
 
 public class ExpressionGenerator implements ExpressionListener {
+
 	private Stack<Expression> stack = new Stack<>();
+
 	/**
 	 * Get the result of this walk.
 	 * @return the Expression object created from the AST walked
