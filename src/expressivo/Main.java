@@ -67,7 +67,7 @@ public class Main {
     }
  
     private static final String DIFFERENTIATE_PREFIX = "!d/d";
-    private static final String VARIABLE = "[A-Za-z]+";
+    private static final String VARIABLE = "[a-zA-Z_][a-zA-Z0-9_]*";
     private static final String DIFFERENTIATE = DIFFERENTIATE_PREFIX + "(" + VARIABLE + ") *";
 
     private static String parseDifferentiate(final String input) {

@@ -18,7 +18,7 @@ public class Commands {
     /**
      * Differentiate an expression with respect to a variable.
      * @param expression the expression to differentiate
-     * @param variable the variable to differentiate by, which much match the IDENT rule in the grammar
+     * @param variable the variable to differentiate by, which much match the Main.VARIABLE regex
      * @return expression's derivative with respect to variable.  Must be a valid expression equal
      *         to the derivative, but doesn't need to be in simplest or canonical form.
      * @throws IllegalArgumentException if the expression or variable is invalid
@@ -30,7 +30,7 @@ public class Commands {
     /**
      * Simplify an expression.
      * @param expression the expression to simplify
-     * @param environment maps variables to values.  Variables are required to match the IDENT rule in the grammar.
+     * @param environment maps variables to values.  Variables are required to match the Main.VARIABLE regex
      *         The set of variables in environment is allowed to be different than the set of variables actually
      *         found in expression.  Values must be nonnegative numbers.
      * @return an expression equal to the input, but after substituting every variable v that appears in both
