@@ -34,6 +34,11 @@ public class Numeric extends Primitive {
 					"Could not parse '" + val + "' into a numeric");
 		}
 	}
+	
+	@Override
+	public Expression differentiate(Variable variable) {
+		return new Numeric("0");
+	}
 
 	@Override public String toString() {
 		return value.toString(); 
@@ -49,4 +54,5 @@ public class Numeric extends Primitive {
 		}
 		return super.equals(other);
 	}
+
 }

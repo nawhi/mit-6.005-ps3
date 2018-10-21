@@ -28,13 +28,19 @@ public class CommandsDifferentiateTest {
 	public void throwsIfInvalidVariable() {
 		Commands.differentiate("x+2", "1");
 	}
+	
+    /*
+     * Where x is our target variable...
+     * Product(v, v) -> Product(2, v)
+     * Product(v, other) or Product(other, v) -> other
+     * 
+     *  Sum(v, other) -> 1
+     *  Product(v, other) -> other
+     *  Product(v, v) -> Product(2, v)
+     *  Anything else -> 0
+     * 
+     * How to handle brackets? 
+     */
 
-	@Test
-	public void expressionsWithoutTargetVariableReturnZero() {
-		assertEquals("0", Commands.differentiate("5.0", "x"));
-		assertEquals("0", Commands.differentiate("3+5*(4+7)", "x"));
-		assertEquals("0", Commands.differentiate("a", "x"));
-		assertEquals("0", Commands.differentiate("a+3.4+5*b", "x"));
-	}
 
 }

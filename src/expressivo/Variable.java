@@ -14,6 +14,11 @@ public class Variable extends Primitive {
 		this.ident = ident;
 	}
 	
+	@Override
+	public Expression differentiate(Variable variable) {
+		throw new RuntimeException("not implemented");
+	}
+
 	@Override public String toString() {
 		return ident;
 	}
@@ -27,5 +32,6 @@ public class Variable extends Primitive {
 			return this.ident.equals(((Variable) other).ident);
 		return super.equals(other);
 	}
+
 
 }

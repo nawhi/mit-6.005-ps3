@@ -28,7 +28,8 @@ public class Commands {
         Expression var = Expression.parse(variable);
         if (!(var instanceof Variable))
         	throw new IllegalArgumentException("Invalid variable");
-    	return "0";
+       
+        return expr.differentiate((Variable)var).toString();
     }
     
     /**

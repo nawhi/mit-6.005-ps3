@@ -17,6 +17,11 @@ public abstract class BinOp implements Expression {
 	 */
 	protected abstract String operator();
 	
+	@Override
+	public Expression differentiate(Variable variable) {
+		throw new RuntimeException("not implemented");
+	}
+	
 	@Override public int hashCode() { 
 		return 5 + lvalue.hashCode() ^ rvalue.hashCode() << 1;
 	}

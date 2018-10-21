@@ -78,6 +78,12 @@ public interface Expression {
     public boolean precedes(Expression other);
     
     /**
+     * @param variable Variable to differentiate by
+     * @return differential of this expression with respect to variable
+     */
+    public Expression differentiate(Variable variable);
+    
+    /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
      */
