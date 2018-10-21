@@ -10,8 +10,11 @@ import org.junit.Test;
 public class CommandsDifferentiateTest {
 
 	@Test
-	public void differentiatingNumericShouldReturnZero() {
+	public void expressionsWithoutTargetVariableReturnZero() {
 		assertEquals("0", Commands.differentiate("5.0", "x"));
+		assertEquals("0", Commands.differentiate("3+5*(4+7)", "x"));
+		assertEquals("0", Commands.differentiate("a", "x"));
+		assertEquals("0", Commands.differentiate("a+3.4+5*b", "x"));
 	}
     
 }
