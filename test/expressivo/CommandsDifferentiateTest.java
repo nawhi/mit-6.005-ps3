@@ -58,8 +58,13 @@ public class CommandsDifferentiateTest {
 	}
 	
 	@Test
-	public void numericSumReturnsZero() {
+	public void simpleNumericSumReturnsZero() {
 		assertEquals("0", Commands.differentiate("1+2", "x"));
+	}
+	
+	@Test
+	public void complexNumericSumReturnsZero() {
+		assertEquals("0", Commands.differentiate("1+2+3+4+5.5", "x"));
 	}
 	
 }
