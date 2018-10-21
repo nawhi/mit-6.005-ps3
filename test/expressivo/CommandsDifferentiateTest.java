@@ -57,4 +57,9 @@ public class CommandsDifferentiateTest {
 		assertEquals("1", Commands.differentiate("x", "x"));
 	}
 	
+	@Test
+	public void numericPlusReturnsZero() {
+		assertEquals("0", Commands.differentiate("1+2", "x"));
+	}
+	
 }

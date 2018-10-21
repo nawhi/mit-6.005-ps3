@@ -35,11 +35,7 @@ public class Numeric extends Primitive {
 		}
 	}
 	
-	public Numeric(long val) {
-		this.value = val;
-	}
-	
-	public Numeric(double val) {
+	public Numeric(int val) {
 		this.value = val;
 	}
 	
