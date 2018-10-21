@@ -16,7 +16,7 @@ public class Variable extends Primitive {
 	
 	@Override
 	public Expression differentiate(Variable variable) {
-		throw new RuntimeException("not implemented");
+		return new Numeric(this.equals(variable) ? 1 : 0);
 	}
 
 	@Override public String toString() {

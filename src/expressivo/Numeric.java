@@ -35,9 +35,17 @@ public class Numeric extends Primitive {
 		}
 	}
 	
+	public Numeric(long val) {
+		this.value = val;
+	}
+	
+	public Numeric(double val) {
+		this.value = val;
+	}
+	
 	@Override
 	public Expression differentiate(Variable variable) {
-		return new Numeric("0");
+		return new Numeric(0);
 	}
 
 	@Override public String toString() {

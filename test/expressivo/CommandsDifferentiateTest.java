@@ -41,6 +41,20 @@ public class CommandsDifferentiateTest {
      * 
      * How to handle brackets? 
      */
-
-
+	
+	@Test
+	public void singleNumericReturnsZero() {
+		assertEquals("0", Commands.differentiate("1", "x"));
+	}
+	
+	@Test
+	public void singleNonTargetVariableReturnsZero() {
+		assertEquals("0", Commands.differentiate("y", "x"));
+	}
+	
+	@Test
+	public void singleTargetVariableReturnsOne() {
+		assertEquals("1", Commands.differentiate("x", "x"));
+	}
+	
 }
