@@ -9,6 +9,26 @@ import org.junit.Test;
 
 public class CommandsDifferentiateTest {
 
+	@Test(expected=IllegalArgumentException.class)
+	public void throwsIfEmptyExpression() {
+		Commands.differentiate("", "x");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void throwsIfEmptyVariable() {
+		Commands.differentiate("x", "");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void throwsIfInvalidExpression() {
+		Commands.differentiate("(", "x");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void throwsIfInvalidVariable() {
+		Commands.differentiate("x+2", "1");
+	}
+
 	@Test
 	public void expressionsWithoutTargetVariableReturnZero() {
 		assertEquals("0", Commands.differentiate("5.0", "x"));
@@ -16,5 +36,5 @@ public class CommandsDifferentiateTest {
 		assertEquals("0", Commands.differentiate("a", "x"));
 		assertEquals("0", Commands.differentiate("a+3.4+5*b", "x"));
 	}
-    
+
 }
