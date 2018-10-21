@@ -29,7 +29,8 @@ public class Commands {
         if (!(var instanceof Variable))
         	throw new IllegalArgumentException("Invalid variable");
        
-        return expr.differentiate((Variable)var).toString();
+        return expr.differentiate((Variable)var).simplify().toString();
+        
     }
     
     /**

@@ -15,6 +15,11 @@ public class Product extends BinOp {
 	public boolean precedes(Expression other) {
 		return true;
 	}
+	
+	@Override
+	public Expression simplify() {
+		throw new RuntimeException("not implemented");
+	}
 
 	@Override 
 	public boolean equals(Object other) {

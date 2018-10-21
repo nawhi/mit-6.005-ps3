@@ -84,6 +84,12 @@ public interface Expression {
     public Expression differentiate(Variable variable);
     
     /**
+     * @return a version of this Expression in its simplest form, 
+     *         replacing e.g. Sum(Numeric, Numeric) with the sum of the values
+     */
+    public Expression simplify();
+    
+    /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
      */

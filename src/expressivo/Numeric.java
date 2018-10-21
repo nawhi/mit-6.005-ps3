@@ -35,8 +35,12 @@ public class Numeric extends Primitive {
 		}
 	}
 	
-	public Numeric(int val) {
-		this.value = val;
+	public double getValue() {
+		return value.doubleValue();
+	}
+
+	public Numeric(Number val) {
+		this(val.toString());
 	}
 	
 	@Override
