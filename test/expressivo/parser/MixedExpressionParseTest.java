@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.Expression;
+import expressivo.expressions.Expression;
 import org.junit.Assert;
 import org.junit.Test;
 

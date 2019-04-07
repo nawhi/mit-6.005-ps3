@@ -1,14 +1,13 @@
-package expressivo;
+package expressivo.expressions;
 
-import java.util.List;
-import java.util.Stack;
-
+import expressivo.parser.ExpressionListener;
+import expressivo.parser.ExpressionParser.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import expressivo.parser.ExpressionListener;
-import expressivo.parser.ExpressionParser.*;
+import java.util.List;
+import java.util.Stack;
 
 class ExpressionGenerator implements ExpressionListener {
 

@@ -3,6 +3,9 @@
  */
 package expressivo;
 
+import expressivo.expressions.Expression;
+import expressivo.expressions.Variable;
+
 import java.util.Map;
 
 /**

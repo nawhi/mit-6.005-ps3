@@ -1,4 +1,4 @@
-package expressivo;
+package expressivo.expressions;
 
 import java.text.NumberFormat;
 import java.text.ParseException;

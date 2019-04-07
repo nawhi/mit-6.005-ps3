@@ -1,4 +1,4 @@
-package expressivo;
+package expressivo.expressions;
 
 public class Variable extends Primitive {
 

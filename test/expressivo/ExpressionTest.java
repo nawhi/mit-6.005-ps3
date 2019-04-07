@@ -5,8 +5,11 @@ package expressivo;
 
 import static org.junit.Assert.*;
 
+import expressivo.expressions.*;
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Tests for the Expression abstract data type.
@@ -18,15 +21,10 @@ public class ExpressionTest {
     private static final int TEST_HC   = 0x2;
     private static final int ALL_FLAGS = IGNORE_WS & TEST_HC;
 	
-	@Test(expected=AssertionError.class)
-    public void testAssertionsEnabled() {
-        assert false; // make sure assertions are enabled with VM argument: -ea
-    }
-    
     @Test
     public void testWhitespaceDoesntMatter() {
-    	assertEquals("Whitespace shouldn't matter", "     hello      ", "hello", IGNORE_WS);
-    	assertEquals("Whitespace shouldn't matter", "  H  e ll o \t", "\t\t\tHello", IGNORE_WS);
+    	assertEquals("     hello      ", "hello", IGNORE_WS);
+    	assertEquals( "  H  e ll o \t", "\t\t\tHello", IGNORE_WS);
     }
 
 	/*
@@ -48,14 +46,6 @@ public class ExpressionTest {
 	 *    - equals() will work by comparing hashcodes, so the structural
 	 *      equality tests shoud cover this
 	 */
-	
-	@Test public void testVariablesAlone() {
-		Variable v = new Variable("foo");
-		assertEquals("Variable's string representation should be correct", 
-				"foo", v.toString(), IGNORE_WS);
-		assertEquals("Variables with the same ident should equal each other", 
-				new Variable("foo"), new Variable("foo"), TEST_HC);
-	}
 	
 	@Test public void testNumbersAlone() {
 		Numeric i = new Numeric("1");

@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.*;
+import expressivo.expressions.*;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;

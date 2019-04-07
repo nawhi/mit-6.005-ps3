@@ -1,4 +1,4 @@
-package expressivo;
+package expressivo.expressions;
 
 public abstract class BinOp implements Expression {
 	

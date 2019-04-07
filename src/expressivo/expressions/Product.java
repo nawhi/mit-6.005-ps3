@@ -1,4 +1,4 @@
-package expressivo;
+package expressivo.expressions;
 
 public class Product extends BinOp {
 	
