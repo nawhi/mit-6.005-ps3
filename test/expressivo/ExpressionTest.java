@@ -40,37 +40,33 @@ public class ExpressionTest {
 	 *    - equals() will work by comparing hashcodes, so the structural
 	 *      equality tests shoud cover this
 	 */
-	
-	@Test public void testNumbersAlone() {
-		Numeric i = new Numeric("1");
-		assertEquals("Int's string representation should be correct",
-				i.toString(), "1");
-		assertEquals("Strings of ints with the same value should equal each other",
-				i.toString(), new Numeric("1").toString());
-		
-		assertEquals("Identical Numeric ints should equal each other",
-				i, new Numeric("1"), ALL_FLAGS);
-		
-		assertEquals("Float string should be correct", 
-				new Numeric("1.05").toString(), "1.05");
-		assertEquals("Float string shouldn't have trailing zeroes",
-				new Numeric("1.050").toString(), "1.05");
-		assertEquals("Strings of floats with the same value should equal each otehr",
-				new Numeric("1.05").toString(), new Numeric("1.05").toString());
-		assertEquals("Identical Numeric floats should equal each other",
-				new Numeric("6.98"), new Numeric("6.98"), ALL_FLAGS);
+
+	@Test public void integerNumericHasWholeStringRepresentation() {
+		assertThat(new Numeric("1").toString()).isEqualTo("1");
+	}
+
+	@Test public void identicalIntegerNumericsShouldBeEqual() {
+		assertThat(new Numeric("1")).isEqualTo(new Numeric("1"));
+	}
+
+	@Test
+	public void identicalFloatNumericsShouldBeEqual() {
+		assertThat(new Numeric("1.05")).isEqualTo(new Numeric("1.05"));
+	}
+
+	@Test
+	public void floatStringShouldNotHaveTrailingZeroes() {
+		assertThat(new Numeric("1.050").toString()).isEqualTo("1.05");
 	}
 	
 	@Test
-	public void testNumericErrorConditions() {
+	public void numericThrowsIfPassedInvalidInitialValue() {
 		assertThatThrownBy(() -> new Numeric("foo")).isInstanceOf(IllegalArgumentException.class);
 	}
-	
-	@Test public void testNumericEqualityBetweenFloatAndInt() {
-		assertEquals("Int's string should equal a whole-number float's string", 
-				new Numeric("1").toString(), new Numeric("1.00").toString());
-		assertEquals("Int Number should equal a whole-number float Number",
-				new Numeric("1"), new Numeric("1.00"));
+
+	@Test
+	public void intShouldEqualWholeNumberFloat() {
+		assertThat(new Numeric("1")).isEqualTo(new Numeric("1.00"));
 	}
 	
 	@Test public void testNumberLimits() {
