@@ -41,19 +41,6 @@ public class ExpressionTest {
 	 *      equality tests shoud cover this
 	 */
 
-	@Test public void testProduct() {
-		assertEquals("Identical products should equal each other",
-				new Product(new Numeric("1"), new Variable("foo")),
-				new Product(new Numeric("1"), new Variable("foo")), ALL_FLAGS);
-		assertEquals("Identical products' string representations should equal each other",
-				new Product(new Variable("foo"), new Variable("bar")).toString(),
-				new Product(new Variable("foo"), new Variable("bar")).toString(), IGNORE_WS);
-		Product p1 = new Product(new Numeric("1"), new Numeric("2"));
-		Product p2 = new Product(new Numeric("3"), new Numeric("4"));
-		assertEquals("Products should commute without arbitrary parentheses",
-				"1*2*3*4", new Product(p1, p2).toString(), IGNORE_WS);
-	}
-	
 	@Test public void testBinopStructuralEquality() {
 		Variable a = new Variable("a");
 		Variable b = new Variable("b");
