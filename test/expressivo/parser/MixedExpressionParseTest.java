@@ -1,7 +1,7 @@
-package expressivo;
+package expressivo.parser;
 
-import static org.junit.Assert.*;
-
+import expressivo.Expression;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MixedExpressionParseTest {
@@ -17,7 +17,7 @@ public class MixedExpressionParseTest {
 	}
 	
 	private void parsesIdentically(String s) {
-		assertEquals(s, Expression.parse(s).toString());
+		Assert.assertEquals(s, Expression.parse(s).toString());
 	}
 	
 }

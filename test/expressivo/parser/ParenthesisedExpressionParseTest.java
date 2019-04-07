@@ -1,8 +1,9 @@
-package expressivo;
+package expressivo.parser;
 
-import static org.junit.Assert.*;
-
+import expressivo.Expression;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class ParenthesisedExpressionParseTest {
 

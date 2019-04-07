@@ -1,9 +1,10 @@
-package expressivo;
+package expressivo.parser;
+
+import expressivo.*;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
-
-import org.junit.Test;
 
 public class SingleExpressionParseTest {
 
