@@ -26,7 +26,7 @@ dependencies {
 task compileAntlr(type: JavaExec) {
     main = 'org.antlr.v4.Tool'
     classpath = files('lib/antlr.jar')
-    args ['src/expressivo/parser/Expression.g4']
+    args = ['src/expressivo/parser/Expression.g4']
 }
 
 build.dependsOn compileAntlr
