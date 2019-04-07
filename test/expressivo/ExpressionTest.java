@@ -20,12 +20,6 @@ public class ExpressionTest {
 	private static final int IGNORE_WS = 0x1;
     private static final int TEST_HC   = 0x2;
     private static final int ALL_FLAGS = IGNORE_WS & TEST_HC;
-	
-    @Test
-    public void testWhitespaceDoesntMatter() {
-    	assertEquals("     hello      ", "hello", IGNORE_WS);
-    	assertEquals( "  H  e ll o \t", "\t\t\tHello", IGNORE_WS);
-    }
 
 	/*
 	 * Testing strategy:
@@ -67,10 +61,9 @@ public class ExpressionTest {
 				new Numeric("6.98"), new Numeric("6.98"), ALL_FLAGS);
 	}
 	
-	@SuppressWarnings("unused")
-	@Test(expected=IllegalArgumentException.class) 
+	@Test
 	public void testNumericErrorConditions() {
-		Numeric inval = new Numeric("foo");
+		assertThatThrownBy(() -> new Numeric("foo")).isInstanceOf(IllegalArgumentException.class);
 	}
 	
 	@Test public void testNumericEqualityBetweenFloatAndInt() {
