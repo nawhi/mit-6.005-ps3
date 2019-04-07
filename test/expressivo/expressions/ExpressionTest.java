@@ -40,20 +40,7 @@ public class ExpressionTest {
 	 *    - equals() will work by comparing hashcodes, so the structural
 	 *      equality tests shoud cover this
 	 */
-	
-	@Test public void testSum() {
-		assertEquals("Identical sums should equal each other",
-				new Sum(new Numeric("1"), new Variable("foo")),
-				new Sum(new Numeric("1"), new Variable("foo")), ALL_FLAGS);
-		assertEquals("Identical sums' string representations should equal each other",
-				new Sum(new Variable("foo"), new Variable("bar")).toString(),
-				new Sum(new Variable("foo"), new Variable("bar")).toString(), ALL_FLAGS);
-		Sum s1 = new Sum(new Numeric("1"), new Numeric("2"));
-		Sum s2 = new Sum(new Numeric("3"), new Numeric("4"));
-		assertEquals("Sums should commute without arbitrary parentheses", 
-				"1+2+3+4", new Sum(s1, s2).toString(), IGNORE_WS);
-	}
-	
+
 	@Test public void testProduct() {
 		assertEquals("Identical products should equal each other",
 				new Product(new Numeric("1"), new Variable("foo")),
