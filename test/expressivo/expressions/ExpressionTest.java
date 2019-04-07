@@ -15,32 +15,7 @@ import static org.assertj.core.api.Assertions.*;
  * Tests for the Expression abstract data type.
  */
 public class ExpressionTest {
-	
-    // Flags for additional equality tests
-	private static final int IGNORE_WS = 0x1;
-    private static final int TEST_HC   = 0x2;
-    private static final int ALL_FLAGS = IGNORE_WS & TEST_HC;
 
-	/*
-	 * Testing strategy:
-	 * - Binop & Primitive:
-	 *    - an object ported to string and back should be equal to itself
-	 * - Binop:
-	 *    - check they work with Variables, Numbers, and one of each
-	 *    - check combinations of each other work
-	 * - Structural equality:
-	 *    - Primitive(a) == Primitive(a)
-	 *    - Binop(a, b) == Binop(a, b)
-	 *    - Binop(a, b) != Binop(b, a)
-	 *    - TODO Binop(a, Binop(b, c)) vs Binop(Binop(a, b), c) ???
-	 *    - Number(1) == Number(1.0000)
-	 * - Grouping
-	 *    - TODO ???
-	 * - Hashcode:
-	 *    - equals() will work by comparing hashcodes, so the structural
-	 *      equality tests shoud cover this
-	 */
-	
 	@Test public void testComplexExpressions() {
 		Variable w = new Variable("w");
 		Variable x = new Variable("x");
