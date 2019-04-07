@@ -2,10 +2,10 @@ package expressivo;
 
 public abstract class BinOp implements Expression {
 	
-	protected final Expression lvalue;
-	protected final Expression rvalue;
+	final Expression lvalue;
+	final Expression rvalue;
 	
-	public BinOp(Expression lvalue, Expression rvalue) {
+	BinOp(Expression lvalue, Expression rvalue) {
 		this.lvalue = lvalue;
 		this.rvalue = rvalue;
 	}

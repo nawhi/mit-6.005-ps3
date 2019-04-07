@@ -13,7 +13,7 @@ import java.util.Map;
  * You MUST NOT add fields, constructors, or instance methods.
  * You may, however, add additional static methods, or strengthen the specs of existing methods.
  */
-public class Commands {
+class Commands {
     
     /**
      * Differentiate an expression with respect to a variable.

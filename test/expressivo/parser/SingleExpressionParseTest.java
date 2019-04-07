@@ -109,7 +109,6 @@ public class SingleExpressionParseTest {
 			Expression.parse(s);
 			fail("Attempt to parse " + s + " should fail");
 		} catch (IllegalArgumentException ex) {
-			return;
 		}
 	}
 	

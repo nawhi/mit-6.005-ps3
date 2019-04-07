@@ -143,8 +143,7 @@ public class ExpressionTest {
 				
 		assertEquals("Shouldn't add parens unless necessary", "a*a+1", multFirst.toString(), IGNORE_WS);
 		assertEquals("Should add parens to keep BIDMAS order", "(a+1)*a", addFirst.toString(), IGNORE_WS);
-		assertFalse("Non-commutative expressions in different order shouldn't be equal",
-				multFirst.equals(addFirst));
+		assertNotEquals("Non-commutative expressions in different order shouldn't be equal", multFirst, addFirst);
 		
 		Variable b = new Variable("b");
 		Expression aabb = new Sum(new Sum(a,a), new Sum(b,b)); 
@@ -200,7 +199,7 @@ public class ExpressionTest {
 				pow(xplusyplusz, 3).toString());
 	}
 	
-	Expression pow(Expression base, int exp) {
+	private Expression pow(Expression base, int exp) {
 		Expression ret = base;
 	    for (int i = 1; i < exp; i++) {
 			ret = new Product(ret, base);
@@ -212,7 +211,7 @@ public class ExpressionTest {
 	 * Whitespace does not matter in tests here, so ignore it in string
 	 * equality tests
 	 */
-	void assertEquals(String msg, Object expected, Object actual, int flags) {
+    private void assertEquals(String msg, Object expected, Object actual, int flags) {
 		if (expected instanceof String 
 				&& actual instanceof String
 				&& (flags & IGNORE_WS) != 0) {
@@ -227,7 +226,7 @@ public class ExpressionTest {
 		}
 	}
 	
-	void assertEquals(String msg, Object expected, Object actual) {
+	private void assertEquals(String msg, Object expected, Object actual) {
 		Assert.assertEquals(msg, expected, actual);
 	}
 	

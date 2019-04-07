@@ -76,8 +76,7 @@ public class Main {
             throw new CommandSyntaxException("usage: !d/d must be followed by a variable name");
         }
 
-        final String variable = commandMatcher.group(1);
-        return variable;
+        return commandMatcher.group(1);
     }
     
     private static final String SIMPLIFY_PREFIX = "!simplify";
@@ -105,7 +104,7 @@ public class Main {
     
     public static class CommandSyntaxException extends RuntimeException {
         private static final long serialVersionUID = 1;
-        public CommandSyntaxException(String message) {
+        CommandSyntaxException(String message) {
             super(message);
         }
     }

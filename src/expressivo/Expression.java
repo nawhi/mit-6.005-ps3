@@ -34,7 +34,7 @@ public interface Expression {
      * @return expression AST for the input
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) {
+    static Expression parse(String input) {
         CharStream stream = new ANTLRInputStream(input);
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
@@ -75,26 +75,26 @@ public interface Expression {
      * @return true if this Expression can be combined with other without
      *         needing brackets, false otherwise
      */
-    public boolean precedes(Expression other);
+    boolean precedes(Expression other);
     
     /**
      * @param variable Variable to differentiate by
      * @return differential of this expression with respect to variable
      */
-    public Expression differentiate(Variable variable);
+    Expression differentiate(Variable variable);
     
     /**
      * @return a version of this Expression in its simplest form, 
      *         replacing e.g. Sum(Numeric, Numeric) with the sum of the values
      */
-    public Expression simplify();
+    Expression simplify();
     
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
      */
-    @Override 
-    public String toString();
+    @Override
+    String toString();
 
     /**
      * @param thatObject any object
@@ -102,7 +102,7 @@ public interface Expression {
      * Expressions, as defined in the PS3 handout.
      */
     @Override
-    public boolean equals(Object thatObject);
+    boolean equals(Object thatObject);
     
     /**
      * @return hash code value consistent with the equals() definition of structural
@@ -110,7 +110,7 @@ public interface Expression {
      *     e1.equals(e2) implies e1.hashCode() == e2.hashCode()
      */
     @Override
-    public int hashCode();
+    int hashCode();
     
     
 }
