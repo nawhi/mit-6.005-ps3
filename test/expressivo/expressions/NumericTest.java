@@ -1,14 +1,13 @@
-package expressivo;
+package expressivo.expressions;
 
-import expressivo.expressions.Numeric;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NumericTest {
-
-
     @Test
     public void integerNumericHasWholeStringRepresentation() {
         assertThat(new Numeric("1").toString()).isEqualTo("1");
@@ -44,8 +43,8 @@ public class NumericTest {
     }
 
     @Test
-    public void numbersGreaterThan4BytesAreNotClipped() {
-        String bigValue = "2147483648";
+    public void numbersGreaterThanIntSizeAreNotClipped() {
+        String bigValue = new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
         assertThat(new Numeric(bigValue).toString()).isEqualTo(bigValue);
     }
 }
