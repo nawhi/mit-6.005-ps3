@@ -40,41 +40,6 @@ public class ExpressionTest {
 	 *    - equals() will work by comparing hashcodes, so the structural
 	 *      equality tests shoud cover this
 	 */
-
-	@Test public void integerNumericHasWholeStringRepresentation() {
-		assertThat(new Numeric("1").toString()).isEqualTo("1");
-	}
-
-	@Test public void identicalIntegerNumericsShouldBeEqual() {
-		assertThat(new Numeric("1")).isEqualTo(new Numeric("1"));
-	}
-
-	@Test
-	public void identicalFloatNumericsShouldBeEqual() {
-		assertThat(new Numeric("1.05")).isEqualTo(new Numeric("1.05"));
-	}
-
-	@Test
-	public void floatStringShouldNotHaveTrailingZeroes() {
-		assertThat(new Numeric("1.050").toString()).isEqualTo("1.05");
-	}
-	
-	@Test
-	public void numericThrowsIfPassedInvalidInitialValue() {
-		assertThatThrownBy(() -> new Numeric("foo")).isInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void intShouldEqualWholeNumberFloat() {
-		assertThat(new Numeric("1")).isEqualTo(new Numeric("1.00"));
-	}
-	
-	@Test public void testNumberLimits() {
-		assertEquals("Numbers > INT_MAX should work correctly", 
-				new Numeric("2147483648").toString(), "2147483648");
-		assertNotEquals("Numbers that aren't quite equal shouldn't compare as equal",
-				 new Numeric("1.0"), new Numeric("1.00000000000000000000000001")); 
-	}
 	
 	@Test public void testSum() {
 		assertEquals("Identical sums should equal each other",
