@@ -41,19 +41,6 @@ public class ExpressionTest {
 	 *      equality tests shoud cover this
 	 */
 
-	@Test public void testBinopStructuralEquality() {
-		Variable a = new Variable("a");
-		Variable b = new Variable("b");
-		assertNotEquals("Sums with swapped lvalue/rvalue should not compare equal",
-				new Sum(a, b), new Sum(b, a));
-		assertNotEquals("Sums with swapped lvalue/rvalue should not hash equal",
-				new Sum(a, b).hashCode(), new Sum(b, a).hashCode());
-		assertNotEquals("Products with swapped lvalue/rvalue should not compare equal",
-				new Product(a, b), new Product(b, a)); 
-		assertNotEquals("Products with swapped lvalue/rvalue should not hash equal",
-				new Product(a, b).hashCode(), new Product(b, a).hashCode()); 
-	}
-	
 	@Test public void testExpressionAddsParenthesesWhenNeeded() {
 		Variable a = new Variable("a");
 		Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));

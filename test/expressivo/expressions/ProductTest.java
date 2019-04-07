@@ -19,4 +19,11 @@ public class ProductTest {
         Product p2 = new Product(new Numeric("3"), new Numeric("4"));
         assertThat(new Product(p1, p2).toString()).isEqualTo("1*2*3*4");
     }
+
+    @Test
+    public void productsWithSwappedValuesAreNotEqual() {
+        Variable a = new Variable("a");
+        Variable b = new Variable("b");
+        assertThat(new Product(a, b)).isNotEqualTo(new Product(b, a));
+    }
 }

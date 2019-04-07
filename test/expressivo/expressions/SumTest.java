@@ -21,5 +21,11 @@ public class SumTest {
         assertThat(new Sum(s1, s2).toString()).isEqualTo("1+2+3+4");
     }
 
+    @Test
+    public void sumsWithSwappedValuesAreNotEqual() {
+        Variable a = new Variable("a");
+        Variable b = new Variable("b");
+        assertThat(new Sum(a, b)).isNotEqualTo(new Sum(b, a));
+    }
 
 }
