@@ -31,6 +31,7 @@ public class ParenthesisedExpressionParseTest {
 	public void testNecessaryParentheses() {
 		assertEquals("2*(a+1)", Expression.parse("2 * (a+1)").toString());
 		assertEquals("(b+c)*(d+e)", Expression.parse("(b + c) * (d + e)").toString());
+
 	}
 	
 }

@@ -89,28 +89,4 @@ public class ExpressionTest {
 		}
 	    return ret;
 	}
-	
-	/*
-	 * Whitespace does not matter in tests here, so ignore it in string
-	 * equality tests
-	 */
-    private void assertEquals(String msg, Object expected, Object actual, int flags) {
-		if (expected instanceof String 
-				&& actual instanceof String
-				&& (flags & IGNORE_WS) != 0) {
-			String o1 = ((String) expected).replaceAll("\\s", "");
-			String o2 = ((String) actual).replaceAll("\\s", "");
-			Assert.assertEquals(msg, o1, o2);
-		} else {
-			Assert.assertEquals(msg, expected, actual);
-		}
-		if ((flags & TEST_HC) != 0) {
-			Assert.assertEquals(msg, expected.hashCode(), actual.hashCode());
-		}
-	}
-	
-	private void assertEquals(String msg, Object expected, Object actual) {
-		Assert.assertEquals(msg, expected, actual);
-	}
-	
 }
