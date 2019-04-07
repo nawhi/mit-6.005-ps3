@@ -26,10 +26,13 @@ dependencies {
 task compileAntlr(type: JavaExec) {
     main = 'org.antlr.v4.Tool'
     classpath = files('lib/antlr.jar')
-    def grammar = 'src/expressivo/parser/Expression.g4'
+    
+    def parserDir = 'src/expressivo/parser'
+    def grammar = parserDir + '/Expression.g4'
+    
     args = [grammar]
     inputs.files grammar
-    outputs.files fileTree(dir: 'src/expressivo/parser', excludes: [grammar])
+    outputs.files fileTree(dir: parserDir, excludes: [grammar])
 }
 
 compileJava.dependsOn compileAntlr
