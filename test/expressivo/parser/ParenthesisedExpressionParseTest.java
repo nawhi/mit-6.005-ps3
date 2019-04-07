@@ -1,37 +1,37 @@
 package expressivo.parser;
 
 import expressivo.expressions.Expression;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class ParenthesisedExpressionParseTest {
 
 	@Test
-	public void testUnnecessaryParenthesesInPrimitives() {
-		assertEquals("a", Expression.parse("(a)").toString());
-		assertEquals("a", Expression.parse("((a))").toString());
-		assertEquals("1", Expression.parse("(1)").toString());
+	@Parameters({
+			"(a)|a",
+			"((a))|a",
+			"(1)|1",
+			"(a)+(b)|a+b",
+			"(a+b)|a+b",
+			"(a)*(b)|a*b",
+			"(a*b)|a*b",
+			"(2*a)+1|2*a+1"
+	})
+	public void spuriousParenthesesAreStripped(String input, String expectedOutput) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
 	}
 	
 	@Test
-	public void testSpuriousParenthesesInBinops() {
-		assertEquals("a+b", Expression.parse("(a)+(b)").toString());
-		assertEquals("a+b", Expression.parse("(a+b)").toString());
-		assertEquals("a*b", Expression.parse("(a)*(b)").toString());
-		assertEquals("a*b", Expression.parse("(a*b)").toString());
+	@Parameters({
+			"2*(a+1)",
+			"(b+c)*(d+e)"
+	})
+	public void necessaryParenthesesArePreserved(String input) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(input);
 	}
-	
-	@Test
-	public void testSpuriousParenthesesInMixedExpressions() {
-		assertEquals("2*a+1", Expression.parse("(2*a) + 1").toString());
-	}
-	
-	@Test
-	public void testNecessaryParentheses() {
-		assertEquals("2*(a+1)", Expression.parse("2 * (a+1)").toString());
-		assertEquals("(b+c)*(d+e)", Expression.parse("(b + c) * (d + e)").toString());
-
-	}
-	
 }
