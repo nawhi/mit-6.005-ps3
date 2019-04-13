@@ -27,13 +27,7 @@ class Commands {
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
     public static String differentiate(String expression, String variable) {
-        Expression expr = Expression.parse(expression);
-        Expression var = Expression.parse(variable);
-        if (!(var instanceof Variable))
-        	throw new IllegalArgumentException("Invalid variable");
-       
-        return expr.differentiate((Variable)var).simplify().toString();
-        
+        throw new UnsupportedOperationException("todo");
     }
     
     /**
