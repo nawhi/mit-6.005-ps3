@@ -32,6 +32,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         Optional<String> currentExpression = Optional.empty();
+
+        System.out.println("Welcome to Expressivo");
         
         while (true) {
             System.out.print("> ");

@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceSets {
     main.java.srcDirs = ['src']
@@ -7,6 +8,12 @@ sourceSets {
 
 repositories {
     mavenCentral()
+}
+
+mainClassName = "expressivo.Main"
+
+run {
+    standardInput = System.in
 }
 
 test {

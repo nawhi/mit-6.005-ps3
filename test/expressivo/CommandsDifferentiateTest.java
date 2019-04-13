@@ -5,6 +5,7 @@ package expressivo;
 
 import static org.junit.Assert.*;
 
+import expressivo.expressions.Expression;
 import org.junit.Ignore;
 import org.junit.Test;
 
