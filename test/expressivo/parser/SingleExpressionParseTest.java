@@ -12,7 +12,6 @@ public class SingleExpressionParseTest {
 	public void testIntegerNumerics() {
 		// Sanity check
 		Expression i = Expression.parse("1");
-		assertThat(i, instanceOf(Numeric.class));
 		assertEquals("1", i.toString());
 
 		parsesIdentically("0");
@@ -23,7 +22,6 @@ public class SingleExpressionParseTest {
 	@Test
 	public void testFloatNumericss() {
 		Expression f = Expression.parse("1.5");
-		assertThat(f, instanceOf(Numeric.class));
 		assertEquals("1.5", f.toString());
 		
 		assertEquals("0.5", Expression.parse(".5").toString());
@@ -56,11 +54,9 @@ public class SingleExpressionParseTest {
 	@Test
 	public void testVariables() {
 		Expression var = Expression.parse("myvar");
-		assertThat(var, instanceOf(Variable.class));
 		assertEquals("myvar", var.toString());
 		
 		Expression var2 = Expression.parse("_123");
-		assertThat(var2, instanceOf(Variable.class));
 		assertEquals("_123", var2.toString());
 		
 		parsesIdentically("_foo");
@@ -71,7 +67,6 @@ public class SingleExpressionParseTest {
 	@Test
 	public void testSimpleSums() {
 		Expression sum = Expression.parse("a+b");
-		assertThat(sum, instanceOf(Sum.class));
 		assertEquals(new Sum(new Variable("a"), new Variable("b")), sum);
 		
 		parsesIdentically("x+3");
@@ -89,7 +84,6 @@ public class SingleExpressionParseTest {
 	@Test
 	public void testSimpleProducts() {
 		Expression prod = Expression.parse("a*b");
-		assertThat(prod, instanceOf(Product.class));
 		assertEquals(new Product(new Variable("a"), new Variable("b")), prod);
 		
 		parsesIdentically("x*3");
