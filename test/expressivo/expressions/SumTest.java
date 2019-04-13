@@ -1,10 +1,14 @@
 package expressivo.expressions;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static expressivo.expressions.Numeric.ONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class SumTest {
 
     @Test
@@ -33,5 +37,24 @@ public class SumTest {
     public void differentiatedSumIsSumOfDifferentiatedComponents() {
         Variable x = new Variable("x");
         assertThat(new Sum(x, x).differentiate(x)).isEqualTo(new Sum(ONE, ONE));
+    }
+
+    @Test
+    @Parameters(source = SimplifyTestData.class)
+    public void sumsCanBeSimplified(Sum input, Expression expectedResult) {
+        assertThat(input.simplified()).isEqualTo(expectedResult);
+    }
+
+    public static class SimplifyTestData {
+        public static Object[] provideSums() {
+            Variable x = new Variable("x");
+            Variable y = new Variable("y");
+            Numeric two = new Numeric("2");
+            return new Object[] {
+                    new Object[] { new Sum(x, y), new Sum(x, y) },
+                    new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
+                    new Object[] { new Sum(ONE, ONE), two }
+            };
+        }
     }
 }

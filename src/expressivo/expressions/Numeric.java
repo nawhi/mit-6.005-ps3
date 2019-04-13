@@ -1,5 +1,6 @@
 package expressivo.expressions;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
@@ -60,4 +61,7 @@ class Numeric extends Primitive {
 		return super.equals(other);
 	}
 
+	Expression plus(Numeric addend) {
+		return new Numeric(new BigDecimal(this.toString()).add(new BigDecimal(addend.toString())).toString());
+	}
 }

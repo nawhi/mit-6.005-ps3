@@ -22,6 +22,14 @@ class Sum extends BinOp {
 	}
 
 	@Override
+	public Expression simplified() {
+		if (lvalue instanceof Numeric && rvalue instanceof Numeric) {
+			return ((Numeric) lvalue).plus((Numeric) rvalue);
+		}
+		return this;
+	}
+
+	@Override
 	public boolean equals(Object other) {
 		if (other instanceof Sum)
 			return this.lvalue.equals(((Sum) other).lvalue)
