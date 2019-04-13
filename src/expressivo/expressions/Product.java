@@ -10,7 +10,12 @@ class Product extends BinOp {
 	protected String operator() {
 		return "*";
 	}
-	
+
+	@Override
+	public Expression differentiate(Variable variable) {
+		return new Product(lvalue.differentiate(variable), rvalue.differentiate(variable));
+	}
+
 	@Override 
 	public boolean precedes(Expression other) {
 		return true;

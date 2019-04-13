@@ -35,10 +35,6 @@ class Numeric extends Primitive {
 		}
 	}
 
-	Numeric(Number val) {
-		this(val.toString());
-	}
-	
 	@Override
 	public Expression differentiate(Variable variable) {
 		throw new UnsupportedOperationException("todo");

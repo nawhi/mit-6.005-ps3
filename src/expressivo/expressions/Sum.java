@@ -18,7 +18,7 @@ class Sum extends BinOp {
 	
 	@Override
 	public Expression differentiate(Variable variable) {
-		throw new UnsupportedOperationException("todo");
+		return new Sum(lvalue.differentiate(variable), rvalue.differentiate(variable));
 	}
 
 	@Override

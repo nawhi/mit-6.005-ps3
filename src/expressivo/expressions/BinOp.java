@@ -18,11 +18,9 @@ abstract class BinOp implements Expression {
 	 * @return string of the operator symbol, e.g. * or +
 	 */
 	protected abstract String operator();
-	
+
 	@Override
-	public Expression differentiate(Variable variable) {
-		throw new RuntimeException("not implemented");
-	}
+	public abstract Expression differentiate(Variable variable);
 	
 	@Override
 	public int hashCode() {
