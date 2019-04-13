@@ -1,22 +1,30 @@
 package expressivo.parser;
 
-import expressivo.expressions.*;
+import expressivo.expressions.Expression;
+import expressivo.expressions.Product;
+import expressivo.expressions.Sum;
+import expressivo.expressions.Variable;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Fail.fail;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(JUnitParamsRunner.class)
 public class SingleExpressionParseTest {
 
 	@Test
-	public void testIntegerNumerics() {
-		// Sanity check
-		Expression i = Expression.parse("1");
-		assertEquals("1", i.toString());
-
-		parsesIdentically("0");
-		assertEquals("1", Expression.parse("01").toString());
-		assertEquals("10", Expression.parse("10").toString());
+	@Parameters({
+			"0|0",
+			"1|1",
+			"01|1",
+			"10|10"
+	})
+	public void integersCanBeParsed(String input, String expectedOutput) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
 	}
 	
 	@Test
