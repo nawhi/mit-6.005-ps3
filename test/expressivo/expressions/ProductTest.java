@@ -5,8 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static expressivo.expressions.Numeric.ONE;
-import static expressivo.expressions.Numeric.ZERO;
+import static expressivo.expressions.Numeric.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
@@ -34,12 +33,12 @@ public class ProductTest {
     }
 
     @Test
-    @Parameters(source = NumericTestData.class)
+    @Parameters(source = DifferentiateTestData.class)
     public void productsCanBeDifferentiated(Expression input, Variable variable, Expression expectedResult) {
         assertThat(input.differentiate(variable)).isEqualTo(expectedResult);
     }
 
-    public static class NumericTestData {
+    public static class DifferentiateTestData {
         public static Object[] provideData() {
             Variable x = new Variable("x");
             Expression c = new Numeric("255");
@@ -47,6 +46,23 @@ public class ProductTest {
                 new Object[] { new Product(c, c), x, new Sum(new Product(c, ZERO), new Product(c, ZERO)) },
                 new Object[] { new Product(x, c), x, new Sum(new Product(x, ZERO), new Product(c, ONE)) },
                 new Object[] { new Product(x, x), x, new Sum(new Product(x, ONE), new Product(x, ONE)) }
+            };
+        }
+    }
+
+    @Test
+    @Parameters(source = SimplifyTestData.class)
+    public void productsCanBeSimplified(Product input, Expression expectedResult) {
+        assertThat(input.simplified()).isEqualTo(expectedResult);
+    }
+
+    public static class SimplifyTestData {
+        public static Object[] provideData() {
+            Variable x = new Variable("x");
+            Expression c = new Numeric("255");
+            return new Object[] {
+                    new Object[] { new Product(TWO, TWO), new Numeric("4") },
+                    new Object[] { new Product(x, ZERO), new Numeric("0") }
             };
         }
     }

@@ -47,7 +47,11 @@ class Numeric extends Primitive {
 		return super.equals(other);
 	}
 
-	Expression plus(Numeric addend) {
-		return new Numeric(this.value.add(addend.value));
+	Expression plus(Numeric other) {
+		return new Numeric(this.value.add(other.value));
+	}
+
+	Expression times(Numeric other) {
+		return new Numeric(this.value.multiply(other.value));
 	}
 }

@@ -1,5 +1,7 @@
 package expressivo.expressions;
 
+import static expressivo.expressions.Numeric.ZERO;
+
 class Product extends BinOp {
 	
 	Product(Expression lvalue, Expression rvalue) {
@@ -25,6 +27,15 @@ class Product extends BinOp {
 		return true;
 	}
 
+	@Override
+	public Expression simplified() {
+		if (lvalue instanceof Numeric && rvalue instanceof Numeric) {
+			return ((Numeric)lvalue).times((Numeric)rvalue);
+		} else if (lvalue.equals(ZERO) || rvalue.equals(ZERO)) {
+			return ZERO;
+		}
+		return new Product(lvalue.simplified(), rvalue.simplified());
+	}
 
 	@Override
 	public boolean equals(Object other) {

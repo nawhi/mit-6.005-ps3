@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static expressivo.expressions.Numeric.ONE;
+import static expressivo.expressions.Numeric.ZERO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
@@ -13,11 +14,8 @@ public class SumTest {
 
     @Test
     public void identicalSumsShouldBeEqual() {
-        assertThat(aSum()).isEqualTo(aSum());
-    }
-
-    private Expression aSum() {
-        return new Sum(new Numeric("1"), new Variable("foo"));
+        Sum aSum = new Sum(new Numeric("1"), new Variable("foo"));
+        assertThat(aSum).isEqualTo(aSum);
     }
 
     @Test public void sumsCommuteWithoutArbitraryParens() {
@@ -54,7 +52,9 @@ public class SumTest {
                     new Object[] { new Sum(x, y), new Sum(x, y) },
                     new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
                     new Object[] { new Sum(ONE, ONE), two },
-                    new Object[] { new Sum(x, x), new Product(two, x) }
+                    new Object[] { new Sum(x, x), new Product(two, x) },
+                    new Object[] { new Sum(ONE, ZERO), ONE },
+                    new Object[] { new Sum(x, ZERO), x }
             };
         }
     }

@@ -15,8 +15,12 @@ public class DifferentiateTest {
             "1|x|0",
             "c|x|0",
             "x|x|1",
+
             "1+1|x|0",
             "x+2|x|1",
+            "x+x|x|2",
+
+            // "1*x|x|1", // gives 1+0, why ???
     })
     public void simpleExpressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);

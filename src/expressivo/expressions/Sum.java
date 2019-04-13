@@ -1,6 +1,7 @@
 package expressivo.expressions;
 
 import static expressivo.expressions.Numeric.TWO;
+import static expressivo.expressions.Numeric.ZERO;
 
 class Sum extends BinOp {
 
@@ -29,8 +30,11 @@ class Sum extends BinOp {
 			return ((Numeric) lvalue).plus((Numeric) rvalue);
 		} else if (lvalue instanceof Variable && lvalue.equals(rvalue)) {
 			return new Product(TWO, lvalue);
-		}
-		return this;
+		} else if (lvalue.equals(ZERO)) {
+			return rvalue;
+		} else if (rvalue.equals(ZERO))
+			return lvalue;
+		return new Sum(lvalue.simplified(), rvalue.simplified());
 	}
 
 	@Override
