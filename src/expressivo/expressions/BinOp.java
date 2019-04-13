@@ -1,6 +1,6 @@
 package expressivo.expressions;
 
-public abstract class BinOp implements Expression {
+abstract class BinOp implements Expression {
 	
 	final Expression lvalue;
 	final Expression rvalue;
@@ -22,11 +22,13 @@ public abstract class BinOp implements Expression {
 		throw new RuntimeException("not implemented");
 	}
 	
-	@Override public int hashCode() { 
+	@Override
+	public int hashCode() {
 		return 5 + lvalue.hashCode() ^ rvalue.hashCode() << 1;
 	}
 	
-	@Override public String toString() {
+	@Override
+	public String toString() {
 		// Sum.precedes(Product) == false so Product(Sum, Sum) needs brackets
 		// Product.precedes(Sum) == true so Sum(Product, Product) doesn't need brackets
 		String lstr = lvalue.toString();

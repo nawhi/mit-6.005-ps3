@@ -1,8 +1,8 @@
 package expressivo.expressions;
 
-public class Sum extends BinOp {
+class Sum extends BinOp {
 
-	public Sum(Expression lvalue, Expression rvalue) {
+	Sum(Expression lvalue, Expression rvalue) {
 		super(lvalue, rvalue);
 	}
 	
@@ -31,7 +31,6 @@ public class Sum extends BinOp {
 		
 		return new Sum(lvalue.simplify(), rvalue.simplify());
 	}
-	
 	
 	@Override 
 	public boolean equals(Object other) {

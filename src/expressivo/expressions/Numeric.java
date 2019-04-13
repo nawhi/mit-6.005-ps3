@@ -24,7 +24,7 @@ class Numeric extends Primitive {
 	 * @throws IllegalArgumentException if the supplied string cannot
 	 *         be parsed into an integer or floating-point number
 	 */
-	public Numeric(String val) {
+	Numeric(String val) {
 		try {
 			NumberFormat nf = NumberFormat.getInstance();
 			this.value = nf.parse(val);
@@ -35,11 +35,11 @@ class Numeric extends Primitive {
 		}
 	}
 	
-	public double getValue() {
+	double getValue() {
 		return value.doubleValue();
 	}
 
-	public Numeric(Number val) {
+	Numeric(Number val) {
 		this(val.toString());
 	}
 	
@@ -48,15 +48,18 @@ class Numeric extends Primitive {
 		return new Numeric(0);
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
 		return value.toString(); 
 	}
 	
-	@Override public int hashCode() {
+	@Override
+	public int hashCode() {
 		return value.hashCode();
 	}
 	
-	@Override public boolean equals(Object other) {
+	@Override
+	public boolean equals(Object other) {
 		if (other instanceof Numeric) {
 			return this.value.equals(((Numeric)other).value);
 		}

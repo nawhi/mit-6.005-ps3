@@ -1,8 +1,8 @@
 package expressivo.expressions;
 
-public class Product extends BinOp {
+class Product extends BinOp {
 	
-	public Product(Expression lvalue, Expression rvalue) {
+	Product(Expression lvalue, Expression rvalue) {
 		super(lvalue, rvalue);
 	}
 	
@@ -28,6 +28,4 @@ public class Product extends BinOp {
 				   && this.rvalue.equals(((Product) other).rvalue);
 		return super.equals(other);
 	}
-	
-
 }

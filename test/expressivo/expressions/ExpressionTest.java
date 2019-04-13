@@ -5,11 +5,7 @@ package expressivo.expressions;
 
 import static org.junit.Assert.*;
 
-import expressivo.expressions.*;
-import org.junit.Assert;
 import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 /**
  * Tests for the Expression abstract data type.
@@ -56,7 +52,7 @@ public class ExpressionTest {
 				"(x+y+z)*(x+y+z)*(x+y+z)",
 				pow(xplusyplusz, 3).toString());
 	}
-	
+
 	private Expression pow(Expression base, int exp) {
 		Expression ret = base;
 	    for (int i = 1; i < exp; i++) {
