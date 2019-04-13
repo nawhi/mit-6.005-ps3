@@ -35,6 +35,4 @@ class Variable extends Primitive {
             return this.ident.equals(((Variable) other).ident);
         return super.equals(other);
     }
-
-
 }
