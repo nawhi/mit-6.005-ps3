@@ -1,4 +1,4 @@
-package expressivo;
+package expressivo.commands;
 
 import expressivo.commands.Commands;
 import org.junit.Ignore;
