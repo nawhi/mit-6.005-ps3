@@ -25,10 +25,6 @@ class Product extends BinOp {
 		return true;
 	}
 
-	@Override
-	public Expression simplified() {
-		return null;
-	}
 
 	@Override
 	public boolean equals(Object other) {

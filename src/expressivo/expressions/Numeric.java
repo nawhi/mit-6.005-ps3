@@ -38,11 +38,6 @@ class Numeric extends Primitive {
 	}
 
 	@Override
-	public Expression simplified() {
-		return null;
-	}
-
-	@Override
 	public Expression differentiate(Variable variable) {
 		return ZERO;
 	}

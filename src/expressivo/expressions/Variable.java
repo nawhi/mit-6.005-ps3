@@ -17,11 +17,6 @@ class Variable extends Primitive {
     }
 
     @Override
-    public Expression simplified() {
-        return null;
-    }
-
-    @Override
     public Expression differentiate(Variable variable) {
         return variable.equals(this) ? new Numeric("1") : ZERO;
     }
