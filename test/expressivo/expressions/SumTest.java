@@ -2,6 +2,7 @@ package expressivo.expressions;
 
 import org.junit.Test;
 
+import static expressivo.expressions.Numeric.ONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SumTest {
@@ -28,4 +29,9 @@ public class SumTest {
         assertThat(new Sum(a, b)).isNotEqualTo(new Sum(b, a));
     }
 
+    @Test
+    public void differentiatedSumIsSumOfDifferentiatedComponents() {
+        Variable x = new Variable("x");
+        assertThat(new Sum(x, x).differentiate(x)).isEqualTo(new Sum(ONE, ONE));
+    }
 }

@@ -1,9 +1,15 @@
 package expressivo.expressions;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import static expressivo.expressions.Numeric.ONE;
+import static expressivo.expressions.Numeric.ZERO;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class ProductTest {
     @Test
     public void identicalProductsCompareEqual() {
@@ -25,5 +31,23 @@ public class ProductTest {
         Variable a = new Variable("a");
         Variable b = new Variable("b");
         assertThat(new Product(a, b)).isNotEqualTo(new Product(b, a));
+    }
+
+    @Test
+    @Parameters(source = NumericTestData.class)
+    public void productsCanBeDifferentiated(Expression input, Variable variable, Expression expectedResult) {
+        assertThat(input.differentiate(variable)).isEqualTo(expectedResult);
+    }
+
+    public static class NumericTestData {
+        public static Object[] provideData() {
+            Variable x = new Variable("x");
+            Expression c = new Numeric("255");
+            return new Object[] {
+                new Object[] { new Product(c, c), x, new Sum(new Product(c, ZERO), new Product(c, ZERO)) },
+                new Object[] { new Product(x, c), x, new Sum(new Product(x, ZERO), new Product(c, ONE)) },
+                new Object[] { new Product(x, x), x, new Sum(new Product(x, ONE), new Product(x, ONE)) }
+            };
+        }
     }
 }

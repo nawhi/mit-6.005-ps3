@@ -75,13 +75,13 @@ public interface Expression {
     static String differentiate(String rawExpression, String rawVariable) {
         Expression expression = parse(rawExpression);
         Variable variable = parseVariable(rawVariable);
-        return expression.differentiate(variable).toString();
+        return expression.differentiate(variable).simplified().toString();
     }
 
     static Variable parseVariable(String rawVariable) {
         Expression ex = parse(rawVariable);
         if (!(ex instanceof Variable))
-            throw new IllegalArgumentException("'" + ex + "' is not a variable");
+            throw new IllegalArgumentException("Can't differentiate with respect to '" + ex + "' because it's not a variable");
         return (Variable) ex;
     }
 
@@ -89,13 +89,15 @@ public interface Expression {
      * Find whether this Expression will have precedence over another.
      * If not, brackets will be needed to combine the two expressions in
      * a human-readable format (eg a string).
-     * 
-     * @param other the second Expression 
+     *
+     * @param other the second Expression
      * @return true if this Expression can be combined with other without
      *         needing brackets, false otherwise
      */
     boolean precedes(Expression other);
-    
+
+    default Expression simplified() { return this; }
+
     /**
      * @param variable Variable to differentiate by
      * @return differential of this expression with respect to variable

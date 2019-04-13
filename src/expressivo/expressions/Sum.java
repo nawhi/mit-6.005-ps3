@@ -15,7 +15,12 @@ class Sum extends BinOp {
 	public boolean precedes(Expression other) {
 		return !(other instanceof Product); // (x+1)*3 != x+1*3
 	}
-	
+
+	@Override
+	public Expression simplified() {
+		return null;
+	}
+
 	@Override
 	public Expression differentiate(Variable variable) {
 		return new Sum(lvalue.differentiate(variable), rvalue.differentiate(variable));

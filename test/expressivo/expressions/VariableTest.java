@@ -20,4 +20,9 @@ public class VariableTest {
     public void variableDifferentiatedByDifferentVariableIsZero() {
         assertThat(y.differentiate(x)).isEqualTo(ZERO);
     }
+
+    @Test
+    public void variableSimplifiedReturnsItself() {
+        assertThat(y.simplified()).isEqualTo(y);
+    }
 }

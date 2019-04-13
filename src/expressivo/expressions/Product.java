@@ -13,12 +13,21 @@ class Product extends BinOp {
 
 	@Override
 	public Expression differentiate(Variable variable) {
-		return new Product(lvalue.differentiate(variable), rvalue.differentiate(variable));
+		// d(u*v)/dx = u(dv/dx) * v(du/dx)
+		return new Sum(
+				new Product(lvalue, rvalue.differentiate(variable)),
+				new Product(rvalue, lvalue.differentiate(variable))
+		);
 	}
 
 	@Override 
 	public boolean precedes(Expression other) {
 		return true;
+	}
+
+	@Override
+	public Expression simplified() {
+		return null;
 	}
 
 	@Override
