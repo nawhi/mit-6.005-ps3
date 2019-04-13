@@ -13,10 +13,10 @@ public class DifferentiateTest {
     @Test
     @Parameters({
             "1|x|0",
-            "foo|x|0",
+            "c|x|0",
             "x|x|1",
             "1+1|x|0",
-
+            "x+2|x|1",
     })
     public void simpleExpressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
