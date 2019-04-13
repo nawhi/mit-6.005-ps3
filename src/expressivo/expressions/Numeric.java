@@ -9,8 +9,9 @@ import java.text.ParseException;
  *
  */
 class Numeric extends Primitive {
-
 	static final Numeric ZERO = new Numeric("0");
+	static final Numeric ONE = new Numeric("1");
+
 	private final Number value;
 	
 	// Representation invariant:

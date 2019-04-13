@@ -2,6 +2,7 @@ package expressivo.expressions;
 
 import org.junit.Test;
 
+import static expressivo.expressions.Numeric.ONE;
 import static expressivo.expressions.Numeric.ZERO;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,7 +13,7 @@ public class VariableTest {
 
     @Test
     public void variableDifferentiatedByItselfIsOne() {
-        assertThat(x.differentiate(x)).isEqualTo(new Numeric("1"));
+        assertThat(x.differentiate(x)).isEqualTo(ONE);
     }
 
     @Test
