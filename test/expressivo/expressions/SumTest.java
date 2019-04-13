@@ -53,7 +53,8 @@ public class SumTest {
             return new Object[] {
                     new Object[] { new Sum(x, y), new Sum(x, y) },
                     new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
-                    new Object[] { new Sum(ONE, ONE), two }
+                    new Object[] { new Sum(ONE, ONE), two },
+                    new Object[] { new Sum(x, x), new Product(two, x) }
             };
         }
     }

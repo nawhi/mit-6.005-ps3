@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 class Numeric extends Primitive {
+	static final Numeric TWO = new Numeric(new BigDecimal(2));
 	static final Numeric ZERO = new Numeric(new BigDecimal(0));
 	static final Numeric ONE = new Numeric(new BigDecimal(1));
 
