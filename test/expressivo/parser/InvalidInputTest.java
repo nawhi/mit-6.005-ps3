@@ -18,36 +18,18 @@ public class InvalidInputTest {
             "f1.3",
             ".",
             "-3.5", // for now
-            "2\\,345\\,678" // for now
-    })
-    public void invalidNumericsThrowAnException(String input) {
-        assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-    }
+            "2\\,345\\,678", // for now
 
-    @Test
-    @Parameters({
             "2a",
-            "2.5a"
-    })
-    public void invalidVariablesThrowAnException(String input) {
-        assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-    }
+            "2.5a",
 
-    @Test
-    @Parameters({
             "2+",
-            "+2"
-    })
-    public void invalidSumsThrowAnException(String input) {
-        assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-    }
+            "+2",
 
-    @Test
-    @Parameters({
             "2*",
             "*2"
     })
-    public void invalidProductsThrowAnException(String input) {
+    public void invalidInputsThrowAnException(String input) {
         assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
     }
 }
