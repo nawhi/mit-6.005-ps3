@@ -78,44 +78,4 @@ public class SingleExpressionParseTest {
 	public void productsCanBeParsed(String input) {
 		assertThat(Expression.parse(input).toString()).isEqualTo(input);
 	}
-
-	@Test
-	@Parameters({
-			"1.2.3",
-			".2.",
-			"f1.3",
-			".",
-			"-3.5", // for now
-			"2\\,345\\,678" // for now
-	})
-	public void invalidNumericsThrowAnException(String input) {
-		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-	}
-
-	@Test
-	@Parameters({
-			"2a",
-			"2.5a"
-	})
-	public void invalidVariablesThrowAnException(String input) {
-		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-	}
-
-	@Test
-	@Parameters({
-			"2+",
-			"+2"
-	})
-	public void invalidSumsThrowAnException(String input) {
-		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-	}
-
-	@Test
-	@Parameters({
-			"2*",
-			"*2"
-	})
-	public void invalidProductsThrowAnException(String input) {
-		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-	}
 }
