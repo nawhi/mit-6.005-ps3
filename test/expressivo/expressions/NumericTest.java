@@ -1,45 +1,34 @@
 package expressivo.expressions;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@RunWith(JUnitParamsRunner.class)
 public class NumericTest {
-    @Test
-    public void integerNumericHasWholeStringRepresentation() {
-        assertThat(new Numeric("1").toString()).isEqualTo("1");
-    }
-
-    @Test public void identicalIntegerNumericsShouldBeEqual() {
-        assertThat(new Numeric("1")).isEqualTo(new Numeric("1"));
-    }
 
     @Test
-    public void identicalFloatNumericsShouldBeEqual() {
-        assertThat(new Numeric("1.05")).isEqualTo(new Numeric("1.05"));
-    }
-
-    @Test
-    public void floatStringShouldNotHaveTrailingZeroes() {
-        assertThat(new Numeric("1.050").toString()).isEqualTo("1.05");
+    @Parameters({
+            "1|1",
+            "1.05|1.05",
+            "1.050|1.05",
+            "1.00|1",
+            "1.00000000000000000000001|1.00000000000000000000001"
+    })
+    public void identicalNumericsRepresentedDifferentlyShouldBeEqual(String value1, String value2) {
+        assertThat(new Numeric(value1)).isEqualTo(new Numeric(value2));
+        assertThat(new Numeric(value1).toString()).isEqualTo(new Numeric(value2).toString());
     }
 
     @Test
     public void numericThrowsIfPassedInvalidInitialValue() {
         assertThatThrownBy(() -> new Numeric("foo")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    public void intShouldEqualWholeNumberFloat() {
-        assertThat(new Numeric("1")).isEqualTo(new Numeric("1.00"));
-    }
-
-    @Test
-    public void smallDecimalPlacesAreNotIgnored() {
-        assertThat(new Numeric("1.0")).isNotEqualTo(new Numeric("1.00000000000000000000001"));
     }
 
     @Test
