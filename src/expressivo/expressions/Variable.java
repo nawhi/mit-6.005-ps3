@@ -1,5 +1,7 @@
 package expressivo.expressions;
 
+import static expressivo.expressions.Numeric.ZERO;
+
 class Variable extends Primitive {
 
     // Representation invariant:
@@ -16,7 +18,7 @@ class Variable extends Primitive {
 
     @Override
     public Expression differentiate(Variable variable) {
-        throw new UnsupportedOperationException("todo");
+        return variable.equals(this) ? this : ZERO;
     }
 
     @Override
