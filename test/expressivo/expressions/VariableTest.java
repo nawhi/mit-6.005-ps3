@@ -11,8 +11,8 @@ public class VariableTest {
     private final Variable y = new Variable("y");
 
     @Test
-    public void variableDifferentiatedByItselfIsItself() {
-        assertThat(x.differentiate(x)).isEqualTo(x);
+    public void variableDifferentiatedByItselfIsOne() {
+        assertThat(x.differentiate(x)).isEqualTo(new Numeric("1"));
     }
 
     @Test
