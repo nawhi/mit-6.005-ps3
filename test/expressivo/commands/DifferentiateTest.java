@@ -1,6 +1,5 @@
 package expressivo.commands;
 
-import expressivo.commands.Commands;
 import org.junit.Ignore;
 import org.junit.Test;
 
