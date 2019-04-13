@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-public class SingleExpressionParseTest {
+public class PrimitiveParseTest {
 
 	@Test
 	@Parameters({

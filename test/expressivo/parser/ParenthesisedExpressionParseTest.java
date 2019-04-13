@@ -20,7 +20,7 @@ public class ParenthesisedExpressionParseTest {
 			"a*b*c+d*e*f",
 			"a+b+c*d+e+f"
 	})
-	public void parenthesesAreNotAddedWhenNotNecessary(String input) {
+	public void parenthesesAreNotAdded(String input) {
 		assertThat(Expression.parse(input).toString()).isEqualTo(input);
 	}
 
