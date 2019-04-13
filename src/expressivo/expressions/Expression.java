@@ -59,7 +59,7 @@ public interface Expression {
         } catch (ParseCancellationException ex) {
             throw new IllegalArgumentException(formatParseError(ex));
         }
-        
+
         return listener.get();
     }
 
@@ -88,13 +88,7 @@ public interface Expression {
      * @return differential of this expression with respect to variable
      */
     Expression differentiate(Variable variable);
-    
-    /**
-     * @return a version of this Expression in its simplest form, 
-     *         replacing e.g. Sum(Numeric, Numeric) with the sum of the values
-     */
-    Expression simplify();
-    
+
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).

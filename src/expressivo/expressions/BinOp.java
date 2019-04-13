@@ -1,5 +1,7 @@
 package expressivo.expressions;
 
+import java.util.Objects;
+
 abstract class BinOp implements Expression {
 	
 	final Expression lvalue;
@@ -24,7 +26,7 @@ abstract class BinOp implements Expression {
 	
 	@Override
 	public int hashCode() {
-		return 5 + lvalue.hashCode() ^ rvalue.hashCode() << 1;
+		return Objects.hash(lvalue, rvalue);
 	}
 	
 	@Override
