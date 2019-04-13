@@ -10,10 +10,10 @@ import java.text.ParseException;
  *
  */
 class Numeric extends Primitive {
-	static final Numeric ZERO = new Numeric("0");
-	static final Numeric ONE = new Numeric("1");
+	static final Numeric ZERO = new Numeric(new BigDecimal(0));
+	static final Numeric ONE = new Numeric(new BigDecimal(1));
 
-	private final Number value;
+	private final BigDecimal value;
 	
 	// Representation invariant:
 	//   true
@@ -28,14 +28,11 @@ class Numeric extends Primitive {
 	 *         be parsed into an integer or floating-point number
 	 */
 	Numeric(String val) {
-		try {
-			NumberFormat nf = NumberFormat.getInstance();
-			this.value = nf.parse(val);
+		this.value = new BigDecimal(val);
+	}
 
-		} catch (ParseException ex) {
-			throw new IllegalArgumentException(
-					"Could not parse '" + val + "' into a numeric");
-		}
+	private Numeric(BigDecimal val) {
+		this.value = val;
 	}
 
 	@Override
@@ -45,7 +42,7 @@ class Numeric extends Primitive {
 
 	@Override
 	public String toString() {
-		return value.toString(); 
+		return value.stripTrailingZeros().toPlainString();
 	}
 	
 	@Override
@@ -56,12 +53,12 @@ class Numeric extends Primitive {
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof Numeric) {
-			return this.value.equals(((Numeric)other).value);
+			return this.value.compareTo(((Numeric)other).value) == 0;
 		}
 		return super.equals(other);
 	}
 
 	Expression plus(Numeric addend) {
-		return new Numeric(new BigDecimal(this.toString()).add(new BigDecimal(addend.toString())).toString());
+		return new Numeric(this.value.add(addend.value));
 	}
 }
