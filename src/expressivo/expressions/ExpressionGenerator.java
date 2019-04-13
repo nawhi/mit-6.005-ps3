@@ -3,6 +3,7 @@ package expressivo.expressions;
 import expressivo.parser.ExpressionListener;
 import expressivo.parser.ExpressionParser.*;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -37,6 +38,9 @@ class ExpressionGenerator implements ExpressionListener {
 	
 	@Override
 	public void exitNumber(NumberContext ctx) {
+		if (ctx.getText().isEmpty()) {
+			throw new ParseCancellationException("expected a number, but got empty string");
+		}
 		stack.push(new Numeric(ctx.getText()));
 	}
 	

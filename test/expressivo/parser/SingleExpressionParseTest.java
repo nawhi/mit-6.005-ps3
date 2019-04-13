@@ -101,12 +101,12 @@ public class SingleExpressionParseTest {
 		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
 	}
 
-//	@Test
-//	@Parameters({
-//			"2+",
-//			"+2"
-//	})
-//	public void invalidSumsThrowAnException(String input) {
-//		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-//	}
+	@Test
+	@Parameters({
+			"2+",
+			"+2"
+	})
+	public void invalidSumsThrowAnException(String input) {
+		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
+	}
 }

@@ -48,29 +48,30 @@ public interface Expression {
         parser.reportErrorsAsExceptions();
         lexer.reportErrorsAsExceptions();
 
-        
-        ParseTree tree;
-        try {
-        	tree = parser.root();
-        } catch (ParseCancellationException ex) {
-        	String reason = ex.getMessage();
-        	String msg;
-        	if (reason != null)
-        		msg = "Syntax error in expression: " + reason;
-        	else
-        		msg = "Undefined syntax error in expression";
 
-    		throw new IllegalArgumentException(msg);
-        }
-        
+        ParseTree tree;
         ParseTreeWalker walker = new ParseTreeWalker();
         ExpressionGenerator listener = new ExpressionGenerator();
-        
-        walker.walk(listener, tree);
+
+        try {
+            tree = parser.root();
+            walker.walk(listener, tree);
+        } catch (ParseCancellationException ex) {
+            throw new IllegalArgumentException(formatParseError(ex));
+        }
         
         return listener.get();
     }
-    
+
+    static String formatParseError(ParseCancellationException ex) {
+        String reason = ex.getMessage();
+        String msg = "Syntax error in expression";
+        if (reason != null) {
+            msg += ": " + reason;
+        }
+        return msg;
+    }
+
     /**
      * Find whether this Expression will have precedence over another.
      * If not, brackets will be needed to combine the two expressions in
