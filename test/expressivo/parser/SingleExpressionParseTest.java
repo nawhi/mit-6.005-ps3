@@ -26,20 +26,18 @@ public class SingleExpressionParseTest {
 	public void integersCanBeParsed(String input, String expectedOutput) {
 		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
 	}
-	
+
 	@Test
-	public void testFloatNumericss() {
-		Expression f = Expression.parse("1.5");
-		assertEquals("1.5", f.toString());
-		
-		assertEquals("0.5", Expression.parse(".5").toString());
-
-		// Conversion to int is OK: it'll be converted back internally if needed
-		assertEquals("2", Expression.parse("2.0").toString());
-
-		assertEquals("2.3", Expression.parse("2.300").toString());
-		assertEquals("3.1415926535", Expression.parse("3.1415926535").toString());
-		assertEquals("25.3", Expression.parse("0025.300").toString());
+	@Parameters({
+			"1.5|1.5",
+			".5|0.5",
+			"2.0|2", // OK for the time being
+			"2.300|2.3",
+			"3.1415926535|3.1415926535",
+			"0025.300|25.3"
+	})
+	public void floatsCanBeParsed(String input, String expectedOutput) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
 	}
 	
 	@Test
