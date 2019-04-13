@@ -43,6 +43,18 @@ public class SingleExpressionParseTest {
 
 	@Test
 	@Parameters({
+			"myvar",
+			"_123",
+			"_foo",
+			"_f1",
+			"_1f"
+	})
+	public void variablesCanBeParsed(String input) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+	}
+
+	@Test
+	@Parameters({
 			"1.2.3",
 			".2.",
 			"f1.3",
@@ -54,36 +66,27 @@ public class SingleExpressionParseTest {
 	public void invalidNumericsThrowAnException(String input) {
 		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
 	}
-	
-	@Test
-	public void testInvalidVariables() {
-		parseFails("2a");
-		parseFails("2.5a");
-	}
-		
-	@Test
-	public void testVariables() {
-		Expression var = Expression.parse("myvar");
-		assertEquals("myvar", var.toString());
-		
-		Expression var2 = Expression.parse("_123");
-		assertEquals("_123", var2.toString());
-		
-		parsesIdentically("_foo");
-		parsesIdentically("_f1");
-		parsesIdentically("_1f");
-	}
-	
+
+
 	@Test
 	public void testSimpleSums() {
 		Expression sum = Expression.parse("a+b");
 		assertEquals(new Sum(new Variable("a"), new Variable("b")), sum);
-		
+
 		parsesIdentically("x+3");
 		parsesIdentically("3+x");
 		parsesIdentically("0.9+3.356");
 	}
-	
+
+	@Test
+	@Parameters({
+			"2a",
+			"2.5a"
+	})
+	public void invalidVariablesThrowAnException(String input) {
+		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
+	}
+
 	@Test
 	public void testChainedSums() {
 		parsesIdentically("x+y+z");
