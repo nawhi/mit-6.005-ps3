@@ -1,10 +1,7 @@
 /* Copyright (c) 2015-2016 MIT 6.005 course staff, all rights reserved.
  * Redistribution of original or derived work requires permission of course staff.
  */
-package expressivo;
-
-import expressivo.expressions.Expression;
-import expressivo.expressions.Variable;
+package expressivo.commands;
 
 import java.util.Map;
 
@@ -16,7 +13,7 @@ import java.util.Map;
  * You MUST NOT add fields, constructors, or instance methods.
  * You may, however, add additional static methods, or strengthen the specs of existing methods.
  */
-class Commands {
+public class Commands {
     
     /**
      * Differentiate an expression with respect to a variable.

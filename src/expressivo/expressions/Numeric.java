@@ -8,7 +8,7 @@ import java.text.ParseException;
  * @author nick
  *
  */
-public class Numeric extends Primitive {
+class Numeric extends Primitive {
 	
 	private final Number value;
 	
