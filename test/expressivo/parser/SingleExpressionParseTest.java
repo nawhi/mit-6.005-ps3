@@ -55,27 +55,41 @@ public class SingleExpressionParseTest {
 
 	@Test
 	@Parameters({
+			"a+b",
+			"x+3",
+			"3+x",
+			"0.9+3.356",
+			"x+y+z",
+			"1.2+3.5+f+98+2345+0.3"
+	})
+	public void sumsCanBeParsed(String input) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+	}
+
+	@Test
+	@Parameters({
+			"a*b",
+			"x*3",
+			"3*x",
+			"0.9*3.356",
+			"x*y*z",
+			"1.2*3.5*f*98*2345*0.3"
+	})
+	public void productsCanBeParsed(String input) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+	}
+
+	@Test
+	@Parameters({
 			"1.2.3",
 			".2.",
 			"f1.3",
 			".",
-
 			"-3.5", // for now
 			"2\\,345\\,678" // for now
 	})
 	public void invalidNumericsThrowAnException(String input) {
 		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
-	}
-
-
-	@Test
-	public void testSimpleSums() {
-		Expression sum = Expression.parse("a+b");
-		assertEquals(new Sum(new Variable("a"), new Variable("b")), sum);
-
-		parsesIdentically("x+3");
-		parsesIdentically("3+x");
-		parsesIdentically("0.9+3.356");
 	}
 
 	@Test
@@ -87,41 +101,12 @@ public class SingleExpressionParseTest {
 		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
 	}
 
-	@Test
-	public void testChainedSums() {
-		parsesIdentically("x+y+z");
-		assertEquals("1.2+3.5+f+98+2345+0.3",
-				Expression.parse("1.2 + 3.5 + f + 98 + 2345 + .3").toString());
-	}
-	
-	@Test
-	public void testSimpleProducts() {
-		Expression prod = Expression.parse("a*b");
-		assertEquals(new Product(new Variable("a"), new Variable("b")), prod);
-		
-		parsesIdentically("x*3");
-		parsesIdentically("3*x");
-		parsesIdentically("0.9*3.356");
-	}
-	
-	@Test
-	public void testChainedProducts() {
-		parsesIdentically("x*y*z");
-		assertEquals("1.2*3.5*f*98*2345*0.3",
-				Expression.parse("1.2 * 3.5 * f * 98 * 2345 * .3").toString());
-	}
-	
-	private void parseFails(String s) {
-		try {
-			Expression.parse(s);
-			fail("Attempt to parse " + s + " should fail");
-		} catch (IllegalArgumentException ex) {
-		}
-	}
-	
-	private void parsesIdentically(String s) {
-		assertEquals(s, Expression.parse(s).toString());
-	}
-
-
+//	@Test
+//	@Parameters({
+//			"2+",
+//			"+2"
+//	})
+//	public void invalidSumsThrowAnException(String input) {
+//		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
+//	}
 }
