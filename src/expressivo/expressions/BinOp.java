@@ -11,12 +11,7 @@ abstract class BinOp implements Expression {
 		this.lvalue = lvalue;
 		this.rvalue = rvalue;
 	}
-	
-	/**
-	 * Get the string version of the operator for this binary
-	 * operation.
-	 * @return string of the operator symbol, e.g. * or +
-	 */
+
 	protected abstract String operator();
 
 	@Override
