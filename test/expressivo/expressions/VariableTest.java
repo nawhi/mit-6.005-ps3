@@ -7,13 +7,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class VariableTest {
 
-    @Test
-    public void variableDifferentiatedByDifferentVariableIsZero() {
-        assertThat(new Variable("y").differentiate(new Variable("x"))).isEqualTo(ZERO);
-    }
+    private final Variable x = new Variable("x");
+    private final Variable y = new Variable("y");
 
     @Test
     public void variableDifferentiatedByItselfIsItself() {
-        assertThat(new Variable("x").differentiate(new Variable("x"))).isEqualTo(new Variable("x"));
+        assertThat(x.differentiate(x)).isEqualTo(x);
+    }
+
+    @Test
+    public void variableDifferentiatedByDifferentVariableIsZero() {
+        assertThat(y.differentiate(x)).isEqualTo(ZERO);
     }
 }
