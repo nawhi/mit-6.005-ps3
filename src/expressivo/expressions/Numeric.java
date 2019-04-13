@@ -9,7 +9,8 @@ import java.text.ParseException;
  *
  */
 class Numeric extends Primitive {
-	
+
+	private static final Numeric ZERO = new Numeric("0");
 	private final Number value;
 	
 	// Representation invariant:
@@ -37,7 +38,7 @@ class Numeric extends Primitive {
 
 	@Override
 	public Expression differentiate(Variable variable) {
-		throw new UnsupportedOperationException("todo");
+		return ZERO;
 	}
 
 	@Override

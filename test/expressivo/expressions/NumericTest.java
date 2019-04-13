@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @RunWith(JUnitParamsRunner.class)
 public class NumericTest {
 
+    private static final Numeric ZERO = new Numeric("0");
+
     @Test
     @Parameters({
             "1|1",
@@ -35,5 +37,14 @@ public class NumericTest {
     public void numbersGreaterThanIntSizeAreNotClipped() {
         String bigValue = new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
         assertThat(new Numeric(bigValue).toString()).isEqualTo(bigValue);
+    }
+
+    @Test
+    public void numericsAlwaysDifferentiateToZero() {
+        assertThat(new Numeric("1").differentiate(aVariable())).isEqualTo(ZERO);
+    }
+
+    public Variable aVariable() {
+        return new Variable("foo");
     }
 }
