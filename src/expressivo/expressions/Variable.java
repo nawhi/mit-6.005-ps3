@@ -16,7 +16,7 @@ class Variable extends Primitive {
 
     @Override
     public Expression differentiate(Variable variable) {
-        return new Numeric(this.equals(variable) ? 1 : 0);
+        throw new UnsupportedOperationException("todo");
     }
 
     @Override
