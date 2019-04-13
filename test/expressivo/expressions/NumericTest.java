@@ -35,16 +35,23 @@ public class NumericTest {
 
     @Test
     public void numbersGreaterThanIntSizeAreNotClipped() {
-        String bigValue = new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
+        String bigValue = somethingBiggerThanIntMax();
         assertThat(new Numeric(bigValue).toString()).isEqualTo(bigValue);
     }
 
-    @Test
-    public void numericsAlwaysDifferentiateToZero() {
-        assertThat(new Numeric("1").differentiate(aVariable())).isEqualTo(ZERO);
+    public String somethingBiggerThanIntMax() {
+        return new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
     }
 
-    public Variable aVariable() {
-        return new Variable("foo");
+    @Test
+    @Parameters({
+            "1",
+            "1.234",
+            "5000"
+    })
+    public void numericsAlwaysDifferentiateToZero(String value) {
+        Variable x = new Variable("x");
+        Numeric numeric = new Numeric(value);
+        assertThat(numeric.differentiate(x)).isEqualTo(ZERO);
     }
 }
