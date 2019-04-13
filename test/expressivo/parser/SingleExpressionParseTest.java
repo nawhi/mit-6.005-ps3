@@ -1,18 +1,12 @@
 package expressivo.parser;
 
 import expressivo.expressions.Expression;
-import expressivo.expressions.Product;
-import expressivo.expressions.Sum;
-import expressivo.expressions.Variable;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Fail.fail;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class SingleExpressionParseTest {
