@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Fail.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -39,16 +40,19 @@ public class SingleExpressionParseTest {
 	public void floatsCanBeParsed(String input, String expectedOutput) {
 		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
 	}
-	
+
 	@Test
-	public void testInvalidNumerics() {
-		parseFails("1.2.3");
-		parseFails(".2.");
-		parseFails("f1.3");
-		parseFails(".");
-		
-		parseFails("-3.5"); // For now
-		parseFails("2,345,678"); // For now
+	@Parameters({
+			"1.2.3",
+			".2.",
+			"f1.3",
+			".",
+
+			"-3.5", // for now
+			"2\\,345\\,678" // for now
+	})
+	public void invalidNumericsThrowAnException(String input) {
+		assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
 	}
 	
 	@Test
