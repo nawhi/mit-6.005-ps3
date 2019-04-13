@@ -13,6 +13,19 @@ public class ParenthesisedExpressionParseTest {
 
 	@Test
 	@Parameters({
+			"x+y*z",
+			"x*y+z",
+			"a+b*c+d",
+			"a*b+c*d",
+			"a*b*c+d*e*f",
+			"a+b+c*d+e+f"
+	})
+	public void parenthesesAreNotAddedWhenNotNecessary(String input) {
+		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+	}
+
+	@Test
+	@Parameters({
 			"(a)|a",
 			"((a))|a",
 			"(1)|1",
