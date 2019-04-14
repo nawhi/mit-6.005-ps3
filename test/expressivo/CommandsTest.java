@@ -1,5 +1,6 @@
-package expressivo.commands;
+package expressivo;
 
+import expressivo.Commands;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -8,7 +9,7 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-public class DifferentiateTest {
+public class CommandsTest {
 
     @Test
     @Parameters({
@@ -24,7 +25,7 @@ public class DifferentiateTest {
             "x*x|x|2*x",
 //            "x*x*x|x|3*x*x" // fails; gives x*2*x + x*x
     })
-    public void simpleExpressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
+    public void expressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
     }
 }

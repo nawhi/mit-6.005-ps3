@@ -19,7 +19,7 @@ class ExpressionGenerator implements ExpressionListener {
 	 * @return the Expression object created from the AST walked
 	 * 			over by the listener
 	 */
-	public Expression get() {
+	Expression finalExpression() {
 		return stack.get(0);
 	}
 	

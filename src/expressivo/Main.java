@@ -3,7 +3,6 @@
  */
 package expressivo;
 
-import expressivo.commands.Commands;
 import expressivo.expressions.Expression;
 
 import java.io.BufferedReader;

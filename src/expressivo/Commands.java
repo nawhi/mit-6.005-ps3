@@ -1,9 +1,9 @@
 /* Copyright (c) 2015-2016 MIT 6.005 course staff, all rights reserved.
  * Redistribution of original or derived work requires permission of course staff.
  */
-package expressivo.commands;
+package expressivo;
 
-import expressivo.expressions.Differentiate;
+import expressivo.expressions.Expression;
 
 import java.util.Map;
 
@@ -26,9 +26,9 @@ public class Commands {
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
     public static String differentiate(String rawExpression, String variable) {
-        return new Differentiate(rawExpression).withRespectTo(variable);
+        return Expression.differentiate(rawExpression, variable);
     }
-    
+
     /**
      * Simplify an expression.
      * @param expression the expression to simplify
@@ -36,7 +36,7 @@ public class Commands {
      *         The set of variables in environment is allowed to be different than the set of variables actually
      *         found in expression.  Values must be nonnegative numbers.
      * @return an expression equal to the input, but after substituting every variable v that appears in both
-     *         the expression and the environment with its value, environment.get(v).  If there are no
+     *         the expression and the environment with its value, environment.finalExpression(v).  If there are no
      *         variables left in this expression after substitution, it must be evaluated to a single number.
      *         Additional simplifications to the expression may be done at the implementor's discretion.
      * @throws IllegalArgumentException if the expression is invalid
