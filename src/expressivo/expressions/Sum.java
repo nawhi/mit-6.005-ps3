@@ -26,15 +26,16 @@ class Sum extends BinOp {
 
 	@Override
 	public Expression simplified() {
-		if (lvalue instanceof Numeric && rvalue instanceof Numeric) {
-			return ((Numeric) lvalue).plus((Numeric) rvalue);
-		} else if (lvalue instanceof Variable && lvalue.equals(rvalue)) {
-			return new Product(TWO, lvalue);
-		} else if (lvalue.equals(ZERO)) {
-			return rvalue;
-		} else if (rvalue.equals(ZERO))
-			return lvalue;
-		return new Sum(lvalue.simplified(), rvalue.simplified());
+		Sum simplifiedThis = new Sum(lvalue.simplified(), rvalue.simplified());
+		if (simplifiedThis.lvalue instanceof Numeric && simplifiedThis.rvalue instanceof Numeric) {
+			return ((Numeric) simplifiedThis.lvalue).plus((Numeric) simplifiedThis.rvalue);
+		} else if (simplifiedThis.lvalue instanceof Variable && simplifiedThis.lvalue.equals(simplifiedThis.rvalue)) {
+			return new Product(TWO, simplifiedThis.lvalue);
+		} else if (simplifiedThis.lvalue.equals(ZERO)) {
+			return simplifiedThis.rvalue;
+		} else if (simplifiedThis.rvalue.equals(ZERO))
+			return simplifiedThis.lvalue;
+		return new Sum(simplifiedThis.lvalue.simplified(), simplifiedThis.rvalue.simplified());
 	}
 
 	@Override

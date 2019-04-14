@@ -54,7 +54,8 @@ public class SumTest {
                     new Object[] { new Sum(ONE, ONE), two },
                     new Object[] { new Sum(x, x), new Product(two, x) },
                     new Object[] { new Sum(ONE, ZERO), ONE },
-                    new Object[] { new Sum(x, ZERO), x }
+                    new Object[] { new Sum(x, ZERO), x },
+                    new Object[] { new Sum(ZERO, new Sum(ZERO, ZERO)), ZERO },
             };
         }
     }
