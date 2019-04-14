@@ -21,7 +21,8 @@ public class DifferentiateTest {
             "x+x|x|2",
 
             "1*x|x|1",
-//            "x*x|x|2*x",
+            "x*x|x|2*x",
+//            "x*x*x|x|3*x*x" // fails; gives x*2*x + x*x
     })
     public void simpleExpressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);

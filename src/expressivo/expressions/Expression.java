@@ -96,7 +96,7 @@ public interface Expression {
      */
     boolean precedes(Expression other);
 
-    default Expression simplified() { return this; }
+    Expression simplified();
 
     /**
      * @param variable Variable to differentiate by

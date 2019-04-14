@@ -30,19 +30,20 @@ class Product extends BinOp {
 
 	@Override
 	public Expression simplified() {
-		if (lvalue instanceof Numeric && rvalue instanceof Numeric) {
-			return ((Numeric)lvalue).times((Numeric)rvalue);
+		Product simplified = new Product(lvalue.simplified(), rvalue.simplified());
+		if (simplified.lvalue instanceof Numeric && simplified.rvalue instanceof Numeric) {
+			return ((Numeric)simplified.lvalue).times((Numeric)simplified.rvalue);
 		}
-		if (lvalue.equals(ZERO) || rvalue.equals(ZERO)) {
+		if (simplified.lvalue.equals(ZERO) || simplified.rvalue.equals(ZERO)) {
 			return ZERO;
 		}
-		if (lvalue.equals(ONE)) {
-			return rvalue;
+		if (simplified.lvalue.equals(ONE)) {
+			return simplified.rvalue;
 		}
-		if (rvalue.equals(ONE)) {
-			return lvalue;
+		if (simplified.rvalue.equals(ONE)) {
+			return simplified.lvalue;
 		}
-		return new Product(lvalue.simplified(), rvalue.simplified());
+		return simplified;
 	}
 
 	@Override
