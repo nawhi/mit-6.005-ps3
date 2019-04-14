@@ -62,7 +62,8 @@ public class ProductTest {
             Expression c = new Numeric("255");
             return new Object[] {
                     new Object[] { new Product(TWO, TWO), new Numeric("4") },
-                    new Object[] { new Product(x, ZERO), new Numeric("0") },
+                    new Object[] { new Product(x, ZERO), ZERO },
+                    new Object[] { new Product(x, ONE), x },
                     new Object[] { new Product(x, x), new Product(x, x) },
                     new Object[] { new Product(ZERO, new Product(ZERO, ZERO)), ZERO }
             };
