@@ -72,19 +72,6 @@ public interface Expression {
         return msg;
     }
 
-    static String differentiate(String rawExpression, String rawVariable) {
-        Expression expression = parse(rawExpression);
-        Variable variable = parseVariable(rawVariable);
-        return expression.differentiate(variable).simplified().toString();
-    }
-
-    static Variable parseVariable(String rawVariable) {
-        Expression ex = parse(rawVariable);
-        if (!(ex instanceof Variable))
-            throw new IllegalArgumentException("Can't differentiate with respect to '" + ex + "' because it's not a variable");
-        return (Variable) ex;
-    }
-
     /**
      * Find whether this Expression will have precedence over another.
      * If not, brackets will be needed to combine the two expressions in
@@ -126,6 +113,6 @@ public interface Expression {
      */
     @Override
     int hashCode();
-    
-    
+
+
 }
