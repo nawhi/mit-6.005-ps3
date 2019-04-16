@@ -7,9 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-/**
- * Tests for the Expression abstract data type.
- */
 public class ExpressionTest {
 
 	@Test public void testComplexExpressions() {
