@@ -13,17 +13,17 @@ public class ParenthesisedExpressionTest {
     private final Sum aPlusOne = new Sum(a, one);
 
     @Test
-    public void noParensAddedWhenNotNecessary() {
+    public void parensAreNotAddedWhenUnnecessary() {
         assertThat(new Sum(aSquared, one).toString()).isEqualTo("a*a+1");
     }
 
     @Test
-    public void parensAddedToKeepBIDMASOrder() {
+    public void parensAreAddedToPreserveOperatorOrder() {
         assertThat(new Product(aPlusOne, a).toString()).isEqualTo("(a+1)*a");
     }
 
     @Test
-    public void ExpressionAddsParenthesesWhenNeeded() {
+    public void expressionAddsParenthesesWhenNeeded() {
         Variable a = new Variable("a");
         Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));
         Expression addFirst = new Product(new Sum(a, new Numeric("1")), a);
