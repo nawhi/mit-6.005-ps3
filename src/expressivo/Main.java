@@ -34,6 +34,7 @@ public class Main {
         Optional<String> currentExpression = Optional.empty();
 
         System.out.println("Welcome to Expressivo");
+	System.out.println("Type a command");
         
         while (true) {
             System.out.print("> ");
