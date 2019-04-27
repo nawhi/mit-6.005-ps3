@@ -7,15 +7,12 @@ import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
-import static expressivo.expressions.Numeric.ONE;
-import static expressivo.expressions.Numeric.TWO;
+import static expressivo.expressions.Numeric.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @RunWith(JUnitParamsRunner.class)
 public class NumericTest {
-
-    private static final Numeric ZERO = new Numeric(0);
 
     @Test
     @Parameters({

@@ -1,5 +1,6 @@
 package expressivo.expressions;
 
+import static expressivo.expressions.Numeric.ONE;
 import static expressivo.expressions.Numeric.ZERO;
 
 class Variable extends Primitive {
@@ -18,7 +19,7 @@ class Variable extends Primitive {
 
     @Override
     public Expression differentiate(Variable variable) {
-        return variable.equals(this) ? new Numeric(1) : ZERO;
+        return variable.equals(this) ? ONE : ZERO;
     }
 
     @Override

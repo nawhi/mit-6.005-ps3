@@ -16,11 +16,11 @@ public class ProductTest {
     }
 
     private Expression aProduct() {
-        return new Product(new Numeric(1), new Variable("foo"));
+        return new Product(ONE, new Variable("foo"));
     }
 
     @Test public void productsCommuteWithoutArbitraryParens() {
-        Product p1 = new Product(new Numeric(1), new Numeric(2));
+        Product p1 = new Product(ONE, TWO);
         Product p2 = new Product(new Numeric(3), new Numeric(4));
         assertThat(new Product(p1, p2).toString()).isEqualTo("1*2*3*4");
     }
