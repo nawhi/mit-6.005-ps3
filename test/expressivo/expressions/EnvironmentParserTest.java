@@ -12,7 +12,7 @@ public class EnvironmentParserTest {
     public void convertsMapOfPrimitivesToMapOfExpressions() {
         assertThat(new EnvironmentParser(Map.of("x", 1., "y", 2.)).asExpressionMap())
                 .isEqualTo(Map.of(
-                        new Variable("x"), new Numeric("1"),
-                        new Variable("y"), new Numeric("2")));
+                        new Variable("x"), new Numeric(1),
+                        new Variable("y"), new Numeric(2)));
     }
 }

@@ -14,7 +14,7 @@ public class ComplexExpressionTest {
 		Variable x = new Variable("x");
 		Variable y = new Variable("y");
 		Variable z = new Variable("z");
-		Numeric five = new Numeric("5");
+		Numeric five = new Numeric(5);
 		Numeric pi = new Numeric("3.1415927");
 		
 		assertEquals("Complex expression 1", 

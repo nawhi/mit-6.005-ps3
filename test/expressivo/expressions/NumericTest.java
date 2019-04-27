@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @RunWith(JUnitParamsRunner.class)
 public class NumericTest {
 
-    private static final Numeric ZERO = new Numeric("0");
+    private static final Numeric ZERO = new Numeric(0);
 
     @Test
     @Parameters({
@@ -69,6 +69,6 @@ public class NumericTest {
 
     @Test
     public void numericsMultiplyByEachOther() {
-        assertThat(TWO.multiplyBy(TWO)).isEqualTo(new Numeric("4"));
+        assertThat(TWO.multiplyBy(TWO)).isEqualTo(new Numeric(4));
     }
 }

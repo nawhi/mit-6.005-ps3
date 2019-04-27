@@ -13,13 +13,13 @@ public class SumTest {
 
     @Test
     public void identicalSumsShouldBeEqual() {
-        Sum aSum = new Sum(new Numeric("1"), new Variable("foo"));
+        Sum aSum = new Sum(new Numeric(1), new Variable("foo"));
         assertThat(aSum).isEqualTo(aSum);
     }
 
     @Test public void sumsCommuteWithoutArbitraryParens() {
-        Sum s1 = new Sum(new Numeric("1"), new Numeric("2"));
-        Sum s2 = new Sum(new Numeric("3"), new Numeric("4"));
+        Sum s1 = new Sum(new Numeric(1), new Numeric(2));
+        Sum s2 = new Sum(new Numeric(3), new Numeric(4));
         assertThat(new Sum(s1, s2).toString()).isEqualTo("1+2+3+4");
     }
 
@@ -50,6 +50,6 @@ public class SumTest {
 
     @Test
     public void nestedSumsReduceByAddingAllComponents() {
-        assertThat(new Sum(ONE, new Sum(ONE, new Sum(ONE, ONE))).reduced()).isEqualTo(new Numeric("4"));
+        assertThat(new Sum(ONE, new Sum(ONE, new Sum(ONE, ONE))).reduced()).isEqualTo(new Numeric(4));
     }
 }

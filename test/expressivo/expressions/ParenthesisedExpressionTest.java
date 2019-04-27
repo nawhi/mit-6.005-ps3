@@ -9,7 +9,7 @@ public class ParenthesisedExpressionTest {
 
     private final Variable a = new Variable("a");
     private final Product aSquared = new Product(a, a);
-    private final Numeric one = new Numeric("1");
+    private final Numeric one = new Numeric(1);
     private final Sum aPlusOne = new Sum(a, one);
 
     @Test
@@ -25,14 +25,14 @@ public class ParenthesisedExpressionTest {
     @Test
     public void expressionAddsParenthesesWhenNeeded() {
         Variable a = new Variable("a");
-        Expression multFirst = new Sum(new Product(a,a), new Numeric("1"));
-        Expression addFirst = new Product(new Sum(a, new Numeric("1")), a);
+        Expression multFirst = new Sum(new Product(a,a), new Numeric(1));
+        Expression addFirst = new Product(new Sum(a, new Numeric(1)), a);
 
 
         Variable b = new Variable("b");
         Expression aabb = new Sum(new Sum(a,a), new Sum(b,b));
         assertEquals("Should keep BIDMAS order (longer sum)",
-                "(a+a+b+b)*2", new Product(aabb, new Numeric("2")).toString());
+                "(a+a+b+b)*2", new Product(aabb, new Numeric(2)).toString());
 
         // These also check for any aliasing bugs by passing in the same object twice
         assertEquals("Shouldn't add parens unless necessary in complex subexpressions",
