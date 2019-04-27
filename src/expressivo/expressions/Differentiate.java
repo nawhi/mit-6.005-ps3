@@ -13,7 +13,7 @@ class Differentiate {
     }
 
     private static Variable parseVariable(String rawVariable) {
-        Expression ex = Expression.parse(rawVariable);
+        Expression ex = Expressions.parse(rawVariable);
         if (!(ex instanceof Variable))
             throw new IllegalArgumentException(
                     "Can't differentiate with respect to '" + ex

@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -30,6 +30,6 @@ public class InvalidInputTest {
             "*2"
     })
     public void invalidInputsThrowAnException(String input) {
-        assertThatThrownBy(() -> Expression.parse(input)).hasMessageStartingWith("Syntax error");
+        assertThatThrownBy(() -> Expressions.parse(input)).hasMessageStartingWith("Syntax error");
     }
 }

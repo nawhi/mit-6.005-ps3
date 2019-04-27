@@ -3,8 +3,6 @@
  */
 package expressivo.expressions;
 
-import java.util.Map;
-
 /**
  * An immutable data type representing a polynomial expression of:
  *   + and *
@@ -24,24 +22,6 @@ public interface Expression {
 	// 		Primitive(p: Primitive) + BinOp(left: Primitive, right: Primitive)
 	// Primitive ::= 
 	//		Number(n: int) + Number(n: float) + Variable(v: String)
-    
-    /**
-     * Parse an expression.
-     * @param input expression to parse, as defined in the PS3 handout.
-     * @return expression AST for the input
-     * @throws IllegalArgumentException if the expression is invalid
-     */
-    static Expression parse(String input) {
-        return new ParseExpression().parse(input);
-    }
-
-    static String differentiate(String rawExpression, String variable) {
-        return new Differentiate(parse(rawExpression)).withRespectTo(variable);
-    }
-
-    static String simplify(String rawExpression, Map<String, Double> environment) {
-        return new Simplify(parse(rawExpression)).withEnvironment(environment);
-    }
 
     /**
      * Find whether this Expression will have precedence over another.

@@ -3,7 +3,7 @@
  */
 package expressivo;
 
-import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class Commands {
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
     public static String differentiate(String rawExpression, String variable) {
-        return Expression.differentiate(rawExpression, variable);
+        return Expressions.differentiate(rawExpression, variable);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Commands {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression, Map<String,Double> environment) {
-        return Expression.simplify(expression, environment);
+        return Expressions.simplify(expression, environment);
     }
     
 }

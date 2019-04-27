@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class PrimitiveParseTest {
 			"3.1415926535",
 	})
 	public void numbersCanBeParsed(String input) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(input);
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class PrimitiveParseTest {
 			"0025.300|25.3"
 	})
 	public void zeroesAreStandardisedWhenParsingNumbers(String input, String expectedOutput) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(expectedOutput);
 	}
 
 	@Test
@@ -46,6 +46,6 @@ public class PrimitiveParseTest {
 			"_1f"
 	})
 	public void variablesCanBeParsed(String input) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(input);
 	}
 }

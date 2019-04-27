@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ComposedExpressionParseTest {
             "1.2+3.5+f+98+2345+0.3"
     })
     public void sumsCanBeParsed(String input) {
-        assertThat(Expression.parse(input).toString()).isEqualTo(input);
+        assertThat(Expressions.parse(input).toString()).isEqualTo(input);
     }
 
     @Test
@@ -34,6 +34,6 @@ public class ComposedExpressionParseTest {
             "1.2*3.5*f*98*2345*0.3"
     })
     public void productsCanBeParsed(String input) {
-        assertThat(Expression.parse(input).toString()).isEqualTo(input);
+        assertThat(Expressions.parse(input).toString()).isEqualTo(input);
     }
 }

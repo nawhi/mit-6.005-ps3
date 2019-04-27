@@ -1,6 +1,6 @@
 package expressivo.parser;
 
-import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ParenthesisedExpressionParseTest {
 			"a+b+c*d+e+f"
 	})
 	public void parenthesesAreNotAdded(String input) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(input);
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class ParenthesisedExpressionParseTest {
 			"(2*a)+1|2*a+1"
 	})
 	public void spuriousParenthesesAreStripped(String input, String expectedOutput) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(expectedOutput);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(expectedOutput);
 	}
 	
 	@Test
@@ -45,6 +45,6 @@ public class ParenthesisedExpressionParseTest {
 			"(b+c)*(d+e)"
 	})
 	public void necessaryParenthesesArePreserved(String input) {
-		assertThat(Expression.parse(input).toString()).isEqualTo(input);
+		assertThat(Expressions.parse(input).toString()).isEqualTo(input);
 	}
 }

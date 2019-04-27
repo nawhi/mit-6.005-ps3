@@ -4,6 +4,7 @@
 package expressivo;
 
 import expressivo.expressions.Expression;
+import expressivo.expressions.Expressions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class Main {
                     output = Commands.simplify(currentExpression.get(), environment);
                     // ... but don't change currentExpression
                 } else {
-                    final Expression expression = Expression.parse(input);
+                    final Expression expression = Expressions.parse(input);
                     output = expression.toString();
                     currentExpression = Optional.of(output);
                 }
