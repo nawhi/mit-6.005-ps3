@@ -39,7 +39,7 @@ public class NumericTest {
         assertThat(new Numeric(bigValue).toString()).isEqualTo(bigValue);
     }
 
-    public String somethingBiggerThanIntMax() {
+    private String somethingBiggerThanIntMax() {
         return new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
     }
 
