@@ -10,7 +10,7 @@ class Differentiate {
     String withRespectTo(String rawVariable) {
         Expression expression = Expression.parse(rawExpression);
         Variable variable = parseVariable(rawVariable);
-        return expression.differentiate(variable).simplified().toString();
+        return expression.differentiate(variable).toString();
     }
 
     private static Variable parseVariable(String rawVariable) {
