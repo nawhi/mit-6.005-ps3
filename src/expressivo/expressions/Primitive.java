@@ -1,6 +1,6 @@
 package expressivo.expressions;
 
-abstract class Primitive implements Expression {
+abstract class Primitive extends BaseExpression {
 	
 	@Override
 	public boolean precedes(Expression other) {

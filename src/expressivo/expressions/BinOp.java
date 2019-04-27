@@ -2,7 +2,7 @@ package expressivo.expressions;
 
 import java.util.Objects;
 
-abstract class BinOp implements Expression {
+abstract class BinOp extends BaseExpression {
 	
 	final Expression lvalue;
 	final Expression rvalue;

@@ -96,11 +96,7 @@ public interface Expression {
 
     Expression reduced();
 
-    default Expression addTo(Expression rvalue) {
-        return new Sum(this, rvalue);
-    }
+    Expression addTo(Expression rvalue);
 
-    default Expression multiplyBy(Expression rvalue) {
-        return new Product(this, rvalue);
-    }
+    Expression multiplyBy(Expression rvalue);
 }

@@ -19,13 +19,11 @@ public class CommandsTest {
             "1|x|0",
             "c|x|0",
             "x|x|1",
+            "1+1|x|0",
+            "x+2|x|1",
+            "x+x|x|2",
 
-
-            // these assume simplification
-//            "1+1|x|0",
-//            "x+2|x|1",
-//            "x+x|x|2",
-//
+            // these assume more simplification than currently implemented
 //            "1*x|x|1",
 //            "x*x|x|2*x",
 //            "x*x*x|x|3*x*x" // fails; gives x*2*x + x*x
@@ -34,7 +32,6 @@ public class CommandsTest {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
     }
 
-//    @Ignore("acceptance")
     @Test
     @Parameters(method = "simplifyTestData")
     public void expressionsCanBeSimplified(String input, Map<String, Double> environment, String expectedResult) {
