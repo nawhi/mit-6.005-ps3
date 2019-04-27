@@ -30,6 +30,11 @@ class Numeric extends Primitive {
 	}
 
 	@Override
+	public Expression replace(Variable variable, Numeric value) {
+		throw new UnsupportedOperationException("TODO");
+	}
+
+	@Override
 	public String toString() {
 		return value.stripTrailingZeros().toPlainString();
 	}

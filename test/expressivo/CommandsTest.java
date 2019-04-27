@@ -34,7 +34,7 @@ public class CommandsTest {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
     }
 
-    @Ignore("acceptance")
+//    @Ignore("acceptance")
     @Test
     @Parameters(source = SimplifyTestData.class)
     public void expressionsCanBeSimplified2(String input, Map<String, Double> environment, String expectedResult) {

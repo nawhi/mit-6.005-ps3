@@ -24,6 +24,11 @@ class Sum extends BinOp {
 		return new Sum(lvalue.differentiate(variable), rvalue.differentiate(variable));
 	}
 
+	@Override
+	public Expression replace(Variable variable, Numeric value) {
+		throw new UnsupportedOperationException("TODO");
+	}
+
 //	@Override
 //	public Expression simplified() {
 //		Sum simplified = new Sum(lvalue.simplified(), rvalue.simplified());

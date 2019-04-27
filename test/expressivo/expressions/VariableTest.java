@@ -21,7 +21,17 @@ public class VariableTest {
         assertThat(y.differentiate(x)).isEqualTo(ZERO);
     }
 
-//    @Test
+    @Test
+    public void variableIgnoresReplaceCallWithDifferentVariable() {
+        assertThat(x.replace(y, ONE)).isEqualTo(x);
+    }
+
+    @Test
+    public void variableReplacesItselfWithNumeric() {
+        assertThat(x.replace(x, ONE)).isEqualTo(ONE);
+    }
+
+    //    @Test
 //    public void variableSimplifiedReturnsItself() {
 //        assertThat(y.simplified()).isEqualTo(y);
 //    }

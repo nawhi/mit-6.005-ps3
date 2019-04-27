@@ -23,6 +23,11 @@ class Product extends BinOp {
 		);
 	}
 
+	@Override
+	public Expression replace(Variable variable, Numeric value) {
+		throw new UnsupportedOperationException("TODO");
+	}
+
 	@Override 
 	public boolean precedes(Expression other) {
 		return true;

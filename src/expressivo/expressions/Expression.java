@@ -63,6 +63,15 @@ public interface Expression {
     Expression differentiate(Variable variable);
 
     /**
+     *
+     * @param variable the variable whose instances to replace
+     * @param value the value to replace the variable with
+     * @return new Expression where all instances of variable have been replaced with
+     *         value
+     */
+    Expression replace(Variable variable, Numeric value);
+
+    /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
      */
@@ -76,7 +85,7 @@ public interface Expression {
      */
     @Override
     boolean equals(Object thatObject);
-    
+
     /**
      * @return hash code value consistent with the equals() definition of structural
      * equality, such that for all e1,e2:Expression,
@@ -84,6 +93,4 @@ public interface Expression {
      */
     @Override
     int hashCode();
-
-
 }

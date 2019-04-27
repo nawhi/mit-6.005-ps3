@@ -10,7 +10,13 @@ class Simplify {
     }
 
     String withEnvironment(Map<String, Double> rawEnvironment) {
-        throw new UnsupportedOperationException("TODO");
+        Map<Variable, Numeric> parsedEnvironment = new EnvironmentParser(rawEnvironment).asExpressionMap();
+
+        for (Map.Entry entry: parsedEnvironment.entrySet()) {
+           expression = expression.replace((Variable) entry.getKey(), (Numeric) entry.getValue());
+        }
+        return expression.toString();
+
     }
 
 }

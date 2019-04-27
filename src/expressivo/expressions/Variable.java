@@ -22,6 +22,11 @@ class Variable extends Primitive {
     }
 
     @Override
+    public Expression replace(Variable variable, Numeric value) {
+        return variable.equals(this) ? value : this;
+    }
+
+    @Override
     public String toString() {
         return ident;
     }
