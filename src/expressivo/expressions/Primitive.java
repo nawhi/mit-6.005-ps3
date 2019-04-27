@@ -7,8 +7,8 @@ abstract class Primitive implements Expression {
 		return true;
 	}
 
-	@Override
-	public Expression simplified() {
-		return this;
-	}
+//	@Override
+//	public Expression simplified() {
+//		return this;
+//	}
 }

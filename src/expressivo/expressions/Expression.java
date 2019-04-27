@@ -50,7 +50,7 @@ public interface Expression {
      */
     boolean precedes(Expression other);
 
-    Expression simplified();
+//    Expression simplified();
 
     /**
      * @param variable Variable to differentiate by

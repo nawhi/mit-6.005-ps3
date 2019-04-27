@@ -28,23 +28,23 @@ class Product extends BinOp {
 		return true;
 	}
 
-	@Override
-	public Expression simplified() {
-		Product simplified = new Product(lvalue.simplified(), rvalue.simplified());
-		if (simplified.lvalue instanceof Numeric && simplified.rvalue instanceof Numeric) {
-			return ((Numeric)simplified.lvalue).times((Numeric)simplified.rvalue);
-		}
-		if (simplified.lvalue.equals(ZERO) || simplified.rvalue.equals(ZERO)) {
-			return ZERO;
-		}
-		if (simplified.lvalue.equals(ONE)) {
-			return simplified.rvalue;
-		}
-		if (simplified.rvalue.equals(ONE)) {
-			return simplified.lvalue;
-		}
-		return simplified;
-	}
+//	@Override
+//	public Expression simplified() {
+//		Product simplified = new Product(lvalue.simplified(), rvalue.simplified());
+//		if (simplified.lvalue instanceof Numeric && simplified.rvalue instanceof Numeric) {
+//			return ((Numeric)simplified.lvalue).times((Numeric)simplified.rvalue);
+//		}
+//		if (simplified.lvalue.equals(ZERO) || simplified.rvalue.equals(ZERO)) {
+//			return ZERO;
+//		}
+//		if (simplified.lvalue.equals(ONE)) {
+//			return simplified.rvalue;
+//		}
+//		if (simplified.rvalue.equals(ONE)) {
+//			return simplified.lvalue;
+//		}
+//		return simplified;
+//	}
 
 	@Override
 	public boolean equals(Object other) {

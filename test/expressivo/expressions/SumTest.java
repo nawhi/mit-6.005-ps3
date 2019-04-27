@@ -37,26 +37,26 @@ public class SumTest {
         assertThat(new Sum(x, x).differentiate(x)).isEqualTo(new Sum(ONE, ONE));
     }
 
-    @Test
-    @Parameters(source = SimplifyTestData.class)
-    public void sumsCanBeSimplified(Sum input, Expression expectedResult) {
-        assertThat(input.simplified()).isEqualTo(expectedResult);
-    }
-
-    public static class SimplifyTestData {
-        public static Object[] provideSums() {
-            Variable x = new Variable("x");
-            Variable y = new Variable("y");
-            Numeric two = new Numeric("2");
-            return new Object[] {
-                    new Object[] { new Sum(x, y), new Sum(x, y) },
-                    new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
-                    new Object[] { new Sum(ONE, ONE), two },
-                    new Object[] { new Sum(x, x), new Product(two, x) },
-                    new Object[] { new Sum(ONE, ZERO), ONE },
-                    new Object[] { new Sum(x, ZERO), x },
-                    new Object[] { new Sum(ZERO, new Sum(ZERO, ZERO)), ZERO },
-            };
-        }
-    }
+//    @Test
+//    @Parameters(source = SimplifyTestData.class)
+//    public void sumsCanBeSimplified(Sum input, Expression expectedResult) {
+//        assertThat(input.simplified()).isEqualTo(expectedResult);
+//    }
+//
+//    public static class SimplifyTestData {
+//        public static Object[] provideSums() {
+//            Variable x = new Variable("x");
+//            Variable y = new Variable("y");
+//            Numeric two = new Numeric("2");
+//            return new Object[] {
+//                    new Object[] { new Sum(x, y), new Sum(x, y) },
+//                    new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
+//                    new Object[] { new Sum(ONE, ONE), two },
+//                    new Object[] { new Sum(x, x), new Product(two, x) },
+//                    new Object[] { new Sum(ONE, ZERO), ONE },
+//                    new Object[] { new Sum(x, ZERO), x },
+//                    new Object[] { new Sum(ZERO, new Sum(ZERO, ZERO)), ZERO },
+//            };
+//        }
+//    }
 }
