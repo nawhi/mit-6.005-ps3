@@ -1,8 +1,6 @@
 package expressivo.expressions;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 class Numeric extends Primitive {
 	static final Numeric TWO = new Numeric(new BigDecimal(2));
@@ -52,11 +50,17 @@ class Numeric extends Primitive {
 		return super.equals(other);
 	}
 
-	Expression plus(Numeric other) {
-		return new Numeric(this.value.add(other.value));
+	@Override
+	public Expression addTo(Expression other) {
+		if (other instanceof Numeric)
+			return new Numeric(((Numeric) other).value.add(value));
+		return super.addTo(other);
 	}
 
-	Expression times(Numeric other) {
-		return new Numeric(this.value.multiply(other.value));
+	@Override
+	public Expression multiplyBy(Expression other) {
+		if (other instanceof Numeric)
+			return new Numeric(((Numeric) other).value.multiply(value));
+		return super.multiplyBy(other);
 	}
 }

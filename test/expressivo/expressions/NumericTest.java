@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
+import static expressivo.expressions.Numeric.ONE;
+import static expressivo.expressions.Numeric.TWO;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -53,5 +55,20 @@ public class NumericTest {
         Variable x = new Variable("x");
         Numeric numeric = new Numeric(value);
         assertThat(numeric.differentiate(x)).isEqualTo(ZERO);
+    }
+
+    @Test
+    public void numericsReduceToThemselves() {
+        assertThat(ONE.reduced()).isEqualTo(ONE);
+    }
+
+    @Test
+    public void numericsAddToEachOther() {
+        assertThat(ONE.addTo(ONE)).isEqualTo(TWO);
+    }
+
+    @Test
+    public void numericsMultiplyByEachOther() {
+        assertThat(TWO.multiplyBy(TWO)).isEqualTo(new Numeric("4"));
     }
 }

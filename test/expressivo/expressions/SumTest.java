@@ -5,8 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static expressivo.expressions.Numeric.ONE;
-import static expressivo.expressions.Numeric.ZERO;
+import static expressivo.expressions.Numeric.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
@@ -37,26 +36,20 @@ public class SumTest {
         assertThat(new Sum(x, x).differentiate(x)).isEqualTo(new Sum(ONE, ONE));
     }
 
-//    @Test
-//    @Parameters(source = SimplifyTestData.class)
-//    public void sumsCanBeSimplified(Sum input, Expression expectedResult) {
-//        assertThat(input.simplified()).isEqualTo(expectedResult);
-//    }
-//
-//    public static class SimplifyTestData {
-//        public static Object[] provideSums() {
-//            Variable x = new Variable("x");
-//            Variable y = new Variable("y");
-//            Numeric two = new Numeric("2");
-//            return new Object[] {
-//                    new Object[] { new Sum(x, y), new Sum(x, y) },
-//                    new Object[] { new Sum(x, ONE), new Sum(x, ONE) },
-//                    new Object[] { new Sum(ONE, ONE), two },
-//                    new Object[] { new Sum(x, x), new Product(two, x) },
-//                    new Object[] { new Sum(ONE, ZERO), ONE },
-//                    new Object[] { new Sum(x, ZERO), x },
-//                    new Object[] { new Sum(ZERO, new Sum(ZERO, ZERO)), ZERO },
-//            };
-//        }
-//    }
+    @Test
+    public void sumsDoNotReduceIfEitherValueIsAVariable() {
+        Variable x = new Variable("x");
+        Sum sum = new Sum(ONE, x);
+        assertThat(sum.reduced()).isEqualTo(sum);
+    }
+
+    @Test
+    public void sumsReduceByAddingComponentNumerics() {
+        assertThat(new Sum(ONE, ONE).reduced()).isEqualTo(TWO);
+    }
+
+    @Test
+    public void nestedSumsReduceByAddingAllComponents() {
+        assertThat(new Sum(ONE, new Sum(ONE, new Sum(ONE, ONE))).reduced()).isEqualTo(new Numeric("4"));
+    }
 }

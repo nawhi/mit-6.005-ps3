@@ -26,29 +26,17 @@ class Sum extends BinOp {
         return new Sum(lvalue.replace(variable, value), rvalue.replace(variable, value));
     }
 
-//	@Override
-//	public Expression simplified() {
-//		Sum simplified = new Sum(lvalue.simplified(), rvalue.simplified());
-//		if (simplified.lvalue instanceof Numeric && simplified.rvalue instanceof Numeric) {
-//			return ((Numeric) simplified.lvalue).plus((Numeric) simplified.rvalue);
-//		}
-//		if (simplified.lvalue.equals(simplified.rvalue)) {
-//			return new Product(TWO, simplified.lvalue);
-//		}
-//		if (simplified.lvalue.equals(ZERO)) {
-//			return simplified.rvalue;
-//		}
-//		if (simplified.rvalue.equals(ZERO))
-//			return simplified.lvalue;
-//
-//		return simplified;
-//	}
-
     @Override
     public boolean equals(Object other) {
         if (other instanceof Sum)
             return this.lvalue.equals(((Sum) other).lvalue)
                     && this.rvalue.equals(((Sum) other).rvalue);
         return super.equals(other);
+    }
+
+    @Override
+    public Expression reduced() {
+        Sum reduced = new Sum(lvalue.reduced(), rvalue.reduced());
+        return reduced.lvalue.addTo(reduced.rvalue);
     }
 }

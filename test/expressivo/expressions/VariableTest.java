@@ -31,8 +31,8 @@ public class VariableTest {
         assertThat(x.replace(x, ONE)).isEqualTo(ONE);
     }
 
-    //    @Test
-//    public void variableSimplifiedReturnsItself() {
-//        assertThat(y.simplified()).isEqualTo(y);
-//    }
+    @Test
+    public void variableReducedReturnsItself() {
+        assertThat(x.reduced()).isEqualTo(x);
+    }
 }

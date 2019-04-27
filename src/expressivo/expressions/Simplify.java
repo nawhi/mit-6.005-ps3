@@ -15,7 +15,7 @@ class Simplify {
         for (Map.Entry entry: parsedEnvironment.entrySet()) {
            expression = expression.replace((Variable) entry.getKey(), (Numeric) entry.getValue());
         }
-        return expression.toString();
+        return expression.reduced().toString();
 
     }
 

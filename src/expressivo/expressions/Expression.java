@@ -93,4 +93,14 @@ public interface Expression {
      */
     @Override
     int hashCode();
+
+    Expression reduced();
+
+    default Expression addTo(Expression rvalue) {
+        return new Sum(this, rvalue);
+    }
+
+    default Expression multiplyBy(Expression rvalue) {
+        return new Product(this, rvalue);
+    }
 }

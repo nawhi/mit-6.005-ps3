@@ -3,6 +3,7 @@ package expressivo;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,34 +36,24 @@ public class CommandsTest {
 
 //    @Ignore("acceptance")
     @Test
-    @Parameters(source = SimplifyTestData.class)
-    public void expressionsCanBeSimplified2(String input, Map<String, Double> environment, String expectedResult) {
+    @Parameters(method = "simplifyTestData")
+    public void expressionsCanBeSimplified(String input, Map<String, Double> environment, String expectedResult) {
         assertThat(Commands.simplify(input, environment)).isEqualTo(expectedResult);
     }
 
-    public static class SimplifyTestData {
-        public static Object[] provideData() {
-            return ArrayUtils.addAll(
-                    withNoSubstitution(),
-                    withSubstitution()
-            );
-        }
+    public static Object[] simplifyTestData() {
+        return new Object[]{
+                new Object[]{"1", Map.of("x", 5.), "1"},
+                new Object[]{"y", Map.of("x", 5.), "y"},
+                new Object[]{"x", Map.of("x", 5.), "5"},
 
-        static Object[] withSubstitution() {
-            return new Object[] {
-                    new Object[] { "x+y+z", Map.of("x", 1., "y", 2.), "1+2+z" },
-                    new Object[] { "t+u+v+w+x+y+z", Map.of("x", 1., "y", 2.), "t+u+v+w+1+2+z" },
-                    new Object[] { "x*y*z", Map.of("x", 5., "y", 10.5), "5*10.5*z" },
-                    new Object[] { "t*u*v*w*x*y*z", Map.of("x", 5., "y", 10.5), "t*u*v*w*5*10.5*z" }
-            };
-        }
+                new Object[]{"x+y+z", Map.of("x", 1., "y", 2.), "1+2+z"},
+                new Object[]{"t+u+v+w+x+y+z", Map.of("x", 1., "y", 2.), "t+u+v+w+1+2+z"},
+                new Object[]{"x*y*z", Map.of("x", 5., "y", 10.5), "5*10.5*z"},
+                new Object[]{"t*u*v*w*x*y*z", Map.of("x", 5., "y", 10.5), "t*u*v*w*5*10.5*z"},
 
-        static Object[] withNoSubstitution() {
-            return new Object[]{
-                    new Object[]{"1", Map.of("x", 5.), "1"},
-                    new Object[]{"y", Map.of("x", 5.), "y"},
-                    new Object[]{"x", Map.of("x", 5.), "5"},
-            };
-        }
+                new Object[]{"x+1", Map.of("x", 1.), "2"}
+        };
     }
+
 }

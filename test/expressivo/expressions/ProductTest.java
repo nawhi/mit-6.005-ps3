@@ -50,24 +50,26 @@ public class ProductTest {
         }
     }
 
-//    @Test
-//    @Parameters(source = SimplifyTestData.class)
-//    public void productsCanBeSimplified(Product input, Expression expectedResult) {
-//        assertThat(input.simplified()).isEqualTo(expectedResult);
-//    }
-//
-//    public static class SimplifyTestData {
-//        public static Object[] provideData() {
-//            Variable x = new Variable("x");
-//            Expression c = new Numeric("255");
-//            return new Object[] {
-//                    new Object[] { new Product(TWO, TWO), new Numeric("4") },
-//                    new Object[] { new Product(x, ZERO), ZERO },
-//                    new Object[] { new Product(x, ONE), x },
-//                    new Object[] { new Product(ONE, new Product(x, ONE)), x },
-//                    new Object[] { new Product(x, x), new Product(x, x) },
-//                    new Object[] { new Product(ZERO, new Product(ZERO, ZERO)), ZERO }
-//            };
-//        }
-//    }
+    @Test
+    public void productsDoNotReduceIfEitherValueIsAVariable() {
+        Variable x = new Variable("x");
+        Product product = new Product(ONE, x); // todo: should reduce in future
+        assertThat(product.reduced()).isEqualTo(product);
+    }
+
+    @Test
+    public void productsToNotReduceIfOneValueIsAVariable() {
+        Product p = new Product(new Numeric("10.5"), new Variable("z"));
+        assertThat(p.reduced()).isEqualTo(p);
+    }
+
+    @Test
+    public void productsReduceByMultiplyingComponentNumerics() {
+        assertThat(new Product(TWO, TWO).reduced()).isEqualTo(new Numeric("4"));
+    }
+
+    @Test
+    public void nestedProductsReduceByMultiplyingAllComponents() {
+        assertThat(new Product(TWO, new Product(TWO, new Product(TWO, TWO))).reduced()).isEqualTo(new Numeric("16"));
+    }
 }
