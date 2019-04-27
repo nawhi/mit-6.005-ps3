@@ -9,7 +9,8 @@ class Simplify {
         this.expression = expression;
     }
 
-    String withEnvironment(Map<String, Double> environment) {
-        return null;
+    String withEnvironment(Map<String, Double> rawEnvironment) {
+        throw new UnsupportedOperationException("TODO");
     }
+
 }
