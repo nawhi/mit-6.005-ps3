@@ -37,11 +37,11 @@ task compileAntlr(type: JavaExec) {
     classpath = files('lib/antlr.jar')
     
     def parserDir = 'src/expressivo/parser'
-    def grammar = parserDir + '/Expression.g4'
+    def grammarFile = parserDir + '/Expression.g4'
     
-    args = [grammar]
-    inputs.files grammar
-    outputs.files fileTree(dir: parserDir, excludes: [grammar])
+    args = [grammarFile]
+    inputs.files grammarFile
+    outputs.files fileTree(dir: parserDir, excludes: [grammarFile])
 }
 
 compileJava.dependsOn compileAntlr

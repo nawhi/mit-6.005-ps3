@@ -16,7 +16,7 @@ class Sum extends BinOp {
 	
 	@Override 
 	public boolean precedes(Expression other) {
-		return !(other instanceof Product); // (x+1)*3 != x+1*3
+		return !(other instanceof Product); 
 	}
 
 	@Override
