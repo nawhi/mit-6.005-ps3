@@ -3,9 +3,9 @@ package expressivo.expressions;
 import java.math.BigDecimal;
 
 class Numeric extends Primitive {
-	static final Numeric TWO = new Numeric(new BigDecimal(2));
-	static final Numeric ZERO = new Numeric(new BigDecimal(0));
-	static final Numeric ONE = new Numeric(new BigDecimal(1));
+	static final Numeric ZERO = new Numeric(0);
+	static final Numeric ONE = new Numeric(1);
+	static final Numeric TWO = new Numeric(2);
 
 	private final BigDecimal value;
 	
@@ -17,6 +17,8 @@ class Numeric extends Primitive {
 	Numeric(String val) {
 		this.value = new BigDecimal(val);
 	}
+
+	Numeric(Number val) { this.value = new BigDecimal(val.doubleValue()); }
 
 	private Numeric(BigDecimal val) {
 		this.value = val;

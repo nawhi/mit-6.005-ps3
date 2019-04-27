@@ -16,7 +16,5 @@ class Simplify {
            expression = expression.replace((Variable) entry.getKey(), (Numeric) entry.getValue());
         }
         return expression.reduced().toString();
-
     }
-
 }
