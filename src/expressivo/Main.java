@@ -32,7 +32,6 @@ public class Main {
         Optional<String> currentExpression = Optional.empty();
 
         System.out.println("Welcome to Expressivo");
-        System.out.println("Type an equation");
         
         while (true) {
             System.out.print("> ");
