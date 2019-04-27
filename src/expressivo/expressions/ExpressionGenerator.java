@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Stack;
 
@@ -41,7 +42,7 @@ class ExpressionGenerator implements ExpressionListener {
 		if (ctx.getText().isEmpty()) {
 			throw new ParseCancellationException("expected a number, but got empty string");
 		}
-		stack.push(new Numeric(ctx.getText()));
+		stack.push(new Numeric(new BigDecimal(ctx.getText())));
 	}
 	
 	@Override

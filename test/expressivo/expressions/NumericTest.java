@@ -23,23 +23,20 @@ public class NumericTest {
             "1.00000000000000000000001|1.00000000000000000000001"
     })
     public void identicalNumericsRepresentedDifferentlyShouldBeEqual(String value1, String value2) {
-        assertThat(new Numeric(value1)).isEqualTo(new Numeric(value2));
-        assertThat(new Numeric(value1).toString()).isEqualTo(new Numeric(value2).toString());
-    }
-
-    @Test
-    public void numericThrowsIfPassedInvalidInitialValue() {
-        assertThatThrownBy(() -> new Numeric("foo")).isInstanceOf(IllegalArgumentException.class);
+        BigDecimal v1 = new BigDecimal(value1);
+        BigDecimal v2 = new BigDecimal(value2);
+        assertThat(new Numeric(v1)).isEqualTo(new Numeric(v2));
+        assertThat(new Numeric(v1).toString()).isEqualTo(new Numeric(v2).toString());
     }
 
     @Test
     public void numbersGreaterThanIntSizeAreNotClipped() {
-        String bigValue = somethingBiggerThanIntMax();
-        assertThat(new Numeric(bigValue).toString()).isEqualTo(bigValue);
+        assertThat(new Numeric(somethingBiggerThanIntMax()).toString())
+                .isEqualTo(somethingBiggerThanIntMax().toString());
     }
 
-    private String somethingBiggerThanIntMax() {
-        return new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1)).toString();
+    private BigDecimal somethingBiggerThanIntMax() {
+        return new BigDecimal(Integer.MAX_VALUE).add(new BigDecimal(1));
     }
 
     @Test
@@ -50,7 +47,7 @@ public class NumericTest {
     })
     public void numericsAlwaysDifferentiateToZero(String value) {
         Variable x = new Variable("x");
-        Numeric numeric = new Numeric(value);
+        Numeric numeric = new Numeric(new BigDecimal(value));
         assertThat(numeric.differentiate(x)).isEqualTo(ZERO);
     }
 

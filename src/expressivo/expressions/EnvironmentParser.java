@@ -14,7 +14,7 @@ class EnvironmentParser {
         return rawEnvironment.entrySet().stream()
                 .collect(Collectors.toMap(
                         entry -> new Variable(entry.getKey()),
-                        entry -> new Numeric(entry.getValue().toString())
+                        entry -> new Numeric(entry.getValue())
                 ));
     }
 }

@@ -14,10 +14,6 @@ class Numeric extends Primitive {
 	// Safety from rep exposure:
 	//   private fields are final
 
-	Numeric(String val) {
-		this.value = new BigDecimal(val);
-	}
-
 	Numeric(Number val) { this.value = new BigDecimal(val.doubleValue()); }
 
 	Numeric(BigDecimal val) {
