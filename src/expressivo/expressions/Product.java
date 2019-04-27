@@ -25,7 +25,7 @@ class Product extends BinOp {
 
 	@Override
 	public Expression replace(Variable variable, Numeric value) {
-		throw new UnsupportedOperationException("TODO");
+		return new Product(lvalue.replace(variable, value), rvalue.replace(variable, value));
 	}
 
 	@Override 
