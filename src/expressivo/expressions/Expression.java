@@ -3,7 +3,7 @@
  */
 package expressivo.expressions;
 
-import org.antlr.v4.runtime.misc.ParseCancellationException;
+import java.util.Map;
 
 /**
  * An immutable data type representing a polynomial expression of:
@@ -36,7 +36,11 @@ public interface Expression {
     }
 
     static String differentiate(String rawExpression, String variable) {
-        return new Differentiate(rawExpression).withRespectTo(variable);
+        return new Differentiate(parse(rawExpression)).withRespectTo(variable);
+    }
+
+    static String simplify(String rawExpression, Map<String, Double> environment) {
+        return new Simplify(parse(rawExpression)).withEnvironment(environment);
     }
 
     /**

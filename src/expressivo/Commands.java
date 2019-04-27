@@ -42,7 +42,7 @@ public class Commands {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression, Map<String,Double> environment) {
-        throw new RuntimeException("unimplemented");
+        return Expression.simplify(expression, environment);
     }
     
 }

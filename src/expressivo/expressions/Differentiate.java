@@ -1,14 +1,13 @@
 package expressivo.expressions;
 
 class Differentiate {
-    private String rawExpression;
+    private Expression expression;
 
-    Differentiate(String rawExpression) {
-        this.rawExpression = rawExpression;
+    Differentiate(Expression expression) {
+        this.expression = expression;
     }
 
     String withRespectTo(String rawVariable) {
-        Expression expression = Expression.parse(rawExpression);
         Variable variable = parseVariable(rawVariable);
         return expression.differentiate(variable).toString();
     }

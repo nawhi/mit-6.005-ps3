@@ -1,6 +1,6 @@
 package expressivo;
 
-import expressivo.Commands;
+import expressivo.expressions.ProductTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Ignore;
@@ -34,9 +34,18 @@ public class CommandsTest {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
     }
 
-    @Ignore("not ready")
+    @Ignore("acceptance")
     @Test
-    public void expressionsCanBeSimplified() {
-        assertThat(Commands.simplify("x", Map.of("x", 5d))).isEqualTo("5");
+    @Parameters(source = SimplifyTestData.class)
+    public void expressionsCanBeSimplified2(String input, Map<String, Double> environment, String expectedResult) {
+        assertThat(Commands.simplify(input, environment)).isEqualTo(expectedResult);
+    }
+
+    public static class SimplifyTestData {
+        public static Object[] provideData() {
+            return new Object[] {
+                new Object[] { "x", Map.of("x", 5.), "5" }
+            };
+        }
     }
 }
