@@ -1,33 +1,30 @@
 package expressivo.expressions;
 
-import static expressivo.expressions.Numeric.TWO;
-import static expressivo.expressions.Numeric.ZERO;
-
 class Sum extends BinOp {
 
-	Sum(Expression lvalue, Expression rvalue) {
-		super(lvalue, rvalue);
-	}
-	
-	@Override 
-	protected String operator() {
-		return "+";
-	}
-	
-	@Override 
-	public boolean precedes(Expression other) {
-		return !(other instanceof Product); 
-	}
+    Sum(Expression lvalue, Expression rvalue) {
+        super(lvalue, rvalue);
+    }
 
-	@Override
-	public Expression differentiate(Variable variable) {
-		return new Sum(lvalue.differentiate(variable), rvalue.differentiate(variable));
-	}
+    @Override
+    protected String operator() {
+        return "+";
+    }
 
-	@Override
-	public Expression replace(Variable variable, Numeric value) {
-		throw new UnsupportedOperationException("TODO");
-	}
+    @Override
+    public boolean precedes(Expression other) {
+        return !(other instanceof Product);
+    }
+
+    @Override
+    public Expression differentiate(Variable variable) {
+        return new Sum(lvalue.differentiate(variable), rvalue.differentiate(variable));
+    }
+
+    @Override
+    public Expression replace(Variable variable, Numeric value) {
+        return new Sum(lvalue.replace(variable, value), rvalue.replace(variable, value));
+    }
 
 //	@Override
 //	public Expression simplified() {
@@ -47,11 +44,11 @@ class Sum extends BinOp {
 //		return simplified;
 //	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (other instanceof Sum)
-			return this.lvalue.equals(((Sum) other).lvalue)
-				   && this.rvalue.equals(((Sum) other).rvalue);
-		return super.equals(other);
-	}
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Sum)
+            return this.lvalue.equals(((Sum) other).lvalue)
+                    && this.rvalue.equals(((Sum) other).rvalue);
+        return super.equals(other);
+    }
 }

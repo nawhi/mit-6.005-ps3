@@ -44,7 +44,9 @@ public class CommandsTest {
     public static class SimplifyTestData {
         public static Object[] provideData() {
             return new Object[] {
-                new Object[] { "x", Map.of("x", 5.), "5" }
+                    new Object[] { "x", Map.of("x", 5.), "5" },
+                    new Object[] { "x+y+z", Map.of("x", 1., "y", 2.), "1+2+z" }
+
             };
         }
     }

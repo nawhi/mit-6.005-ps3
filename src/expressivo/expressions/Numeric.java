@@ -31,7 +31,7 @@ class Numeric extends Primitive {
 
 	@Override
 	public Expression replace(Variable variable, Numeric value) {
-		throw new UnsupportedOperationException("TODO");
+		return this;
 	}
 
 	@Override
