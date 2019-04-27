@@ -3,8 +3,11 @@ package expressivo;
 import expressivo.Commands;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +32,11 @@ public class CommandsTest {
     })
     public void expressionsCanBeDifferentiated(String inputExpr, String variable, String expectedOutput) {
         assertThat(Commands.differentiate(inputExpr, variable)).isEqualTo(expectedOutput);
+    }
+
+    @Ignore("not ready")
+    @Test
+    public void expressionsCanBeSimplified() {
+        assertThat(Commands.simplify("x", Map.of("x", 5d))).isEqualTo("5");
     }
 }

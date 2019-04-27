@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ExpressionTest {
+public class ComplexExpressionTest {
 
 	@Test public void testComplexExpressions() {
 		Variable w = new Variable("w");
