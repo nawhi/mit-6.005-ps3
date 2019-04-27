@@ -20,7 +20,7 @@ class Numeric extends Primitive {
 
 	Numeric(Number val) { this.value = new BigDecimal(val.doubleValue()); }
 
-	private Numeric(BigDecimal val) {
+	Numeric(BigDecimal val) {
 		this.value = val;
 	}
 

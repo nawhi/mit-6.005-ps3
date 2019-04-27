@@ -41,7 +41,7 @@ public class ProductTest {
     public static class DifferentiateTestData {
         public static Object[] provideData() {
             Variable x = new Variable("x");
-            Expression c = new Numeric("255");
+            Expression c = new Numeric(255);
             return new Object[] {
                 new Object[] { new Product(c, c), x, new Sum(new Product(c, ZERO), new Product(c, ZERO)) },
                 new Object[] { new Product(x, c), x, new Sum(new Product(x, ZERO), new Product(c, ONE)) },
@@ -59,7 +59,7 @@ public class ProductTest {
 
     @Test
     public void productsToNotReduceIfOneValueIsAVariable() {
-        Product p = new Product(new Numeric("10.5"), new Variable("z"));
+        Product p = new Product(new Numeric(10.5), new Variable("z"));
         assertThat(p.reduced()).isEqualTo(p);
     }
 
@@ -70,6 +70,6 @@ public class ProductTest {
 
     @Test
     public void nestedProductsReduceByMultiplyingAllComponents() {
-        assertThat(new Product(TWO, new Product(TWO, new Product(TWO, TWO))).reduced()).isEqualTo(new Numeric("16"));
+        assertThat(new Product(TWO, new Product(TWO, new Product(TWO, TWO))).reduced()).isEqualTo(new Numeric(16));
     }
 }

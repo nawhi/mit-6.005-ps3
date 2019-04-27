@@ -3,9 +3,12 @@
  */
 package expressivo.expressions;
 
+import static java.math.BigDecimal.valueOf;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 public class ComplexExpressionTest {
 
@@ -15,7 +18,7 @@ public class ComplexExpressionTest {
 		Variable y = new Variable("y");
 		Variable z = new Variable("z");
 		Numeric five = new Numeric(5);
-		Numeric pi = new Numeric("3.1415927");
+		Numeric pi = new Numeric(valueOf(3.1415927));
 		
 		assertEquals("Complex expression 1", 
 				"(x+y)*5*(x+3.1415927)", 
